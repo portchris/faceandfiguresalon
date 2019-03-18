@@ -4,6 +4,7 @@ import { StoreInformation } from '../services/store-information.js';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
+import Media from 'react-bootstrap/Media';
 
 class Header extends React.Component {
 
@@ -14,9 +15,22 @@ class Header extends React.Component {
 			return (
 				<Navbar bg="light" expand="lg">
 					<Navbar.Brand>
-						<Link href="/">
-							{this.context.data.header.title}
-						</Link>
+						<Media>
+							<img
+								width={50}
+								height={50}
+								className="align-self-center mr-3"
+								src={this.context.data.header.logo}
+								alt="Face & Figure Beauty Salon Taunton Somerset"
+							/>
+							<Media.Body>
+								<div className="align-self-center">
+									<Link href="/">
+										{this.context.data.header.title}
+									</Link>
+								</div>
+							</Media.Body>
+						</Media>
 					</Navbar.Brand>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
