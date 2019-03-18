@@ -1,6 +1,9 @@
 import React from 'react';
 import Link from 'next/link'
 import { StoreInformation } from '../services/store-information.js';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Nav from 'react-bootstrap/Nav';
 
 class Header extends React.Component {
 
@@ -9,28 +12,37 @@ class Header extends React.Component {
 	render() {
 		if (this.context.data && this.context.data.header) {
 			return (
-				<header>
-					<h1>{this.context.data.header.title}</h1>
-					<nav>
-						<ul>
-							<li>
+				<Navbar bg="light" expand="lg">
+					<Navbar.Brand>
+						<Link href="/">
+							{this.context.data.header.title}
+						</Link>
+					</Navbar.Brand>
+					<Navbar.Toggle aria-controls="basic-navbar-nav" />
+					<Navbar.Collapse id="basic-navbar-nav">
+						<Nav className="mr-auto">
+							<Nav.Link>
 								<Link href="/">
 									<a>The Salon</a>
 								</Link>
-							</li>
-							<li>
-								<Link href="/treatments">
-									<a>View Treatments</a>
-								</Link>
-							</li>
-							<li>
+							</Nav.Link>
+							<NavDropdown title="Treatments" id="basic-nav-dropdown">
+								<NavDropdown.Item>
+									<Link href="/treatments">
+										<a>View All Treatments</a>
+									</Link>
+								</NavDropdown.Item>
+							</NavDropdown>
+							<Nav.Link>
+							</Nav.Link>
+							<Nav.Link>
 								<Link href="/contact">
 									<a>Get In Contact</a>
 								</Link>
-							</li>
-						</ul>
-					</nav>
-				</header>
+							</Nav.Link>
+						</Nav>
+					</Navbar.Collapse>
+				</Navbar>
 			);
 		} else {
 			return "";
