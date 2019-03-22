@@ -10,6 +10,24 @@ class Header extends React.Component {
 
 	static contextType = StoreInformation;
 
+	navDropdownItemTreatments() {
+		let treatments = [];
+		if (this.context.data && this.context.data.treatments) {
+			let c = this.context.data.treatments[0].children.length;
+			for (let i = 0; i < c; i++) {
+				let treatment = this.context.data.treatments[0].children[i].data;
+				treatments.push(
+					<NavDropdown.Item>
+						<Link href={treatment.url_path}>
+							<a>{treatment.h1_title}</a>
+						</Link>
+					</NavDropdown.Item>
+				);
+			}
+		}
+		return treatments;
+	}
+
 	render() {
 		if (this.context.data && this.context.data.header) {
 			return (
@@ -26,7 +44,7 @@ class Header extends React.Component {
 							<Media.Body>
 								<div className="align-self-center">
 									<Link href="/">
-										{this.context.data.header.title}
+										<a>{this.context.data.header.title}</a>
 									</Link>
 								</div>
 							</Media.Body>
@@ -46,6 +64,7 @@ class Header extends React.Component {
 										<a>View All Treatments</a>
 									</Link>
 								</NavDropdown.Item>
+								{this.navDropdownItemTreatments()}
 							</NavDropdown>
 							<Nav.Link>
 							</Nav.Link>
