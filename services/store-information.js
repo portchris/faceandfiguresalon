@@ -17,22 +17,23 @@ const StoreInfo = React.createContext(DEFAULT_STATE);
 class StoreInformationService {
 
 	constructor() {
-		this.uri = (process.env.NODE_ENV !== 'production') ? "http://faceandfigure.portchris.co.uk/info/index/index" : "https://api.faceandfiguresalon.co.uk/info/index/index";
+		this.uri = (process.env.NODE_ENV !== 'production') ? "http://faceandfigure.portchris.co.uk/" : "https://api.faceandfiguresalon.co.uk/";
 		this.service = new ServiceProvider();
 		this.state = DEFAULT_STATE;
+		this.state.uri = this.uri;
 	}
 
 	getStoreInfo() {
 		return new Promise((resolve, reject) => {
 			this.service.get(
-				this.uri
+				this.uri + "info/index/index"
 			).then(
 				(res) => {
 					let s = res;
 					s.error = [];
 					s.isLoading = false;
 					s.loadingText = 'Loaded';
-					// this.state = s;
+					s.uri = this.uri;
 					console.log(s);
 					resolve(s);
 				}
@@ -42,7 +43,7 @@ class StoreInformationService {
 					s.error = err;
 					s.isLoading = false;
 					s.loadingText = 'Error';
-					// this.state = s;
+					s.uri = this.uri;
 					reject(s);
 				}
 			);
