@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from 'next/link'
 import { StoreInformation } from '../services/store-information.js';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -16,16 +15,19 @@ class Header extends React.Component {
 			let c = this.context.data.treatments[0].children.length;
 			for (let i = 0; i < c; i++) {
 				let treatment = this.context.data.treatments[0].children[i].data;
+				let eventKey = parseFloat("2." + (i + 2));
 				treatments.push(
-					<NavDropdown.Item>
-						<Link href={treatment.url_path}>
-							<a>{treatment.h1_title}</a>
-						</Link>
+					<NavDropdown.Item as={Nav.Link} href={treatment.url_path} eventKey={eventKey}>
+						{treatment.h1_title}
 					</NavDropdown.Item>
 				);
 			}
 		}
 		return treatments;
+	}
+
+	handleSelect() {
+		
 	}
 
 	render() {
@@ -43,36 +45,27 @@ class Header extends React.Component {
 							/>
 							<Media.Body>
 								<div className="align-self-center">
-									<Link href="/">
-										<a>{this.context.data.header.title}</a>
-									</Link>
+									<Nav.Link href="/" eventKey="1">
+										{this.context.data.header.title}
+									</Nav.Link>
 								</div>
 							</Media.Body>
 						</Media>
 					</Navbar.Brand>
 					<Navbar.Toggle aria-controls="basic-navbar-nav" />
 					<Navbar.Collapse id="basic-navbar-nav">
-						<Nav className="mr-auto">
-							<Nav.Link>
-								<Link href="/">
-									<a>The Salon</a>
-								</Link>
-							</Nav.Link>
-							<NavDropdown title="Treatments" id="basic-nav-dropdown">
-								<NavDropdown.Item>
-									<Link href="/treatments">
-										<a>View All Treatments</a>
-									</Link>
+						<Nav className="mr-auto" activeKey="1" onSelect={k => this.handleSelect(k)}>
+							<NavDropdown as={Nav.Item} title="Treatments" id="basic-nav-dropdown">
+								<NavDropdown.Item as={Nav.Link} href="/treatments" eventKey="2.1">
+									View All Treatments
 								</NavDropdown.Item>
 								{this.navDropdownItemTreatments()}
 							</NavDropdown>
-							<Nav.Link>
-							</Nav.Link>
-							<Nav.Link>
-								<Link href="/contact">
-									<a>Get In Contact</a>
-								</Link>
-							</Nav.Link>
+							<Nav.Item>
+								<Nav.Link href="/contact" eventKey="3">
+									Get In Contact
+								</Nav.Link>
+							</Nav.Item>
 						</Nav>
 					</Navbar.Collapse>
 				</Navbar>
