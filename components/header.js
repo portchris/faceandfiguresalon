@@ -1,9 +1,11 @@
 import React from 'react';
-import { StoreInformation } from '../services/store-information.js';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Nav from 'react-bootstrap/Nav';
 import Media from 'react-bootstrap/Media';
+import StoreInformationService, { StoreInformation } from '../services/store-information.js';
+
+const STORE_INFO = new StoreInformationService();
 
 class Header extends React.Component {
 
@@ -13,9 +15,12 @@ class Header extends React.Component {
 		let treatments = [];
 		if (this.context.data && this.context.data.treatments) {
 			let c = this.context.data.treatments[0].children.length;
+
+			console.log(this.context.data.treatments);
 			for (let i = 0; i < c; i++) {
 				let treatment = this.context.data.treatments[0].children[i].data;
 				let eventKey = parseFloat("2." + (i + 2));
+				console.log(eventKey);
 				treatments.push(
 					<NavDropdown.Item as={Nav.Link} href={treatment.url_path} eventKey={eventKey}>
 						{treatment.h1_title}

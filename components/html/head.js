@@ -11,7 +11,7 @@ class HtmlHead extends React.Component {
 		if (this.context.data && this.context.data.head) {
 			return (
 				<Head>
-					<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
+					<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossOrigin="anonymous" />
 					{this.context.data.head.data}
 				</Head>
 			);
@@ -19,7 +19,7 @@ class HtmlHead extends React.Component {
 			let skinUrl = this.context.uri + "skin/frontend/rwd_faceandfigure/default/";
 			return (
 				<Head>
-					<meta http-equiv="Content-Type" content="" />
+					<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 					<title>Face & Figure Beauty Salon | Taunton Somerset</title>
 					<meta name="description" content="" />
 					<meta name="keywords" content="" />

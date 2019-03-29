@@ -35,6 +35,7 @@ class StoreInformationService {
 					s.loadingText = 'Loaded';
 					s.uri = this.uri;
 					console.log(s);
+					// this.setState(s);
 					resolve(s);
 				}
 			).catch(

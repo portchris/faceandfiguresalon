@@ -39,24 +39,31 @@ class Home extends Component {
 		let treatments = [];
 		if (this.state.data && this.state.data.treatments) {
 			let i = 0;
-			let c = this.state.data.treatments[0].children.length;
-			let treatmentRow = [];
-			for (i; i < c; i++) {
-				let y = i;
-				while ((y + 1) % (this.perRow - 1) !== 1 && this.state.data.treatments[0].children[y]) {
-					treatmentRow.push(this.renderCardFragment(this.state.data.treatments[0].children[y].data));
-					y++;
+			let t = [];
+			while (this.state.data.treatments[0].children.length > 0) {
+				t.push(this.state.data.treatments[0].children.splice(0, this.perRow));
+			}
+			for (i; i < t.length; i++) {
+				let x = 0;
+				let tRow = [];
+				let tSplice = t[i];
+				let k = "t-row-" + (i + 1);
+				for (x; x < tSplice.length; x++) {
+					tRow.push(this.renderCardFragment(tSplice[x].data, (x + 1)));
 				}
-				treatments.push(<Row>{treatmentRow}</Row>);
-				i = y;
+				treatments.push(
+					<Row key={k}>
+						{tRow}
+					</Row>
+				);
 			}
 		}
 		return treatments;
 	}
 
-	renderCardFragment(treatment) {
+	renderCardFragment(treatment, eventKey) {
 		return (
-			<Col md={12 / this.perRow}>
+			<Col md={12 / this.perRow} key={"t-col-" + eventKey}>
 				<Card>
 					<Card.Img variant="top" src={this.state.data.uri + "/media/catalog/category/" + treatment.image} />
 					<Card.Body>
