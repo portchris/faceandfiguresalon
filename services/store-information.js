@@ -10,17 +10,39 @@ const DEFAULT_STATE = {
 	request: {},
 	headers: {},
 	data: {},
-	updateStoreInfo: () => {}
+	updateStoreInfo: () => { }
 };
 const StoreInfo = React.createContext(DEFAULT_STATE);
 
-class StoreInformationService {
+class StoreInformationService extends React.Component {
 
-	constructor() {
+	static contextType = StoreInfo;
+
+	constructor(props) {
+		super(props);
 		this.uri = (process.env.NODE_ENV !== 'production') ? "http://faceandfigure.portchris.co.uk/" : "https://api.faceandfiguresalon.co.uk/";
 		this.service = new ServiceProvider();
 		this.state = DEFAULT_STATE;
 		this.state.uri = this.uri;
+		this.children = props.children;
+	}
+
+	componentDidMount() {
+		this.getStoreInfo(
+		).then(
+			(state) => {
+				this.handleContextChange(state);
+			}
+		).catch(
+			(err) => {
+				this.handleContextChange(err);
+			}
+		);
+	}
+
+	handleContextChange(x) {
+		console.log(x);
+		this.setState(x);
 	}
 
 	getStoreInfo() {
@@ -34,8 +56,6 @@ class StoreInformationService {
 					s.isLoading = false;
 					s.loadingText = 'Loaded';
 					s.uri = this.uri;
-					console.log(s);
-					// this.setState(s);
 					resolve(s);
 				}
 			).catch(
@@ -49,6 +69,16 @@ class StoreInformationService {
 				}
 			);
 		});
+	}
+
+	render() {
+		return (
+			<React.Fragment>
+				<StoreInformation.Provider value={this.state}>
+					{this.children}
+				</StoreInformation.Provider>
+			</React.Fragment>
+		);
 	}
 }
 

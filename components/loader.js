@@ -1,5 +1,5 @@
 import React from 'react';
-import { StoreInformation } from '../services/store-information.js';
+import { StoreInformation } from '../services/store-information';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -15,7 +15,6 @@ class Loader extends React.Component {
 	}
 
 	render() {
-		console.log(this.context);
 		if (this.context.isLoading) {
 			return (
 				<Container fluid="true">
