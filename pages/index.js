@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import HtmlHead from '../components/html/head';
 import Header from '../components/header';
+import Footer from '../components/footer';
 import Loader from '../components/loader';
 import StoreInformationService, { StoreInformation } from '../services/store-information';
 import Container from 'react-bootstrap/Container';
@@ -28,6 +29,7 @@ class Home extends Component {
 					<Container>
 						<Treatments />
 					</Container>
+					<Footer />
 				</StoreInformationService>
 			</React.Fragment>
 		);
