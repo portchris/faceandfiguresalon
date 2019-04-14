@@ -14,7 +14,9 @@ class ContactForm extends React.Component {
 		if (this.context.data && this.context.data.uri) {
 			return (
 				<React.Fragment>
-					<iframe src={this.context.data.uri + "contact"} title="Face &amp; Figure Salon | Contact Form Frame"></iframe>
+					<div className="embed-responsive embed-responsive-16by9">
+						<iframe src={this.context.data.uri + "info/index/form"} title="Face &amp; Figure Salon | Contact Form Frame" className="embed-responsive-item"></iframe>
+					</div>
 				</React.Fragment>
 			);
 		} else {
