@@ -16,7 +16,7 @@ class Footer extends React.Component {
 	static contextType = StoreInformation;
 
 	render() {
-		if (this.context.data) {
+		if (this.context.data && this.context.data.header) {
 			return (
 				<React.Fragment>
 					<footer>
