@@ -6,17 +6,15 @@ import Loader from '../components/loader';
 import StoreInformationService, { StoreInformation } from '../services/store-information';
 import Container from 'react-bootstrap/Container';
 import Treatments from '../components/treatments';
+import Promo from '../components/promo';
+import Hero from '../components/hero';
+
 
 const REACT_VERSION = React.version;
 
 class Home extends Component {
 
 	static contextType = StoreInformation;
-
-	constructor(props) {
-		super(props);
-		this.state = props.initialState ? props.initialState : StoreInformation;
-	}
 
 	render() {
 		console.log("React Version: " + REACT_VERSION);
@@ -27,6 +25,8 @@ class Home extends Component {
 					<Loader />
 					<Header />
 					<Container>
+						<Hero />
+						<Promo />
 						<Treatments />
 					</Container>
 					<Footer />

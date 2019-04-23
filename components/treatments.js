@@ -39,7 +39,6 @@ class Treatments extends React.Component {
 	}
 
 	renderCardFragment(treatment, eventKey) {
-		console.log(treatment);
 		return (
 			<Col md={12 / perRow} key={"t-col-" + eventKey}>
 				<Card>
