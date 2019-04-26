@@ -20,8 +20,8 @@ class Header extends React.Component {
 				let treatment = this.context.data.treatments[0].children[i].data;
 				let eventKey = parseFloat("2." + (i + 2));
 				treatments.push(
-					<NavDropdown.Item as={Link} href={treatment.url_path} key={eventKey}>
-						<a>{treatment.h1_title}</a>
+					<NavDropdown.Item as={Nav.Link} href={treatment.url_path} key={eventKey}>
+						{treatment.h1_title}
 					</NavDropdown.Item>
 				);
 			}
@@ -60,8 +60,8 @@ class Header extends React.Component {
 						<Navbar.Collapse id="basic-navbar-nav">
 							<Nav className="mr-auto" activeKey="1" onSelect={k => this.handleSelect(k)}>
 								<NavDropdown as={Nav.Item} title="Treatments" id="basic-nav-dropdown">
-									<NavDropdown.Item as={Link} href="/treatments" key="2.1">
-										<a>View All Treatments</a>
+									<NavDropdown.Item as={Nav.Link} href="/treatments" key="2.1">
+										View All Treatments
 									</NavDropdown.Item>
 									{this.navDropdownItemTreatments()}
 								</NavDropdown>
