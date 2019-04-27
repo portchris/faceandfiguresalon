@@ -1,7 +1,6 @@
 import React from 'react';
 import ServiceProvider from './service-provider';
 
-
 const DEFAULT_STATE = {
 	error: [],
 	isLoading: true,

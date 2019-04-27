@@ -8,6 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Treatments from '../components/treatments';
 import Promo from '../components/promo';
 import Hero from '../components/hero';
+import styles from '../assets/css/Home.module.css';
 
 
 const REACT_VERSION = React.version;
