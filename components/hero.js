@@ -27,11 +27,8 @@ class Hero extends React.Component {
 					let c = children[child];
 					let overlay = document.createElement("span");
 					h = (c.clientHeight > h) ? c.clientHeight : h;
-					c.style.position = 'relative';
-					c.style.transition = 'all 1s ease-in-out';
-					overlay.className += " overlay";
-					overlay.style.position = 'absolute';
-					overlay.style.clip = "rect(0 0 " + h + "px " + w + " px)";
+					overlay.className += "overlay";
+					overlay.style.clip = "rect(0 " + w + "px " + h + "px 0)";
 					c.appendChild(overlay);
 					slides.push(c);
 					i++;
@@ -41,7 +38,8 @@ class Hero extends React.Component {
 				this.stagger(slides, DELAY, (slide) => {
 					let overlay = null;
 					for (let i = 0; i < slide.childNodes.length; i++) {
-						if (slide.childNodes[i].className == "overlay") {
+						console.log(slide.childNodes[i].className);
+						if (slide.childNodes[i].className === "overlay") {
 							overlay = slide.childNodes[i];
 							break;
 						}        
@@ -59,9 +57,9 @@ class Hero extends React.Component {
 		let timePassed = Math.floor((Date.now() - start) / 100.0) * 100;
 		let clipWidth = parseInt(slide.style.clip.replace(/[^0-9]/g, "").substr(1, 3));
 		if (clipWidth >= maxWidth) {
-			slide.style.clip = "rect(0 0 " + height + "px 0)";
+			slide.style.clip = "rect(0 " + maxWidth + "px " + height + "px " + maxWidth + "px)";
 		} else {
-			slide.style.clip = "rect(0 " + height + "px 0 " + maxWidth + "px)";
+			slide.style.clip = "rect(0 " + maxWidth + "px " + height + " px 0)";
 		}
 	}
 

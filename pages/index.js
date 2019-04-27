@@ -8,7 +8,7 @@ import Container from 'react-bootstrap/Container';
 import Treatments from '../components/treatments';
 import Promo from '../components/promo';
 import Hero from '../components/hero';
-import styles from '../assets/css/Home.module.css';
+import Styles from '../assets/css/main';
 
 
 const REACT_VERSION = React.version;
@@ -28,9 +28,11 @@ class Home extends Component {
 					<Container>
 						<Hero />
 						<Promo />
+						<h1 className="vspace">Our Available Treatments</h1>
 						<Treatments />
 					</Container>
 					<Footer />
+					<Styles />
 				</StoreInformationService>
 			</React.Fragment>
 		);
