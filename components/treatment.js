@@ -23,15 +23,24 @@ class Treatment extends React.Component {
 		let ts = this.context.data.treatments[0].children;
 		for (let i = 0; i < ts.length; i++) {
 			let t = ts[i];
-			console.log(t);
 			if (t && t.data && t.data.url_path && t.data.url_path.indexOf(this.props.slug) !== -1) {
 				treatment = t;
 				break;
 			}
 		}
 		if (treatment !== null) {
+			let k = "treatment-" + this.props.slug;
 			r.push(
-				<h1>{treatment.data.h1_title}</h1>
+				<div className="row" key={this.props.slug + "-1"}>
+					<div className="col-md-12">
+						<h1>{treatment.data.h1_title}</h1>
+					</div>
+				</div>,
+				<div className="row" key={this.props.slug + "-2"}>
+					<div className="col-md-12">
+						<img src={treatment.data.img} alt={treatment.data.h1_title} />
+					</div>
+				</div>
 			);
 		}
 		return r;

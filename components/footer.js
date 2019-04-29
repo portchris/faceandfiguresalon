@@ -16,25 +16,52 @@ class Footer extends React.Component {
 	static contextType = StoreInformation;
 
 	render() {
+		console.log(StoreInformationService);
 		if (this.context.data && this.context.data.header) {
 			return (
 				<React.Fragment>
 					<footer>
 						<Container>
 							<Row>
-								<Col md="3">
-									{/* <img src={IMG_FACEBOOK} alt="Contact Face &amp Figure Salon Via Facebook" />; */}
+								<Col md="4">
+									<h3>Connect Via</h3>
+									<ul className="row text-center footer-connect">
+										<li className="col-md-4">
+											<a href="https://www.facebook.com/face.and.figure.salon/" target="_blank" title="Contact Face and Figure Beauty Salon via Facebook">
+												<img src={ this.context.uri_skin + "images/fb_logo.png" } alt="Contact Face &amp; Figure Salon Via Facebook" className="img-responsive"/>
+											</a>
+										</li>
+										<li className="col-md-4">
+											<a href="mailto:faceandfiguresalon@yahoo.co.uk" title="Contact Face and Figure Beauty Salon via email">
+												<img src={ this.context.uri_skin + "images/contact-mail-icon.png" } alt="Contact Face &amp; Figure Salon Via E-mail" className="img-responsive"/>
+											</a>
+										</li>
+										<li className="col-md-4">
+											<a href="https://twitter.com/face_and_figure/" target="_blank" title="Contact Face and Figure Beauty Salon via Tiwtter">
+												<img src={ this.context.uri_skin + "images/twitter_logo.png" } alt="Contact Face &amp; Figure Salon Via Twitter" className="img-responsive"/>
+											</a>
+										</li>
+									</ul>
 								</Col>
-								<Col md="3">
-									{/* <img src={IMG_TWITTER} alt="Contact Face &amp Figure Salon Via Twitter" />; */}
+								<Col md="4">
+									<div className="footer-contact">
+										<h3>Say Hello</h3>
+										<p>Not a fan of social media? No problem, call us on:<br/><img className="img-thumbnail float-left" src={ this.context.uri_skin + "images/face-and-figure-salon-phone.png" } alt="Call the salon"/>01823 413008</p>
+									</div>
 								</Col>
-								<Col md="3">
-									{/* <img src={IMG_EMAIL} alt="Contact Face &amp Figure Salon Via E-mail" />; */}
+								<Col md="4">
+									<div className="footer-location">
+										<h3>Our Location</h3>
+										<p><b>Face &amp; Figure Beauty Salon</b><br />1 Parkmead Monkton Heathfield<br />Taunton<br />Somerset<br />TA2 8PL</p>
+										<a title="Find Face &amp; Figure Salon @ 1 Parkmead Monkton Heathfield Taunton Somerset TA2 8PL" target="_blank" href="https://www.google.com/maps/place/1+Parkmead,+Monkton+Heathfield,+Taunton+TA2+8PL/@51.0410594,-3.0667414,16z/data=!4m5!3m4!1s0x486df5eb6d144757:0xecaad4f66e6eca77!8m2!3d51.0368267!4d-3.0655316">
+											<img src={ this.context.uri_skin + "images/face-and-figure-salon-location.png" } alt="Find Face &amp; Figure Salon @ 1 Parkmead Monkton Heathfield Taunton Somerset TA2 8PL" className="img-responsive" />
+										</a>
+									</div>
 								</Col>
 							</Row>
 							<Row>
 								<Col md="12">
-									<p>Created by Chris Rogers 2019 of Portchris Ltd</p>
+									<p>Face &amp; Figure Salon | 2019 | Created by <a href="https://www.portchris.co.uk/" target="_blank" title="">Chris Rogers</a> of Portchris Ltd</p>
 								</Col>
 							</Row>
 						</Container>

@@ -13,6 +13,7 @@ class Hero extends React.Component {
 	static contextType = StoreInformation;
 
 	componentDidUpdate() {
+		console.log("UPDATED");
 		let el = document.getElementsByClassName('text-spinner');
 		if (el && el.length && el[0].childNodes && el[0].childNodes.length) {
 			let i = 1;
@@ -38,7 +39,6 @@ class Hero extends React.Component {
 				this.stagger(slides, DELAY, (slide) => {
 					let overlay = null;
 					for (let i = 0; i < slide.childNodes.length; i++) {
-						console.log(slide.childNodes[i].className);
 						if (slide.childNodes[i].className === "overlay") {
 							overlay = slide.childNodes[i];
 							break;
@@ -64,7 +64,6 @@ class Hero extends React.Component {
 	}
 
 	clipElement(slide, timePassed, right, bottom) {
-		console.log(timePassed);
 		slide.style.clip = "rect(0 " + (timePassed / 2) + "px " + bottom + "px 0)";
 	}
 
@@ -81,7 +80,9 @@ class Hero extends React.Component {
 		if (this.context.data && this.context.data.hero && this.context.data.hero.data) {
 			return (
 				<React.Fragment>
-					<div className="row" dangerouslySetInnerHTML={{ __html: this.context.data.hero.data }} />
+					<div className="row">
+						<div id="face-and-figure-salon-hero" className="col-md-12" dangerouslySetInnerHTML={{ __html: this.context.data.hero.data }} />
+					</div>
 				</React.Fragment>
 			);
 		} else {

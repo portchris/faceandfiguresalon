@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { StoreInformation } from '../../services/store-information.js';
-
+import Styles from '../../static/css/styles';
 
 class HtmlHead extends React.Component {
 
@@ -13,7 +13,8 @@ class HtmlHead extends React.Component {
 				<Head>
 					<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossOrigin="anonymous" />
 					{this.context.data.head.data}
-				</Head>
+				</Head>,
+				<Styles />
 			);
 		} else {
 			let skinUrl = this.context.uri + "skin/frontend/rwd_faceandfigure/default/";

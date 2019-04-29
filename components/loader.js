@@ -1,9 +1,6 @@
 import React from 'react';
 import { StoreInformation } from '../services/store-information';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-// import logo from '../assets/img/logo-face-and-figure-salon.png';
+// import logo from '../static/img/logo-face-and-figure-salon.png';
 
 class Loader extends React.Component {
 
@@ -11,19 +8,17 @@ class Loader extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.containerClass = "initial-loader";
+		this.containerClass = "initial-loader center";
 	}
 
 	render() {
 		if (this.context.isLoading) {
+			let img = this.context.uri + "skin/frontend/rwd_faceandfigure/default/images/logo-face-and-figure-salon.png";
 			return (
-				<Container fluid="true">
-					<Row>
-						<Col md={12}>
-							<div className={this.containerClass}>{this.context.loadingText}</div>
-						</Col>
-					</Row>
-				</Container>
+				<div className={this.containerClass}>
+					<img className="rotating" src={img} alt={this.context.loadingText} />
+					<p>{this.context.loadingText}</p>
+				</div>	
 			);
 		} else {
 			return "";

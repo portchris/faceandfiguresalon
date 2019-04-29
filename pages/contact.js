@@ -6,6 +6,8 @@ import Loader from '../components/loader';
 import StoreInformationService, { StoreInformation } from '../services/store-information';
 import Container from 'react-bootstrap/Container';
 import ContactForm from '../components/contact-form';
+import Styles from '../static/css/styles';
+
 
 const REACT_VERSION = React.version;
 
@@ -30,6 +32,7 @@ class Contact extends Component {
 						<ContactForm />
 					</Container>
 					<Footer />
+					<Styles />
 				</StoreInformationService>
 			</React.Fragment>
 		);

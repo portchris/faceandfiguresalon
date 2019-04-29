@@ -12,6 +12,7 @@ const DEFAULT_STATE = {
 	updateStoreInfo: () => { }
 };
 const StoreInfo = React.createContext(DEFAULT_STATE);
+const SKIN_DIRECTORY = 'skin/frontend/rwd_faceandfigure/default/';
 
 class StoreInformationService extends React.Component {
 
@@ -23,6 +24,7 @@ class StoreInformationService extends React.Component {
 		this.service = new ServiceProvider();
 		this.state = DEFAULT_STATE;
 		this.state.uri = this.uri;
+		this.state.uri_skin = this.uri + SKIN_DIRECTORY;
 		this.children = props.children;
 	}
 
@@ -55,6 +57,7 @@ class StoreInformationService extends React.Component {
 					s.isLoading = false;
 					s.loadingText = 'Loaded';
 					s.uri = this.uri;
+					s.uri_skin = this.uri + SKIN_DIRECTORY;
 					resolve(s);
 				}
 			).catch(
@@ -64,10 +67,15 @@ class StoreInformationService extends React.Component {
 					s.isLoading = false;
 					s.loadingText = 'Error';
 					s.uri = this.uri;
+					s.uri_skin = this.uri + SKIN_DIRECTORY;
 					reject(s);
 				}
 			);
 		});
+	}
+
+	getImgPath(img = "") {
+		return this.uri + SKIN_DIRECTORY + "images/" + img;
 	}
 
 	render() {
