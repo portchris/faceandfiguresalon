@@ -92,6 +92,10 @@ class Styles extends React.Component {
 					max-height: 50px;
 				}
 
+				#face-and-figure-salon-hero .h2 {
+					min-height: 40px;
+				}
+
 				.footer-connect img {
 					max-width: 45px;
 					border: 1px solid #333;

@@ -1,9 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+import { init } from 'ityped';
 import StoreInformationService, { StoreInformation } from '../services/store-information';
 
 const DELAY = 2000;
@@ -13,75 +9,57 @@ class Hero extends React.Component {
 	static contextType = StoreInformation;
 
 	componentDidUpdate() {
-		console.log("UPDATED");
-		let el = document.getElementsByClassName('text-spinner');
-		if (el && el.length && el[0].childNodes && el[0].childNodes.length) {
-			let i = 1;
-			let h = el[0].offsetHeight;
-			let w = el[0].offsetWidth;
-			let children = el[0].childNodes;
-			let slides = [];
-			el[0].style.width = '100%';
-			el[0].style.height = h;
-			for (let child in children) {
-				if (children.hasOwnProperty(child) && children[child].nodeType === 1) {
-					let c = children[child];
-					let overlay = document.createElement("span");
-					h = (c.clientHeight > h) ? c.clientHeight : h;
-					overlay.className += "overlay";
-					overlay.style.clip = "rect(0 " + w + "px " + h + "px 0)";
-					c.appendChild(overlay);
-					slides.push(c);
-					i++;
-				}
-			}
-			setTimeout(() => {
-				this.stagger(slides, DELAY, (slide) => {
-					let overlay = null;
-					for (let i = 0; i < slide.childNodes.length; i++) {
-						if (slide.childNodes[i].className === "overlay") {
-							overlay = slide.childNodes[i];
-							break;
-						}        
-					}
-					if (overlay !== null) {
-						this.animateHero(overlay, w, h, i);
-					}
-				});
-			}, DELAY);
+		let el = document.querySelector('#face-and-figure-salon-hero h1:last-child');
+		if (el && this.heros && this.heros.length) {
+			/*ignore jslint start*/
+			// eslint-disable-next-line no-undef
+			init(el, { showCursor: false, strings: this.heros, typeSpeed:  50, backSpeed:  10, backDelay: 3000 });
+			/*ignore jslint end*/
 		}
 	}
 
-	animateHero(slide, maxWidth, height, i) {
-		let start = Date.now();
-		let timePassed = Math.floor((Date.now() - start) / 100.0) * 100;
-		let clipWidth = parseInt(slide.style.clip.replace(/[^0-9]/g, "").substr(1, 3));
-		if (clipWidth >= maxWidth) {
-			slide.style.clip = "rect(0 " + maxWidth + "px " + height + "px " + maxWidth + "px)";
-		} else {
-			slide.style.clip = "rect(0 " + maxWidth + "px " + height + " px 0)";
+	componentWillUnmount() {
+		let heroTextSpinner = document.getElementById('heroTextSpinner');
+		if (heroTextSpinner) {
+			heroTextSpinner.remove();
 		}
 	}
 
-	clipElement(slide, timePassed, right, bottom) {
-		slide.style.clip = "rect(0 " + (timePassed / 2) + "px " + bottom + "px 0)";
+	mapList(arrayLike, fn) {
+		var ret = [], i = -1, len = arrayLike.length;
+		while (++i < len) ret[i] = fn(arrayLike[i]);
+		return ret;
+	}
+	
+	getText(node) {
+		if (node.nodeType === 3) return node.data;
+		var txt = '';
+		if (node = node.firstChild) do {
+			txt += this.getText(node);
+		} while (node = node.nextSibling);
+		return txt;
 	}
 
-	stagger(targets, interval, action) {
-		for (var i = 0, maxi = targets.length; i < maxi; i++) {
-			(() => {
-				var target = targets[i];
-				setTimeout(() => { action(target); }, interval * i);
-			})();
+	convertHeroData(data) {
+		let r = [];
+		let el = document.createElement('div');
+		el.innerHTML = data;
+		if (el.getElementsByTagName('li') !== null) {
+			r = this.mapList(el.getElementsByTagName('li'), (li) => this.getText(li));
 		}
+		return r;
 	}
 
 	render() {
 		if (this.context.data && this.context.data.hero && this.context.data.hero.data) {
+			this.heros = this.convertHeroData(this.context.data.hero.data.content);
 			return (
 				<React.Fragment>
 					<div className="row">
-						<div id="face-and-figure-salon-hero" className="col-md-12" dangerouslySetInnerHTML={{ __html: this.context.data.hero.data }} />
+						<div id="face-and-figure-salon-hero" className="col-md-12">
+							<h1>{this.context.data.hero.data.title}</h1>
+							<h1 className="h2">{}</h1>
+						</div>
 					</div>
 				</React.Fragment>
 			);

@@ -46,7 +46,19 @@ class Footer extends React.Component {
 								<Col md="4">
 									<div className="footer-contact">
 										<h3>Say Hello</h3>
-										<p>Not a fan of social media? No problem, call us on:<br/><img className="img-thumbnail float-left" src={ this.context.uri_skin + "images/face-and-figure-salon-phone.png" } alt="Call the salon"/>01823 413008</p>
+										<p>
+											Not a fan of social media? No problem, contact us via more conventional means:<br/>
+											<a href="tel:+447872907857" title="Call the salon">
+												<img className="img-thumbnail float-left" src={ this.context.uri_skin + "images/face-and-figure-salon-phone.png" } alt="Call the salon"/>
+												07872907857
+											</a>
+										</p>
+										<p>
+											<a href="mailto:faceandfiguresalon@yahoo.co.uk" title="Email the salon">
+												<img className="img-thumbnail float-left" src={ this.context.uri_skin + "images/face-and-figure-salon-phone.png" } alt="Email the salon"/>
+												faceandfiguresalon@yahoo.co.uk
+											</a>
+										</p>
 									</div>
 								</Col>
 								<Col md="4">
