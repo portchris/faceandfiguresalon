@@ -52,6 +52,10 @@ class Styles extends React.Component {
 					max-width: 100px;
 				}
 
+				nav.navbar {
+
+				}
+
 				.center {
 					margin: auto;
 					text-align: center;
@@ -107,6 +111,12 @@ class Styles extends React.Component {
 
 				.footer-location {
 
+				}
+
+				#contact-form-frame {
+					border: none;
+					height: 750px;
+					width: 100%;
 				}
 
 				@keyframes rotating {

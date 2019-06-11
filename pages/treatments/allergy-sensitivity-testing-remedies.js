@@ -6,6 +6,7 @@ import Loader from '../../components/loader';
 import Treatment from '../../components/treatment';
 import StoreInformationService, { StoreInformation } from '../../services/store-information';
 import Container from 'react-bootstrap/Container';
+import Styles from '../../static/css/styles';
 
 const SLUG = "allergy-sensitivity-testing-remedies";
 
@@ -25,6 +26,7 @@ class AllergySensitivityTestingRemedies extends Component {
 							<Treatment slug={SLUG} />
 						</Container>
 						<Footer />
+						<Styles />
 					</StoreInformationService>
 				</React.Fragment>
 			);
