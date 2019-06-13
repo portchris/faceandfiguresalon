@@ -37,41 +37,43 @@ class Header extends React.Component {
 		if (this.context.data && this.context.data.header) {
 			return (
 				<React.Fragment>
-					<Navbar bg="light" expand="lg">
-						<Navbar.Brand>
-							<Media>
-								<img
-									width={50}
-									height={50}
-									className="align-self-center mr-3"
-									src={this.context.data.header.logo}
-									alt="Face & Figure Beauty Salon Taunton Somerset"
-								/>
-								<Media.Body>
-									<div className="align-self-center">
-										<Link href="/" key="1">
-											<a>{this.context.data.header.title}</a>
+					<Navbar expand="lg">
+						<div className="container">
+							<Navbar.Brand>
+								<Media>
+									<img
+										width={75}
+										height={75}
+										className="align-self-center mr-3"
+										src={this.context.data.header.logo}
+										alt="Face & Figure Beauty Salon Taunton Somerset"
+									/>
+									<Media.Body>
+										<div className="align-self-center">
+											<Link href="/" key="1">
+												<a id="site-title">{this.context.data.header.title}</a>
+											</Link>
+										</div>
+									</Media.Body>
+								</Media>
+							</Navbar.Brand>
+							<Navbar.Toggle aria-controls="basic-navbar-nav" />
+							<Navbar.Collapse id="basic-navbar-nav">
+								<Nav className="mr-auto" activeKey="1" onSelect={k => this.handleSelect(k)}>
+									<NavDropdown as={Nav.Item} title="Treatments" id="basic-nav-dropdown">
+										<NavDropdown.Item as={Nav.Link} href="/treatments" key="2.1">
+											View All Treatments
+										</NavDropdown.Item>
+										{this.navDropdownItemTreatments()}
+									</NavDropdown>
+									<Nav.Item>
+										<Link href="/contact" key="3">
+											<a>Get In Contact</a>
 										</Link>
-									</div>
-								</Media.Body>
-							</Media>
-						</Navbar.Brand>
-						<Navbar.Toggle aria-controls="basic-navbar-nav" />
-						<Navbar.Collapse id="basic-navbar-nav">
-							<Nav className="mr-auto" activeKey="1" onSelect={k => this.handleSelect(k)}>
-								<NavDropdown as={Nav.Item} title="Treatments" id="basic-nav-dropdown">
-									<NavDropdown.Item as={Nav.Link} href="/treatments" key="2.1">
-										View All Treatments
-									</NavDropdown.Item>
-									{this.navDropdownItemTreatments()}
-								</NavDropdown>
-								<Nav.Item>
-									<Link href="/contact" key="3">
-										<a>Get In Contact</a>
-									</Link>
-								</Nav.Item>
-							</Nav>
-						</Navbar.Collapse>
+									</Nav.Item>
+								</Nav>
+							</Navbar.Collapse>
+						</div>
 					</Navbar>
 				</React.Fragment>
 			);

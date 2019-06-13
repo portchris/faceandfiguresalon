@@ -8,6 +8,13 @@ class Styles extends React.Component {
 	render() {
 		return (
 			<style jsx="true">{`
+				
+				@import url('https://fonts.googleapis.com/css?family=Kaushan+Script&display=swap');
+
+				body {
+					color: #333;
+					font-size: 14px;
+				}
 
 				.vspace, .row-with.vspace {
 					margin-top: 25px;
@@ -19,6 +26,18 @@ class Styles extends React.Component {
 					padding-bottom: 25px; 
 				}
 
+				a {
+					color: #FFA838;
+				}
+
+				a:hover {
+					color: #7D589E;
+				}
+
+				.btn a {
+					color: #FFF;
+				}
+
 				ul {
 					padding: 0;
 				}
@@ -26,6 +45,37 @@ class Styles extends React.Component {
 				li {
 					list-style: none;
 					margin: 5px 0;
+				}
+
+				h1, .h1, #site-title {
+					font-family: 'Kaushan Script', Georgia,serif, cursive;
+					font-size: 30px;
+					color: #333;
+				}
+
+				#site-title {
+					font-size: 35px;
+				}
+
+				h2, .h2 {
+					color: #333;
+					font-size: 24px;
+				}
+
+				h3, .h3 {
+					color: #333;
+					font-size: 18px;
+				}
+
+				h4, .h4 {
+					color: #333;
+					font-size: 16px;
+					font-weight: bold;
+				}
+
+				h5, .h5, h6, .h6 {
+					color: #333;
+					font-weight: bold;
 				}
 
 				img.img-responsive {
@@ -53,7 +103,39 @@ class Styles extends React.Component {
 				}
 
 				nav.navbar {
+					background-color: #7D589E;
+					font-size: 18px;
+					margin-bottom: 30px;
+					padding-bottom: 0;
+					padding-top; 0;
+				}
 
+				nav a.nav-link, nav.navbar a, #site-title, 
+				.navbar-light .navbar-nav .nav-link, 
+				.navbar-light .navbar-nav .nav-link:focus,
+				.navbar-light .navbar-nav .nav-link:hover,
+				nav.navbar a:hover,
+				nav.navbar a:focus {
+					color: #FFF;
+					text-decoration: none;
+				}
+
+				nav .media-body {
+					padding-top: 8px;
+				}
+
+				.navbar-light .navbar-nav .nav-link:hover,
+				nav.navbar a:hover {
+					color: #EEE;
+				}
+
+				.nav-item {
+					padding-left: 5px;
+					padding-right: 5px;
+				}
+
+				.nav-item:last-child {
+					padding-top: 8px;
 				}
 
 				.center {
@@ -86,9 +168,21 @@ class Styles extends React.Component {
 					text-shadow: none;
 				}
 
+				.btn.btn-default:hover, .btn.btn-primary:hover {
+					background: #CC7400;
+				}
+
+				.btn.btn-default:hover a, .btn.btn-primary:hover a {
+					text-decoration: none;
+				}
+
 				.card-title {
 					font-size: 18px;
 					min-height: 70px;
+				}
+
+				#face-and-figure-salon-hero {
+					padding: 10% 0;
 				}
 
 				#face-and-figure-salon-hero img {
@@ -98,6 +192,23 @@ class Styles extends React.Component {
 
 				#face-and-figure-salon-hero .h2 {
 					min-height: 40px;
+				}
+
+				.usp {
+					border-radius: 100%;
+					background: #EEE;
+					max-width: 300px !important;
+					height: 300px;
+					overflow: hidden;
+					margin: 0 10px;
+					text-align: center;
+					padding: 10px;
+				}
+
+				footer {
+					border-top: 1px solid #333;
+					margin-top: 50px;
+					padding-top: 20px;
 				}
 
 				.footer-connect img {
