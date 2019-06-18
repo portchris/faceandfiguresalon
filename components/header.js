@@ -47,6 +47,7 @@ class Header extends React.Component {
 										className="align-self-center mr-3"
 										src={this.context.data.header.logo}
 										alt="Face & Figure Beauty Salon Taunton Somerset"
+										id="site-logo"
 									/>
 									<Media.Body>
 										<div className="align-self-center">

@@ -60,7 +60,11 @@ class Treatments extends React.Component {
 		if (this.context.data && this.context.data.treatments) {
 			return (
 				<React.Fragment>
-					<h1 className="vspace">Our Available Treatments</h1>
+					<Row id="treatments-title">
+						<Col md="12">
+							<h1 className="vspace">Our Available Treatments</h1>
+						</Col>
+					</Row>
 					{this.renderAvailableTreatments(this.context.data.treatments)}
 				</React.Fragment>
 			);

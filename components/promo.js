@@ -14,7 +14,7 @@ class Promo extends React.Component {
 		if (this.context.data && this.context.data.promo && this.context.data.promo.data) {
 			return (
 				<React.Fragment>
-					<div className="row" dangerouslySetInnerHTML={{ __html: this.context.data.promo.data }} />
+					<div id="promo" className="row" dangerouslySetInnerHTML={{ __html: this.context.data.promo.data }} />
 				</React.Fragment>
 			);
 		} else {

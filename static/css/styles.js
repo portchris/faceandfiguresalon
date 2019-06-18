@@ -182,7 +182,8 @@ class Styles extends React.Component {
 				}
 
 				#face-and-figure-salon-hero {
-					padding: 10% 0;
+					padding-top: 10%;
+					padding-bottom: 10%;
 				}
 
 				#face-and-figure-salon-hero img {
@@ -197,12 +198,16 @@ class Styles extends React.Component {
 				.usp {
 					border-radius: 100%;
 					background: #EEE;
-					max-width: 300px !important;
-					height: 300px;
+					width: 300px !important;
+					height: 300px !important;
 					overflow: hidden;
 					margin: 0 10px;
 					text-align: center;
-					padding: 10px;
+					padding: 20px 50px;
+				}
+
+				.usp img {
+					max-width: 50px;
 				}
 
 				footer {
@@ -236,6 +241,37 @@ class Styles extends React.Component {
 					}
 					to {
 						transform: rotate(360deg);
+					}
+				}
+
+				@media only screen and (max-width: 991px) {
+					.usp {
+						border-radius: 10px;
+						width: 100% !important;
+						height: auto !important;
+						padding: 20px;
+						overflow: visible;
+					}
+				}
+
+				@media only screen and (max-width: 768px) {
+					.usp {
+						border-radius: 100%;
+						width: 300px !important;
+						height: 300px !important;
+						padding: 20px 50px;
+						overflow: hidden;
+						margin: 20px auto;
+					}
+					#site-title {
+						font-size: 25px;
+					}
+					#site-logo {
+						max-width: 50px;
+						max-height: 50px;
+					}
+					nav .media-body {
+						padding-top: 4px;
 					}
 				}
 			`}	

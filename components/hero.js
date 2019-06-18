@@ -55,7 +55,7 @@ class Hero extends React.Component {
 			this.heros = this.convertHeroData(this.context.data.hero.data.content);
 			return (
 				<React.Fragment>
-					<div className="row">
+					<div id="hero" className="row">
 						<div id="face-and-figure-salon-hero" className="col-md-12">
 							<h1>{this.context.data.hero.data.title}</h1>
 							<h1 className="h2">{}</h1>
