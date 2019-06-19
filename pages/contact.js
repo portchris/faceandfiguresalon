@@ -5,8 +5,11 @@ import Footer from '../components/footer';
 import Loader from '../components/loader';
 import StoreInformationService, { StoreInformation } from '../services/store-information';
 import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
 import ContactForm from '../components/contact-form';
+import ContactInfo from '../components/contact-info';
 import Styles from '../static/css/styles';
+import Col from 'react-bootstrap/Col';
 
 
 const REACT_VERSION = React.version;
@@ -20,6 +23,18 @@ class Contact extends Component {
 		this.state = props.initialState ? props.initialState : StoreInformation;
 	}
 
+	getContactTitle() {
+		if (this.context.data && this.context.data.contact) {
+			return (
+				<Col md="12">
+					<h1>{ this.context.data.contact.title }</h1>
+				</Col>
+			);
+		} else {
+			return "";
+		}
+	}
+
 	render() {
 		console.log("React Version: " + REACT_VERSION);
 		return (
@@ -29,7 +44,13 @@ class Contact extends Component {
 					<Loader />
 					<Header />
 					<Container>
-						<ContactForm />
+						<Row>
+							{ this.getContactTitle() }
+						</Row>
+						<Row>
+							<ContactForm />
+							<ContactInfo />
+						</Row>
 					</Container>
 					<Footer />
 					<Styles />

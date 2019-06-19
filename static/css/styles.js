@@ -21,6 +21,11 @@ class Styles extends React.Component {
 					margin-bottom: 25px;
 				}
 
+				.vspace-xs {
+					margin-top: 12.5px;
+					margin-bottom: 12.5px;
+				}
+
 				.vpadding {
 					padding-top: 25px;
 					padding-bottom: 25px; 
@@ -181,6 +186,10 @@ class Styles extends React.Component {
 					min-height: 70px;
 				}
 
+				.card img {
+					max-height: 261px;
+				}
+
 				#face-and-figure-salon-hero {
 					padding-top: 10%;
 					padding-bottom: 10%;
@@ -208,6 +217,10 @@ class Styles extends React.Component {
 
 				.usp img {
 					max-width: 50px;
+				}
+
+				#site-desc {
+					margin-top: 70px;
 				}
 
 				footer {

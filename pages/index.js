@@ -9,6 +9,7 @@ import Treatments from '../components/treatments';
 import Promo from '../components/promo';
 import Hero from '../components/hero';
 import Styles from '../static/css/styles';
+import Description from '../components/html/description';
 
 
 const REACT_VERSION = React.version;
@@ -28,6 +29,7 @@ class Home extends Component {
 					<Container>
 						<Hero />
 						<Promo />
+						<Description />
 						<Treatments />
 					</Container>
 					<Footer />

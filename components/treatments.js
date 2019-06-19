@@ -41,7 +41,7 @@ class Treatments extends React.Component {
 	renderCardFragment(treatment, eventKey) {
 		return (
 			<Col md={12 / perRow} key={"t-col-" + eventKey}>
-				<Card>
+				<Card className="vspace-xs">
 					<Card.Img variant="top" src={this.context.data.uri + "/media/catalog/category/" + treatment.image} />
 					<Card.Body>
 						<Card.Title>{treatment.h1_title}</Card.Title>
