@@ -28,6 +28,7 @@ class Contact extends Component {
 			return (
 				<Col md="12">
 					<h1>{ this.context.data.contact.title }</h1>
+					<p>{ this.context.data.contact.content }</p>
 				</Col>
 			);
 		} else {
