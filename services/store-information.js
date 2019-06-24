@@ -13,6 +13,7 @@ const DEFAULT_STATE = {
 };
 const StoreInfo = React.createContext(DEFAULT_STATE);
 const SKIN_DIRECTORY = 'skin/frontend/rwd_faceandfigure/default/';
+const oneday = 60 * 60 * 24 * 1000;
 
 class StoreInformationService extends React.Component {
 
@@ -29,21 +30,34 @@ class StoreInformationService extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getStoreInfo(
-		).then(
-			(state) => {
-				this.handleContextChange(state);
-			}
-		).catch(
-			(err) => {
-				this.handleContextChange(err);
-			}
-		);
+		let t = +new Date();
+		let data = localStorage.getItem('ffdata');
+		// localStorage.removeItem('ffdata'); // TESTING PURPOSES
+		if (data === null || data.createdAt < (t - oneday)) {
+			this.getStoreInfo(
+			).then(
+				(state) => {
+					this.handleContextChange(state);
+				}
+			).catch(
+				(err) => {
+					this.handleContextChange(err);
+				}
+			);
+		} else {
+			this.handleContextChange(JSON.parse(data));
+		}
 	}
 
 	handleContextChange(x) {
 		console.log(x);
 		this.setState(x);
+	}
+
+	stripHtml(content) {
+		let el = document.createElement("DIV");
+		el.innerHTML = content;
+		return el.textContent || el.innerText || "";
 	}
 
 	getStoreInfo() {
@@ -58,6 +72,8 @@ class StoreInformationService extends React.Component {
 					s.loadingText = 'Loaded';
 					s.uri = this.uri;
 					s.uri_skin = this.uri + SKIN_DIRECTORY;
+					s.createdAt = +new Date();
+					localStorage.setItem('ffdata', JSON.stringify(s));
 					resolve(s);
 				}
 			).catch(

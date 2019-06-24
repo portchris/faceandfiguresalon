@@ -11,12 +11,12 @@ class Hero extends React.Component {
 		if (this.context.data && this.context.data.main && this.context.data.main) {
 			return (
 				<React.Fragment>
-					<div id="site-desc" class="row vspace">
+					<div id="site-desc" className="row vspace">
 						<div class="col-sm-6">
 							<h2>{ this.context.data.main.description[0].title }</h2>
 							<p>{ this.context.data.main.description[0].content }</p>
 						</div>
-						<div class="col-sm-6">
+						<div className="col-sm-6">
 							<h2>{ this.context.data.main.description[1].title }</h2>
 							<p>{ this.context.data.main.description[1].content }</p>
 						</div>

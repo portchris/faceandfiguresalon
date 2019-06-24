@@ -2,7 +2,7 @@ import React from 'react';
 import Col from 'react-bootstrap/Col';
 import StoreInformationService, { StoreInformation } from '../services/store-information';
 
-class ContactInfo extends React.Component {
+class ContactTitle extends React.Component {
 
 	static contextType = StoreInformation;
 
@@ -13,28 +13,23 @@ class ContactInfo extends React.Component {
 	}
 
 	/**
-	 * @param {array} information 
-	 * @return {array} r
+	 * 
+	 * @param {object} info 
 	 */
-	getContactInfo(information) {
-		let r = [];
-		for (let i = 0; i < information.length; i++) {
-			let info = information[i];
-			r.push(
-				<h2>{ this.stripHtml(info.title) } </h2>,
-				<p>{ this.stripHtml(info.content) } </p>
-			);
-		}
-		return r;
+	getContactTitle(info) {
+		return (
+			<Col md="12">
+				<h1>{ this.stripHtml(info.title) }</h1>
+				<p>{ this.stripHtml(info.content) }</p>
+			</Col>
+		);
 	}
 
 	render() {
 		if (this.context.data && this.context.data.contact) {
 			return (
 				<React.Fragment>
-					<Col md="6">
-						{ this.getContactInfo(this.context.data.contact.info) }
-					</Col>
+					{ this.getContactTitle(this.context.data.contact) }
 				</React.Fragment>
 			);
 		} else {
@@ -43,4 +38,4 @@ class ContactInfo extends React.Component {
 	}
 }
 
-export default ContactInfo
+export default ContactTitle
