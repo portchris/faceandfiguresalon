@@ -88,6 +88,10 @@ class Styles extends React.Component {
 					height: auto;
 				}
 
+				.req {
+					color: red !important;
+				}
+
 				.text-spinner li {
 					position: relative;
 				}
@@ -232,6 +236,17 @@ class Styles extends React.Component {
 				.footer-connect img {
 					max-width: 45px;
 					border: 1px solid #333;
+					border-radius: 5px;
+				}
+
+				.footer-connect li {
+					text-align: left;
+					margin-top: 10px;
+				}
+
+				.footer-connect li span {
+					margin-left: 10px;
+					color: #333;
 				}
 
 				.footer-contact img {

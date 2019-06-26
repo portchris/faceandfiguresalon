@@ -25,20 +25,24 @@ class Footer extends React.Component {
 							<Row>
 								<Col md="4">
 									<h3>Connect Via</h3>
-									<ul className="row text-center footer-connect">
-										<li className="col-md-4">
+									<p>Connect via social media:</p>
+									<ul className="text-center footer-connect">
+										<li>
 											<a href="https://www.facebook.com/face.and.figure.salon/" target="_blank" title="Contact Face and Figure Beauty Salon via Facebook">
 												<img src={ this.context.uri_skin + "images/fb_logo.png" } alt="Contact Face &amp; Figure Salon Via Facebook" className="img-responsive"/>
+												<span>Facebook</span>
 											</a>
 										</li>
-										<li className="col-md-4">
+										<li>
 											<a href="mailto:faceandfiguresalon@yahoo.co.uk" title="Contact Face and Figure Beauty Salon via email">
 												<img src={ this.context.uri_skin + "images/contact-mail-icon.png" } alt="Contact Face &amp; Figure Salon Via E-mail" className="img-responsive"/>
+												<span>E-mail</span>
 											</a>
 										</li>
-										<li className="col-md-4">
+										<li>
 											<a href="https://twitter.com/face_and_figure/" target="_blank" title="Contact Face and Figure Beauty Salon via Tiwtter">
 												<img src={ this.context.uri_skin + "images/twitter_logo.png" } alt="Contact Face &amp; Figure Salon Via Twitter" className="img-responsive"/>
+												<span>Twitter</span>
 											</a>
 										</li>
 									</ul>
@@ -55,7 +59,7 @@ class Footer extends React.Component {
 										</p>
 										<p>
 											<a href="mailto:faceandfiguresalon@yahoo.co.uk" title="Email the salon">
-												<img className="img-thumbnail float-left" src={ this.context.uri_skin + "images/face-and-figure-salon-phone.png" } alt="Email the salon"/>
+												<img className="img-thumbnail float-left" src={ this.context.uri_skin + "images/face-and-figure-salon-email.png" } alt="Email the salon"/>
 												faceandfiguresalon@yahoo.co.uk
 											</a>
 										</p>
