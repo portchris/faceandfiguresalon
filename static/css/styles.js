@@ -190,7 +190,7 @@ class Styles extends React.Component {
 					min-height: 70px;
 				}
 
-				.card img {
+				.card img, .card-img-top {
 					max-height: 261px;
 				}
 
@@ -263,6 +263,15 @@ class Styles extends React.Component {
 					width: 100%;
 				}
 
+				.treatment-full .card-body {
+					padding-left: 15px;
+					padding-right: 15px;
+				}
+
+				.treatment-full .card-title {
+					min-height: 43px;
+				}
+
 				@keyframes rotating {
 					from {
 						transform: rotate(0deg);
@@ -271,7 +280,11 @@ class Styles extends React.Component {
 						transform: rotate(360deg);
 					}
 				}
-
+				@media only screen and (max-width: 1200px) {
+					.card img, .card-img-top {
+						max-height: 218px;
+					}
+				}
 				@media only screen and (max-width: 991px) {
 					.usp {
 						border-radius: 10px;
@@ -279,6 +292,9 @@ class Styles extends React.Component {
 						height: auto !important;
 						padding: 20px;
 						overflow: visible;
+					}
+					.card img, .card-img-top {
+						max-height: 157px;
 					}
 				}
 
@@ -300,6 +316,9 @@ class Styles extends React.Component {
 					}
 					nav .media-body {
 						padding-top: 4px;
+					}
+					.card img, .card-img-top {
+						max-height: none;
 					}
 				}
 			`}	

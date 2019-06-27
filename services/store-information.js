@@ -13,7 +13,7 @@ const DEFAULT_STATE = {
 };
 const StoreInfo = React.createContext(DEFAULT_STATE);
 const SKIN_DIRECTORY = 'skin/frontend/rwd_faceandfigure/default/';
-const oneday = 60 * 60 * 24 * 1000;
+const ONE_DAY = 60 * 60 * 24 * 1000;
 
 class StoreInformationService extends React.Component {
 
@@ -30,10 +30,16 @@ class StoreInformationService extends React.Component {
 	}
 
 	componentDidMount() {
+		
+		let URL_PARAMS = new URLSearchParams(window.location.search);
+		let NO_CACHE = URL_PARAMS.get('NO_CACHE');
 		let t = +new Date();
 		let data = localStorage.getItem('ffdata');
-		// localStorage.removeItem('ffdata'); // TESTING PURPOSES
-		if (data === null || data.createdAt < (t - oneday)) {
+		if (parseInt(NO_CACHE) === 1 && data !== null) {
+			console.log("REFRESHING CACHE");
+			localStorage.removeItem('ffdata');
+		}
+		if (data === null || data.createdAt < (t - ONE_DAY)) {
 			this.getStoreInfo(
 			).then(
 				(state) => {
