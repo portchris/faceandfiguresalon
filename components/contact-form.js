@@ -19,13 +19,22 @@ class ContactForm extends React.Component {
 
 	render() {
 		if (this.context.data && this.context.data.uri) {
-			return (
-				<React.Fragment>
-					<Col md="6">
-						<iframe src={this.context.data.uri + "info/index/form"} title="Face &amp; Figure Salon | Contact Form Frame" className="embed-responsive-item" id="contact-form-frame"></iframe>
-					</Col>
-				</React.Fragment>
-			);
+			if (this.props.formClass !== null && this.props.formClass === "treatment-form") {
+				return (
+					<React.Fragment>
+						<h1>Have more questions? Get in contact</h1>
+						<iframe src={this.context.data.uri + "info/index/form"} title="Face &amp; Figure Salon | Contact Form Frame" className={this.props.formClass + " embed-responsive-item"} id="contact-form-frame"></iframe>
+					</React.Fragment>
+				);
+			} else {
+				return (
+					<React.Fragment>
+						<Col md="6">
+							<iframe src={this.context.data.uri + "info/index/form"} title="Face &amp; Figure Salon | Contact Form Frame" className="embed-responsive-item" id="contact-form-frame"></iframe>
+						</Col>
+					</React.Fragment>
+				);
+			}
 		} else {
 			return "";
 		}
