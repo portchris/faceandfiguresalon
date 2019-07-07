@@ -29,21 +29,31 @@ class Treatment extends React.Component {
 			}
 		}
 		if (treatment !== null) {
-			let k = "treatment-" + this.props.slug;
 			r.push(
 				<div className="row" key={this.props.slug + "-1"}>
 					<div className="col-md-12">
 						<h1>{treatment.data.h1_title}</h1>
 					</div>
 				</div>,
-				<div className="row" key={this.props.slug + "-2"}>
+				<div className="row vspace" key={this.props.slug + "-2"}>
 					<div className="col-md-12">
-						<img src={treatment.data.img} alt={treatment.data.h1_title} />
+						<img src={this.context.data.uri + "/media/catalog/category/" + treatment.data.image} alt={treatment.data.h1_title} className="img-responsive" />
+					</div>
+				</div>,
+				<div className="row vspace" key={this.props.slug + "-3"}>
+					<div className="col-md-12">
+						<p>{ this.renderTreatmentBody(treatment.data.content) }</p>
 					</div>
 				</div>
 			);
 		}
 		return r;
+	}
+
+	renderTreatmentBody(content) {
+		let el = document.createElement("DIV");
+		el.innerHTML = content;
+		return el.textContent || el.innerText || "";
 	}
 
 	render() {

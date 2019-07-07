@@ -11,27 +11,59 @@ class Breadcrumbs extends React.Component {
 		let r = [];
 		let crumbs = window.location.pathname.split('/');
 		let depth = crumbs.length - 1;
+		let traverse = 0;
 		if (data && data.length) {
-			let children = data[0].children;
-			let treatments = children.flat(depth);
-			// while (traverse > 0) {
+			while (traverse <= depth) {
+				if (typeof data[traverse] !== 'undefined') {
+					let t = data[traverse];
+					if (Array.isArray(t.children)) {
+						let children = t.children;
+						let treatments = children.flat(traverse);
+						r.push(
+							<Breadcrumb.Item href={ t.data.url_path } key={ "breadcrumb-item-" + traverse }>
+								{ t.data.h1_title }
+							</Breadcrumb.Item>
+						);
+						r.push(this.renderBreadcrumbItems(treatments, crumbs, (traverse + 2)));
+					} else {
+						r.push(
+							<Breadcrumb.Item href={ t.data.url_path } key={ "breadcrumb-item-" + traverse } active>
+								{ t.data.h1_title }
+							</Breadcrumb.Item>
+						);
+					}
+					if (Array.isArray(t.children)) {
+						
+					}
+				}
+				traverse++;
+			}
+			
+		}
+		return r;
+	}
 
-			// 	traverse--;
-			// }
-			if (Array.isArray(treatments)) {
-				for (let i = 0; i < treatments.length; i++) {
-					let t = treatments[i];
-					if (t.data !== null && t.data.url_path !== null) {
-						let paths = t.data.url_path.split("/");
-						console.log(crumbs[depth]);
-						if (crumbs[depth] === paths[(paths.length - 1)]) {
-							r.push(
-								<Breadcrumb.Item href={ t.data.url_path } active>
-									{ t.data.h1_title }
-								</Breadcrumb.Item>
-							);
-							break;
-						}
+	/**
+	 * 
+	 * @param {Array} treatments 
+	 * @param {Array} crumbs 
+	 * @param {int} depth 
+	 * @returns {React.Fragment} r
+	 */
+	renderBreadcrumbItems(treatments, crumbs, depth) {
+		let r = [];
+		if (Array.isArray(treatments)) {
+			for (let i = 0; i < treatments.length; i++) {
+				let t = treatments[i];
+				if (t.data !== null && t.data.url_path !== null) {
+					let paths = t.data.url_path.split("/");
+					if (crumbs[depth] === paths[(paths.length - 1)]) {
+						r.push(
+							<Breadcrumb.Item href={ t.data.url_path } key={ "breadcrumb-item-" + i } active>
+								{ t.data.h1_title }
+							</Breadcrumb.Item>
+						);
+						break;
 					}
 				}
 			}
