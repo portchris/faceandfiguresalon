@@ -143,6 +143,10 @@ class Styles extends React.Component {
 					padding-right: 5px;
 				}
 
+				#basic-navbar-nav a.nav-link:focus, #basic-navbar-nav a.nav-link:hover {
+					color: #333;
+				}
+
 				.nav-item:last-child {
 					padding-top: 8px;
 				}

@@ -12,7 +12,7 @@ class Hero extends React.Component {
 			return (
 				<React.Fragment>
 					<div id="site-desc" className="row vspace">
-						<div class="col-sm-6">
+						<div className="col-sm-6">
 							<h2>{ this.context.data.main.description[0].title }</h2>
 							<p>{ this.context.data.main.description[0].content }</p>
 						</div>
