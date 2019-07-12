@@ -3,8 +3,6 @@ import { init } from 'ityped';
 import StoreInformationService, { StoreInformation } from '../services/store-information';
 import Particles from 'react-particles-js';
 
-const DELAY = 2000;
-
 class Hero extends React.Component {
 
 	static contextType = StoreInformation;
@@ -54,21 +52,83 @@ class Hero extends React.Component {
 	render() {
 		if (this.context.data && this.context.data.hero && this.context.data.hero.data) {
 			this.heros = this.convertHeroData(this.context.data.hero.data.content);
+			this.particlesConfig = {
+				"particles": {
+					"number": {
+						"value": 10,
+						"density": {
+							"enable": false,
+							"value_area": 1000
+						}
+					},
+					"shape": {
+						"type": "images",
+						"images": [
+							{
+								"src": this.context.data.uri + "/skin/frontend/rwd_faceandfigure/default/images/icon-leaf-1.png",
+								"width": 20,
+								"height": 20
+							},
+							{
+								"src": this.context.data.uri + "/skin/frontend/rwd_faceandfigure/default/images/icon-leaf-2.png",
+								"width": 20,
+								"height": 20
+							},
+							{
+								"src": this.context.data.uri + "/skin/frontend/rwd_faceandfigure/default/images/icon-leaf-3.png",
+								"width": 20,
+								"height": 20
+							}
+						]
+					},
+					"size": {
+						"value": 10,
+						"random": false,
+						"anim": {
+							"enable": false,
+							"speed": 15,
+							"size_min": 5,
+							"sync": false
+						}
+					},
+					"line_linked": {
+						"enable": false,
+					},
+					"move": {
+						"enable": true,
+						"speed": 1,
+						"direction": "right",
+						"random": false,
+						"straight": false,
+						"out_mode": "out",
+						"bounce": false,
+						"attract": {
+							"enable": false,
+							"rotateX": 10,
+							"rotateY": 0
+						}
+					}
+				},
+				"interactivity": {
+					"detect_on": "canvas",
+					"events": {
+						"onhover": {
+							"enable": false
+						},
+						"onclick": {
+							"enable": false
+						},
+						"resize": true
+					},
+				},
+				"retina_detect": true
+			};
 			return (
 				<React.Fragment>
-					<Particles 
-						params={{
-							particles: {
-								line_linked: {
-									shadow: {
-										enable: true,
-										color: "#3CA9D1",
-										blur: 5
-									}
-								}
-							}
-						}}
-					  	style={{
+					<Particles
+						className="leaves"
+						params={ this.particlesConfig }
+						style={{
 							width: '100%'
 						}}
 					/>

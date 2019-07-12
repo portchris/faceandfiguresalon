@@ -112,6 +112,7 @@ class Styles extends React.Component {
 				}
 
 				nav.navbar {
+					z-index: 10;
 					background-color: #7D589E;
 					font-size: 18px;
 					margin-bottom: 30px;
@@ -119,6 +120,12 @@ class Styles extends React.Component {
 					padding-top; 0;
 				}
 
+				.navbar-light .navbar-toggler {
+					border-color: #FFF;
+				}
+				.navbar-light button .navbar-toggler-icon {
+					background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(255, 255, 255, 1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+				}
 				nav a.nav-link, nav.navbar a, #site-title, 
 				.navbar-light .navbar-nav .nav-link, 
 				.navbar-light .navbar-nav .nav-link:focus,
@@ -276,6 +283,16 @@ class Styles extends React.Component {
 					min-height: 43px;
 				}
 
+				.leaves {
+					position: absolute;
+					top: 0;
+					left: 0; 
+					width: 100%;
+					overflow: hidden;
+					max-height: 500px;
+					z-index: 0;
+				}
+
 				@keyframes rotating {
 					from {
 						transform: rotate(0deg);
@@ -299,6 +316,22 @@ class Styles extends React.Component {
 					}
 					.card img, .card-img-top {
 						max-height: 157px;
+					}
+					.dropdown-menu, .dropdown-item nav-link:hover, .dropdown-item nav-link:focus, .dropdown-item:focus, .dropdown-item:hover {
+						color: #FFF;
+						background: transparent;
+						border: none;
+					}
+					#basic-navbar-nav {
+						border-top: 1px solid #EEE;
+						padding-top: 15px;
+						padding-bottom: 15px;
+					}
+					#basic-navbar-nav a {
+						color: #EEE !important;
+					}
+					#basic-navbar-nav a:focus, #basic-navbar-nav a:hover {
+						color: #FFF !important;
 					}
 				}
 
