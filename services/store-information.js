@@ -11,6 +11,8 @@ const DEFAULT_STATE = {
 	data: {},
 	updateStoreInfo: () => { }
 };
+const URI_LOCAL = 'http://api.faceandfigure.portchris.co.uk/';
+const URI_LIVE = 'https://api.faceandfiguresalon.co.uk/';
 const StoreInfo = React.createContext(DEFAULT_STATE);
 const SKIN_DIRECTORY = 'skin/frontend/rwd_faceandfigure/default/';
 const ONE_DAY = 60 * 60 * 24 * 1000;
@@ -20,8 +22,9 @@ class StoreInformationService extends React.Component {
 	static contextType = StoreInfo;
 
 	constructor(props) {
+
 		super(props);
-		this.uri = (process.env.NODE_ENV !== 'production') ? "http://faceandfigure.portchris.co.uk/" : "https://api.faceandfiguresalon.co.uk/";
+		this.uri = (process.env.NODE_ENV !== 'production') ? URI_LOCAL : URI_LIVE;
 		this.service = new ServiceProvider();
 		this.state = DEFAULT_STATE;
 		this.state.uri = this.uri;
@@ -33,8 +36,10 @@ class StoreInformationService extends React.Component {
 		
 		let URL_PARAMS = new URLSearchParams(window.location.search);
 		let NO_CACHE = URL_PARAMS.get('NO_CACHE');
+		let ENV = URL_PARAMS.get('ENV');
 		let t = +new Date();
 		let data = localStorage.getItem('ffdata');
+		this.uri = (ENV === 'local') ? URI_LOCAL : URI_LIVE;
 		if (parseInt(NO_CACHE) === 1 && data !== null) {
 			console.log("REFRESHING CACHE");
 			localStorage.removeItem('ffdata');
@@ -77,6 +82,7 @@ class StoreInformationService extends React.Component {
 					s.isLoading = false;
 					s.loadingText = 'Loaded';
 					s.uri = this.uri;
+					s.url = this.uri.replace("api.", "");
 					s.uri_skin = this.uri + SKIN_DIRECTORY;
 					s.createdAt = +new Date();
 					localStorage.setItem('ffdata', JSON.stringify(s));
@@ -89,6 +95,7 @@ class StoreInformationService extends React.Component {
 					s.isLoading = false;
 					s.loadingText = 'Error';
 					s.uri = this.uri;
+					s.url = this.uri.replace("api.", "");
 					s.uri_skin = this.uri + SKIN_DIRECTORY;
 					reject(s);
 				}

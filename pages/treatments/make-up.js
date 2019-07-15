@@ -19,36 +19,32 @@ class Makeup extends Component {
 	static contextType = StoreInformation;
 
 	render() {
-		// if (this.context.data && this.context.data.uri) {
-			return (
-				<React.Fragment>
-					<HtmlHead />
-					<StoreInformationService>
-						<Loader />
-						<Header />
-						<Container>
-							<Row>
-								<Col md="12">
-									<Breadcrumbs />
-								</Col>
-							</Row>
-							<Row>
-								<Col md="6">
-									<Treatment slug={SLUG} />
-								</Col>
-								<Col md="6">
-									<ContactForm formClass="treatment-form" />
-								</Col>
-							</Row>
-						</Container>
-						<Footer />
-						<Styles />
-					</StoreInformationService>
-				</React.Fragment>
-			);
-		// } else {
-		// 	return "";		
-		// }
+		return (
+			<React.Fragment>
+				<HtmlHead />
+				<StoreInformationService>
+					<Loader />
+					<Header />
+					<Container>
+						<Row>
+							<Col md="12">
+								<Breadcrumbs />
+							</Col>
+						</Row>
+						<Row>
+							<Col md="6">
+								<Treatment slug={SLUG} />
+							</Col>
+							<Col md="6">
+								<ContactForm formClass="treatment-form" />
+							</Col>
+						</Row>
+					</Container>
+					<Footer />
+					<Styles />
+				</StoreInformationService>
+			</React.Fragment>
+		);
 	}
 }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
 import Col from 'react-bootstrap/Col';
 import StoreInformationService, { StoreInformation } from '../services/store-information';
+import Link from 'next/link';
 
 class Breadcrumbs extends React.Component {
 
@@ -20,16 +21,20 @@ class Breadcrumbs extends React.Component {
 						let children = t.children;
 						let treatments = children.flat(traverse);
 						r.push(
-							<Breadcrumb.Item href={ t.data.url_path } key={ "breadcrumb-item-" + traverse }>
-								{ t.data.h1_title }
-							</Breadcrumb.Item>
+							<li className="breadcrumb-item">
+								<Link href={ t.data.url_path } key={ "breadcrumb-item-" + traverse }>
+									<a title={ t.data.h1_title }>{ t.data.h1_title }</a>
+								</Link>
+							</li>
 						);
 						r.push(this.renderBreadcrumbItems(treatments, crumbs, (traverse + 2)));
 					} else {
 						r.push(
-							<Breadcrumb.Item href={ t.data.url_path } key={ "breadcrumb-item-" + traverse } active>
-								{ t.data.h1_title }
-							</Breadcrumb.Item>
+							<li className="breadcrumb-item active">
+								<Link href={ t.data.url_path } key={ "breadcrumb-item-" + traverse }>
+									<a className="active" title={ t.data.h1_title }>{ t.data.h1_title }</a>
+								</Link>
+							</li>
 						);
 					}
 					if (Array.isArray(t.children)) {
@@ -59,9 +64,11 @@ class Breadcrumbs extends React.Component {
 					let paths = t.data.url_path.split("/");
 					if (crumbs[depth] === paths[(paths.length - 1)]) {
 						r.push(
-							<Breadcrumb.Item href={ t.data.url_path } key={ "breadcrumb-item-" + i } active>
-								{ t.data.h1_title }
-							</Breadcrumb.Item>
+							<li className="breadcrumb-item active">
+								<Link href={ t.data.url_path } key={ "breadcrumb-item-" + i }>
+									<a title={ t.data.h1_title }>{ t.data.h1_title }</a>
+								</Link>
+							</li>
 						);
 						break;
 					}
@@ -76,7 +83,7 @@ class Breadcrumbs extends React.Component {
 			return (
 				<React.Fragment>
 					<Breadcrumb>
-						<Breadcrumb.Item href={this.context.data.uri}>Home</Breadcrumb.Item>
+						<Breadcrumb.Item href="/">Home</Breadcrumb.Item>
 						{ this.renderBreadcrumbs(this.context.data.treatments) }
 					</Breadcrumb>
 				</React.Fragment>
