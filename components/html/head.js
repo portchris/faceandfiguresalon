@@ -17,7 +17,7 @@ class HtmlHead extends React.Component {
 				<Styles />
 			);
 		} else {
-			let skinUrl = this.context.uri + "skin/frontend/rwd_faceandfigure/default/";
+			let skinUrl = this.context.url + "skin/frontend/rwd_faceandfigure/default/";
 			return (
 				<Head>
 					<meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -29,8 +29,9 @@ class HtmlHead extends React.Component {
 					<meta property="og:description" content="" />  
 					<meta property="og:image" content="" />
 					<meta property="og:site_name" content=""/> 
-					<meta property="og:url" content={this.context.uri} />
+					<meta property="og:url" content={this.context.url} />
 					<link rel="icon" href={skinUrl + "images/favicon.ico"} type="image/x-icon" />
+					<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />
 					<link rel="shortcut icon" href={skinUrl + "images/favicon.ico"} type="image/x-icon" />
 					<link rel="apple-touch-icon" sizes="57x57" href={skinUrl + "images/favicons/apple-touch-icon-57x57.png"} />
 					<link rel="apple-touch-icon" sizes="60x60" href={skinUrl + "images/favicons/apple-touch-icon-60x60.png"} />
@@ -50,8 +51,7 @@ class HtmlHead extends React.Component {
 					<meta name="msapplication-TileColor" content="#74704a" />
 					<meta name="msapplication-TileImage" content={skinUrl + "images/favicons/mstile-144x144.png"} />
 					<meta name="msapplication-config" content={skinUrl + "images/favicons/browserconfig.xml"} />
-					<meta name="theme-color" content="#74704a" />
-					<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous" />	
+					<meta name="theme-color" content="#74704a" />	
 				</Head>
 			);
 		}

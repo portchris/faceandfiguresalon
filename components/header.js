@@ -20,8 +20,8 @@ class Header extends React.Component {
 				let treatment = this.context.data.treatments[0].children[i].data;
 				let eventKey = parseFloat("2." + (i + 2));
 				treatments.push(
-					<Link href={treatment.url_path} key={eventKey} title={treatment.h1_title}>
-						<a className="dropdown-item nav-link">{treatment.h1_title}</a>
+					<Link href={treatment.url_path} key={eventKey}>
+						<a className="dropdown-item nav-link" title={treatment.h1_title}>{treatment.h1_title}</a>
 					</Link>
 				);
 			}
@@ -52,7 +52,7 @@ class Header extends React.Component {
 									<Media.Body>
 										<div className="align-self-center">
 											<Link href="/" key="1">
-												<a id="site-title">{this.context.data.header.title}</a>
+												<a id="site-title" title={this.context.data.header.title}>{this.context.data.header.title}</a>
 											</Link>
 										</div>
 									</Media.Body>
@@ -62,14 +62,14 @@ class Header extends React.Component {
 							<Navbar.Collapse id="basic-navbar-nav">
 								<Nav className="mr-auto" activeKey="1" onSelect={k => this.handleSelect(k)}>
 									<NavDropdown as={Nav.Item} title="Treatments" id="basic-nav-dropdown">
-										<Link href="/treatments" key="2.1" title="View All Treatments">
-											<a className="dropdown-item nav-link">View All Treatments</a>
+										<Link href="/treatments" key="2.1">
+											<a className="dropdown-item nav-link" title="View All Treatments">View All Treatments</a>
 										</Link>
 										{this.navDropdownItemTreatments()}
 									</NavDropdown>
 									<Nav.Item>
-										<Link href="/contact" key="3" title="Get In Contact">
-											<a>Get In Contact</a>
+										<Link href="/contact" key="3">
+											<a title="Get In Contact">Get In Contact</a>
 										</Link>
 									</Nav.Item>
 								</Nav>

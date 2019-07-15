@@ -1,6 +1,8 @@
 import React from 'react';
 import ServiceProvider from './service-provider';
 
+const URI_LOCAL = 'http://api.faceandfigure.portchris.co.uk/';
+const URI_LIVE = 'https://api.faceandfiguresalon.co.uk/';
 const DEFAULT_STATE = {
 	error: [],
 	isLoading: true,
@@ -9,10 +11,9 @@ const DEFAULT_STATE = {
 	request: {},
 	headers: {},
 	data: {},
+	url: (process.env.NODE_ENV !== 'production') ? URI_LOCAL : URI_LIVE,
 	updateStoreInfo: () => { }
 };
-const URI_LOCAL = 'http://api.faceandfigure.portchris.co.uk/';
-const URI_LIVE = 'https://api.faceandfiguresalon.co.uk/';
 const StoreInfo = React.createContext(DEFAULT_STATE);
 const SKIN_DIRECTORY = 'skin/frontend/rwd_faceandfigure/default/';
 const ONE_DAY = 60 * 60 * 24 * 1000;
