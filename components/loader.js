@@ -13,7 +13,7 @@ class Loader extends React.Component {
 
 	render() {
 		if (this.context.isLoading) {
-			let img = this.context.uri + "skin/frontend/rwd_faceandfigure/default/images/logo-face-and-figure-salon.png";
+			let img = this.context.url + "skin/frontend/rwd_faceandfigure/default/images/logo-face-and-figure-salon.png";
 			return (
 				<div className={this.containerClass}>
 					<img className="rotating" src={img} alt={this.context.loadingText} />
