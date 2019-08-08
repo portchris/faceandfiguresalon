@@ -15,15 +15,29 @@ class Loader extends React.Component {
 		if (this.context.isLoading) {
 			let img = this.context.url + "skin/frontend/rwd_faceandfigure/default/images/logo-face-and-figure-salon.png";
 			return (
+				<style jsx="true">{`
+					.center {
+						margin: auto;
+						text-align: center;
+						width: 50%;
+						padding: 10px;
+					}
+					.rotating {
+						animation: rotating 2s linear infinite;
+					}
+					.initial-loader img {
+						max-width: 100px;
+					}
+				`}</style> ,
 				<div className={this.containerClass}>
 					<img className="rotating" src={img} alt={this.context.loadingText} />
 					<p>{this.context.loadingText}</p>
-				</div>	
+				</div>
 			);
 		} else {
 			return "";
 		}
 	}
 }
-  
+
 export default Loader
