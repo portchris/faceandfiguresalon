@@ -43,6 +43,8 @@ class HtmlHead extends React.Component {
 				<meta name="msapplication-TileImage" content={skinUrl + "images/favicons/mstile-144x144.png"} />
 				<meta name="msapplication-config" content={skinUrl + "images/favicons/browserconfig.xml"} />
 				<meta name="theme-color" content="#7D589E" />
+				<meta name="viewport" content="width=device-width" />
+				<meta name="viewport" content="initial-scale=1.0" />
 			</Head>
 		);
 	}

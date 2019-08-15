@@ -23,6 +23,7 @@ class Home extends Component {
 		return (
 			<React.Fragment>
 				<HtmlHead />
+				<Styles />
 				<StoreInformationService>
 					<Loader />
 					<Header />
@@ -33,7 +34,6 @@ class Home extends Component {
 						<Treatments />
 					</Container>
 					<Footer />
-					<Styles />
 				</StoreInformationService>
 			</React.Fragment>
 		);

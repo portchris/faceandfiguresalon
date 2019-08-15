@@ -12,6 +12,12 @@ class Treatments extends React.Component {
 
 	static contextType = StoreInformation;
 
+	/**
+	 * 
+	 * @param {Array} data 
+	 * @param {boolean} fullView 
+	 * @returns {Array} treatments
+	 */
 	renderAvailableTreatments(data, fullView) {
 		let treatments = [];
 		if (data && data.length) {
@@ -38,7 +44,17 @@ class Treatments extends React.Component {
 		return treatments;
 	}
 
+	/**
+	 * 
+	 * @param {object} treatment 
+	 * @param {int} eventKey 
+	 * @param {boolean} fullView 
+	 * @returns {React.Fragment}
+	 */
 	renderCardFragment(treatment, eventKey, fullView = false) {
+
+		let relUrl = "/" +  treatment.url_path.replace(/^(?:\/\/|[^\/]+)*\//, "");
+		console.log(relUrl);
 		if (fullView) {
 			return (
 				<Col md={12 / perRow} key={"t-col-" + eventKey}>
@@ -47,7 +63,7 @@ class Treatments extends React.Component {
 						<Card.Body>
 							<Card.Title>{treatment.h1_title}</Card.Title>
 							<Button variant="primary">
-								<Link href={treatment.url_path}>
+								<Link href={relUrl} key={"t-view-" + eventKey}>
 									<a>View Treatment</a>
 								</Link>
 							</Button>
@@ -64,7 +80,7 @@ class Treatments extends React.Component {
 							<Card.Title>{treatment.h1_title}</Card.Title>
 							<Card.Body>{this.renderCardBody(treatment.content)}</Card.Body>
 							<Button variant="primary">
-								<Link href={treatment.url_path}>
+								<Link href={relUrl}>
 									<a>View Treatment</a>
 								</Link>
 							</Button>
@@ -75,12 +91,20 @@ class Treatments extends React.Component {
 		}
 	}
 
+	/**
+	 * 
+	 * @param {string} content 
+	 * @returns {string}
+	 */
 	renderCardBody(content) {
 		let el = document.createElement("DIV");
 		el.innerHTML = content.substring(0, 200) + "...";
 		return el.textContent || el.innerText || "";
 	}
 
+	/**
+	 * @return {React.Fragment|string}
+	 */
 	render() {
 		if (this.context.data && this.context.data.treatments) {
 			let full = (this.props.full !== null) ? true : false;

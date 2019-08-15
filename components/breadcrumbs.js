@@ -1,6 +1,5 @@
 import React from 'react';
 import Breadcrumb from 'react-bootstrap/Breadcrumb';
-import Col from 'react-bootstrap/Col';
 import StoreInformationService, { StoreInformation } from '../services/store-information';
 import Link from 'next/link';
 
@@ -17,12 +16,13 @@ class Breadcrumbs extends React.Component {
 			while (traverse <= depth) {
 				if (typeof data[traverse] !== 'undefined') {
 					let t = data[traverse];
+					let relUrl = t.data.url_path.replace(/^(?:\/\/|[^\/]+)*\//, "");
 					if (Array.isArray(t.children)) {
 						let children = t.children;
 						let treatments = children.flat(traverse);
 						r.push(
-							<li className="breadcrumb-item">
-								<Link href={ t.data.url_path } key={ "breadcrumb-item-" + traverse }>
+							<li className="breadcrumb-item" key={ "breadcrumb-item-" + relUrl }>
+								<Link href={ "/" + relUrl } key={ "breadcrumb-item-" + "-" + traverse }>
 									<a title={ t.data.h1_title }>{ t.data.h1_title }</a>
 								</Link>
 							</li>
@@ -31,7 +31,7 @@ class Breadcrumbs extends React.Component {
 					} else {
 						r.push(
 							<li className="breadcrumb-item active">
-								<Link href={ t.data.url_path } key={ "breadcrumb-item-" + traverse }>
+								<Link href={ "/" + relUrl } key={ "breadcrumb-item-" + traverse }>
 									<a className="active" title={ t.data.h1_title }>{ t.data.h1_title }</a>
 								</Link>
 							</li>
@@ -63,9 +63,10 @@ class Breadcrumbs extends React.Component {
 				if (t.data !== null && t.data.url_path !== null) {
 					let paths = t.data.url_path.split("/");
 					if (crumbs[depth] === paths[(paths.length - 1)]) {
+						let relUrl = "/" +  t.data.url_path.replace(/^(?:\/\/|[^\/]+)*\//, "");
 						r.push(
 							<li className="breadcrumb-item active">
-								<Link href={ t.data.url_path } key={ "breadcrumb-item-" + i }>
+								<Link href={ relUrl } key={ "breadcrumb-item-" + i }>
 									<a title={ t.data.h1_title }>{ t.data.h1_title }</a>
 								</Link>
 							</li>
@@ -80,12 +81,17 @@ class Breadcrumbs extends React.Component {
 
 	render() {
 		if (this.context.data && this.context.data.treatments) {
+			let k = Math.floor(Math.random() * 20);
 			return (
 				<React.Fragment>
-					<Breadcrumb>
-						<Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+					<ol className="breadcrumb" key={"ff-breadcrumbs-" + k}>
+						<li className="breadcrumb-item" key="ff-breadcrumbs-home">
+							<Link href="/" key="breadcrumb-item-home">
+								<a title="Go Home">Home</a>
+							</Link>
+						</li>
 						{ this.renderBreadcrumbs(this.context.data.treatments) }
-					</Breadcrumb>
+					</ol>
 				</React.Fragment>
 			);
 		} else {
