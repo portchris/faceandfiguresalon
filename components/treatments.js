@@ -54,7 +54,6 @@ class Treatments extends React.Component {
 	renderCardFragment(treatment, eventKey, fullView = false) {
 
 		let relUrl = "/" +  treatment.url_path.replace(/^(?:\/\/|[^\/]+)*\//, "");
-		console.log(relUrl);
 		if (fullView) {
 			return (
 				<Col md={12 / perRow} key={"t-col-" + eventKey}>

@@ -117,19 +117,16 @@ class Treatment extends React.Component {
 				<Card className="vspace-xs">
 					<Card.Body>
 						<Card.Title>{treatment.h1_title}</Card.Title>
-						<div>{this.renderCardBody(treatment.content)}</div>
+						<div>{this.renderTreatmentBody(treatment.content)}</div>
 					</Card.Body>
 				</Card>
 			</Col>
 		);
 	}
 
-	renderCardBody(content) {
-		let el = document.createElement("DIV");
-		el.innerHTML = content.substring(0, 200) + "...";
-		return el.textContent || el.innerText || "";
-	}
-
+	/**
+	 * @param {string} content 
+	 */
 	renderTreatmentBody(content) {
 		let el = document.createElement("DIV");
 		el.innerHTML = content;
