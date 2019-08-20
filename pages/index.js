@@ -25,8 +25,8 @@ class Home extends Component {
 				<HtmlHead />
 				<Styles />
 				<StoreInformationService>
-					<Loader />
 					<Header />
+					<Loader />
 					<Container>
 						<Hero />
 						<Promo />

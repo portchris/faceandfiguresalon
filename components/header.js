@@ -109,8 +109,8 @@ class Header extends React.Component {
 							<Navbar.Collapse id="basic-static-navbar-nav">
 								<Nav className="mr-auto" onSelect={k => this.handleSelect(k)}>
 									<Nav.Item>
-										<Link href="/contact" key="static-nav-2">
-											<a title="Get In Contact">Get In Contact</a>
+										<Link href="/treatments" key="static-nav-2">
+											<a title="View All Treatments">View All Treatments</a>
 										</Link>
 									</Nav.Item>
 									<Nav.Item>

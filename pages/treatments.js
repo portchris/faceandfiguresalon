@@ -21,8 +21,8 @@ class TreatmentsAll extends Component {
 			<React.Fragment>
 				<HtmlHead />
 				<StoreInformationService>
-					<Loader />
 					<Header />
+					<Loader />
 					<Container>
 						<Treatments full={true} />
 					</Container>
