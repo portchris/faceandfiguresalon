@@ -51,16 +51,18 @@ class Footer extends React.Component {
 										<h3>Say Hello</h3>
 										<p>
 											Not a fan of social media? No problem, contact us via more conventional means:<br/>
-											<a href="tel:+447872907857" title="Call the salon">
-												<img className="img-thumbnail float-left" src={ this.context.uri_skin + "images/face-and-figure-salon-phone.png" } alt="Call the salon"/>
-												07872907857
-											</a>
+											<img className="img-thumbnail float-left" src={ this.context.uri_skin + "images/face-and-figure-salon-phone.png" } alt="Call the salon"/>
+											+447872907857
 										</p>
 										<p>
-											<a href="mailto:faceandfiguresalon@yahoo.co.uk" title="Email the salon">
-												<img className="img-thumbnail float-left" src={ this.context.uri_skin + "images/face-and-figure-salon-email.png" } alt="Email the salon"/>
-												faceandfiguresalon@yahoo.co.uk
-											</a>
+										<b>Opening Hours:</b><br/>
+										Monday 9:30am–9pm<br />
+										Tuesday 9:30am–9pm <br />
+										Wednesday 9:30am–7pm<br />
+										Thursday 9:30am–12pm<br />
+										Friday Closed<br />
+										Saturday 9:30am–12pm<br />
+										Sunday Closed
 										</p>
 									</div>
 								</Col>
