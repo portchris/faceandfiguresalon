@@ -30,8 +30,8 @@ class Home extends Component {
 					<Container>
 						<Hero />
 						<Promo />
-						<Description />
 						<Treatments />
+						<Description />
 					</Container>
 					<Footer />
 				</StoreInformationService>
