@@ -234,7 +234,7 @@ class Styles extends React.Component {
 					max-width: 50px;
 				}
 
-				#site-desc {
+				#treatments-title {
 					margin-top: 70px;
 				}
 
