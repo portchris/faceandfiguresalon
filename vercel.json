@@ -1,0 +1,38 @@
+{
+    "rewrites": [
+        {
+            "source": "/contact",
+            "destination": "https://www.cleverlyeverly.co.uk/#contact"
+        },
+        {
+            "source": "/events",
+            "destination": "https://www.cleverlyeverly.co.uk//#events"
+        },
+        {
+            "source": "/",
+            "has": [
+                {
+                    "type": "query",
+                    "key": "event_id"
+                }
+            ],
+            "destination": "https://www.cleverlyeverly.co.uk/#events"
+        },
+        {
+            "source": "/testimonials",
+            "destination": "https://www.cleverlyeverly.co.uk//#home"
+        },
+        {
+            "source": "/captcha/:slug",
+            "destination": "https://www.google.com/recaptcha/api/:slug"
+        },
+        {
+            "source": "/wufoo",
+            "destination": "https://portchris.wufoo.com/forms/q1px2pll12zcu72/"
+        },
+        {
+            "source": "/:any*",
+            "destination": "/#home"
+        }
+    ]
+}

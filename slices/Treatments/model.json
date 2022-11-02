@@ -1,0 +1,76 @@
+{
+  "id": "treatments",
+  "type": "SharedSlice",
+  "name": "Treatments",
+  "description": "Treatments",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "Treatments",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "This is where it all begins...",
+            "allowTargetBlank": true,
+            "single": "paragraph,heading3,heading4,heading5,heading6,strong,em,hyperlink,list-item,o-list-item"
+          }
+        },
+        "image": {
+          "type": "Image",
+          "config": {
+            "label": "Image",
+            "constraint": {
+              "width": 500,
+              "height": 380
+            },
+            "thumbnails": []
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Description",
+            "placeholder": "A nice description of your feature",
+            "allowTargetBlank": true,
+            "multi": "paragraph,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,list-item,o-list-item"
+          }
+        }
+      },
+      "items": {
+        "product_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Product Title",
+            "placeholder": "Title of treatment product",
+            "allowTargetBlank": true,
+            "single": "paragraph,heading3,heading4,heading5,heading6,strong,em,hyperlink,list-item,o-list-item"
+          }
+        },
+        "product_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Product Description",
+            "placeholder": "Description of treatment product",
+            "allowTargetBlank": true,
+            "multi": "paragraph,preformatted,heading4,heading5,heading6,strong,em,hyperlink,o-list-item,list-item"
+          }
+        },
+        "cta": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Call To Action",
+            "placeholder": "Button + Link",
+            "allowTargetBlank": true,
+            "single": "embed"
+          }
+        }
+      },
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "id": "mock-doc-id",
+  "url": null,
+  "type": "page",
+  "href": null,
+  "tags": [],
+  "first_publication_date": "1970-01-01T00:00:01+0000",
+  "last_publication_date": "1970-01-01T00:00:01+0000",
+  "slugs": [],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "page_title": [
+      {
+        "type": "heading1",
+        "text": "Believed",
+        "spans": []
+      }
+    ],
+    "logo": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": null,
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1504198070170-4ca53bb1c1fa"
+    },
+    "heading_title": [
+      {
+        "type": "heading2",
+        "text": "Longer",
+        "spans": []
+      }
+    ],
+    "meta_title": "seems",
+    "meta_description": "aid",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Incididunt ad aliquip eiusmod do commodo aliqua ipsum ullamco id cillum veniam elit.",
+        "spans": []
+      }
+    ],
+    "slices": []
+  }
+}

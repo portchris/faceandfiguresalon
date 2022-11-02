@@ -1,0 +1,76 @@
+{
+  "id": "page",
+  "label": "Page",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "page_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Page Title",
+          "placeholder": "Title of the site header",
+          "allowTargetBlank": true,
+          "single": "heading1"
+        }
+      },
+      "logo": {
+        "type": "Image",
+        "config": {
+          "label": "Logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "heading_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Heading Title",
+          "placeholder": "Content heading title",
+          "allowTargetBlank": true,
+          "single": "heading2"
+        }
+      },
+      "meta_title": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "The title that appears in Google"
+        }
+      },
+      "meta_description": {
+        "type": "Text",
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "Site description in Google"
+        }
+      },
+      "content": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Content",
+          "placeholder": "Main content of page",
+          "allowTargetBlank": true,
+          "single": "paragraph,preformatted,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,list-item,o-list-item"
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "selling_points": {
+              "type": "SharedSlice"
+            },
+            "contact_point": {
+              "type": "SharedSlice"
+            },
+            "treatments": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
+}
