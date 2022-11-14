@@ -12,7 +12,7 @@ import ContactForm from "../components/forms/contact-form";
 import Hero from "../components/html/hero";
 import FiveZeroThree from "../components/errors/503";
 
-const repoName = "cleverlyeverly";
+const repoName = process.env.PRISMIC_REPO_NAME;
 const endpoint = Prismic.getEndpoint(repoName);
 const client = Prismic.createClient(endpoint);
 
@@ -24,96 +24,34 @@ const client = Prismic.createClient(endpoint);
  */
 export async function getStaticProps({ context }) {
 
-  var contact = null;
-  var upcomingEvents = null;
-  const page = await client.getSingle('homepage');
-  const pages = await client.getAllByType('page');
-  const events = await client.getAllByType('events');
-
-  findPageByTag:
-  for (let i in pages) {
-    if (pages[i]['tags'] !== null && pages[i]['tags'].length) {
-      for (let x in pages[i]['tags']) {
-        switch (String(pages[i]['tags'][x]).toLowerCase()) {
-          case "contact":
-            contact = pages[i];
-            break;
-          case "events":
-            upcomingEvents = pages[i];
-            break;
-        }
-
-        if (upcomingEvents !== null && contact !== null) {
-          break findPageByTag;
-        }
-      }
-    }
-  }
+  const page = await client.getByID('Y2KU_REAACEAKImf');
 
   return {
     props: {
-      page,
-      contact,
-      upcomingEvents,
-      events
+      page: page
     }
   };
 }
 
-export default function Home({ page, contact, upcomingEvents, events }) {
+export default function Home({ page }) {
 
+  console.log(page);
   if (!page || page.data === undefined) {
     return (
       <FiveZeroThree></FiveZeroThree>
     );
   }
 
-  console.log(upcomingEvents);
-
   // Home
   const logo = page.data.logo;
-  const title = page.data.title[0].text;
+  const title = page.data.page_title[0].text;
   const content = page.data.content;
-  const contentTitle = page.data.content_title[0].text;
+  const contentTitle = page.data.heading_title[0].text;
   const caption = page.data.caption;
   const metaTitle = page.data.meta_title[0].text;
   const metaDescription = page.data.meta_description[0].text;
-  const videoPromoURI = page.data.video_promo.url;
-  const videoBackgroundURI = page.data.video_background.url;
 
-  // Contact
-  const contactContent = contact.data.content;
-  const contactCaption = contact.data.caption;
-  const contactContentTitle = contact.data.content_title[0].text;
-  const contactSuccessMessage = contact.data.notification_success_message[0].text;
-
-  // Upcoming Events
-  const eventsTitle = upcomingEvents.data.title[0].text;
-  const eventsCaption = upcomingEvents.data.content_title[0].text;
-
-  // Events
-  const eventsHtml = [];
-  for (let i in events) {
-
-    let id = events[i].id;
-    let data = events[i].data;
-    let nm = data.event_name[0].text;
-    let dt = new Date(data.event_date);
-    let lnk = data.event_link.url;
-    let desc = data.event_description[0].text;
-    let loc = data.event_location;
-
-    eventsHtml.push(
-      <Event
-        id={id}
-        name={nm}
-        date={dt}
-        link={lnk}
-        description={desc}
-        location={loc}
-      />
-    );
-  }
+  console.log(page.data);
 
   return (
     <React.Fragment>
@@ -129,13 +67,12 @@ export default function Home({ page, contact, upcomingEvents, events }) {
         height={logo.dimensions.height / 2}>
       </Header>
       <Hero
-        uri={videoBackgroundURI}
         title={contentTitle}
         content={caption}>
       </Hero>
       <main className="content">
         <Container>
-          <article id="home" key="index-article">
+          {/* <article id="home" key="index-article">
             <Row key="index-row">
               <Col key="index-col-1" className="description" md="8">
                 <Content
@@ -195,7 +132,7 @@ export default function Home({ page, contact, upcomingEvents, events }) {
                 <ContactForm contactSuccessMessage={contactSuccessMessage} />
               </Col>
             </Row>
-          </article>
+          </article> */}
           <Footer />
         </Container>
       </main>

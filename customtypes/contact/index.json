@@ -1,7 +1,7 @@
 {
-  "id": "page",
-  "label": "Page",
-  "repeatable": true,
+  "id": "contact",
+  "label": "Contact",
+  "repeatable": false,
   "status": true,
   "json": {
     "Main": {
@@ -10,7 +10,7 @@
         "config": {
           "label": "Page Title",
           "placeholder": "Title of the site header",
-          "allowTargetBlank": true,
+          "allowTargetBlank": false,
           "single": "heading1"
         }
       },
@@ -30,7 +30,7 @@
         "config": {
           "label": "Heading Title",
           "placeholder": "Content heading title",
-          "allowTargetBlank": true,
+          "allowTargetBlank": false,
           "single": "heading2"
         }
       },
@@ -57,20 +57,44 @@
           "multi": "paragraph,preformatted,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,list-item,o-list-item"
         }
       },
+      "contact_details": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Contact Details",
+          "placeholder": "Phone number, email address",
+          "allowTargetBlank": true,
+          "multi": "paragraph,preformatted,heading4,heading5,heading6,strong,em,hyperlink,list-item,o-list-item,heading3,image"
+        }
+      },
+      "contact_success_msg": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Contact Success Message",
+          "placeholder": "Message when customer submits form",
+          "allowTargetBlank": true,
+          "multi": "paragraph,heading5,heading6,strong,em,hyperlink,heading4"
+        }
+      },
+      "address": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Contact Address",
+          "placeholder": "The address of the salon.",
+          "allowTargetBlank": true,
+          "multi": "heading4,heading5,heading6,paragraph,strong,hyperlink,image,list-item"
+        }
+      },
+      "map_location": {
+        "type": "GeoPoint",
+        "config": {
+          "label": "Google Maps Embed URI"
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "selling_points": {
-              "type": "SharedSlice"
-            },
-            "contact_point": {
-              "type": "SharedSlice"
-            },
-            "treatments": {
-              "type": "SharedSlice"
-            },
             "footer": {
               "type": "SharedSlice"
             }

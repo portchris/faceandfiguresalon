@@ -1,0 +1,55 @@
+{
+  "id": "footer",
+  "type": "SharedSlice",
+  "name": "Footer",
+  "description": "Footer",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "Footer",
+      "primary": {
+        "footer_site_date": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Footer Site Date",
+            "placeholder": "The date the site was created",
+            "allowTargetBlank": false,
+            "single": "paragraph"
+          }
+        },
+        "footer_address": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Footer Address",
+            "placeholder": "The address of the salon.",
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink,image"
+          }
+        },
+        "footer_links": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Footer Links",
+            "placeholder": "Links to useful resources",
+            "allowTargetBlank": true,
+            "multi": "heading4,heading5,heading6,strong,em,hyperlink,list-item,o-list-item,paragraph"
+          }
+        },
+        "footer_author": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Footer Author",
+            "placeholder": "Author of the site.",
+            "allowTargetBlank": true,
+            "single": "paragraph,heading4,heading5,heading6,strong,em,hyperlink"
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

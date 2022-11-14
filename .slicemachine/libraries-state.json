@@ -90,7 +90,125 @@
           "fileName": "index",
           "extension": "js"
         },
-        "screenshotPaths": {}
+        "screenshotPaths": {
+          "default": {
+            "path": "/home/chris/projects/faceandfiguresalon/slices/ContactPoint/default/preview.png",
+            "width": 1165,
+            "height": 311
+          }
+        }
+      },
+      "footer": {
+        "library": "slices",
+        "id": "footer",
+        "name": "Footer",
+        "description": "Footer",
+        "model": {
+          "id": "footer",
+          "type": "SharedSlice",
+          "name": "Footer",
+          "description": "Footer",
+          "variations": [
+            {
+              "id": "default",
+              "name": "Default",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "Footer",
+              "primary": {
+                "footer_site_date": {
+                  "type": "StructuredText",
+                  "config": {
+                    "label": "Footer Site Date",
+                    "placeholder": "The date the site was created",
+                    "allowTargetBlank": false,
+                    "single": "paragraph"
+                  }
+                },
+                "footer_address": {
+                  "type": "StructuredText",
+                  "config": {
+                    "label": "Footer Address",
+                    "placeholder": "The address of the salon.",
+                    "allowTargetBlank": true,
+                    "multi": "paragraph,strong,em,hyperlink,image"
+                  }
+                },
+                "footer_links": {
+                  "type": "StructuredText",
+                  "config": {
+                    "label": "Footer Links",
+                    "placeholder": "Links to useful resources",
+                    "allowTargetBlank": true,
+                    "multi": "heading4,heading5,heading6,strong,em,hyperlink,list-item,o-list-item,paragraph"
+                  }
+                },
+                "footer_author": {
+                  "type": "StructuredText",
+                  "config": {
+                    "label": "Footer Author",
+                    "placeholder": "Author of the site.",
+                    "allowTargetBlank": true,
+                    "single": "paragraph,heading4,heading5,heading6,strong,em,hyperlink"
+                  }
+                }
+              },
+              "items": {},
+              "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+            }
+          ]
+        },
+        "mocks": {
+          "default": {
+            "variation": "default",
+            "version": "sktwi1xtmkfgx8626",
+            "items": [
+              {}
+            ],
+            "primary": {
+              "footer_site_date": [
+                {
+                  "type": "paragraph",
+                  "text": "Veniam laborum minim ut enim aliqua est eiusmod proident do. Eu ad anim amet exercitation excepteur laborum quis proident elit cillum culpa nisi.",
+                  "spans": []
+                }
+              ],
+              "footer_address": [
+                {
+                  "type": "paragraph",
+                  "text": "Nulla ipsum ex irure. Proident quis id elit mollit ut exercitation esse culpa nisi commodo voluptate Lorem ex pariatur mollit. Ut id proident laborum ut sit proident fugiat id ipsum do in.",
+                  "spans": []
+                }
+              ],
+              "footer_links": [
+                {
+                  "type": "heading4",
+                  "text": "Before",
+                  "spans": []
+                }
+              ],
+              "footer_author": [
+                {
+                  "type": "paragraph",
+                  "text": "Mollit pariatur deserunt minim. Magna ad et reprehenderit magna velit ipsum eiusmod qui amet pariatur nulla sunt id duis pariatur.",
+                  "spans": []
+                }
+              ]
+            },
+            "slice_type": "footer"
+          }
+        },
+        "meta": {
+          "fileName": "index",
+          "extension": "js"
+        },
+        "screenshotPaths": {
+          "default": {
+            "path": "/home/chris/projects/faceandfiguresalon/slices/Footer/default/preview.png",
+            "width": 1170,
+            "height": 68
+          }
+        }
       },
       "selling_points": {
         "library": "slices",
@@ -247,7 +365,13 @@
           "fileName": "index",
           "extension": "js"
         },
-        "screenshotPaths": {}
+        "screenshotPaths": {
+          "default": {
+            "path": "/home/chris/projects/faceandfiguresalon/slices/SellingPoints/default/preview.png",
+            "width": 1120,
+            "height": 291
+          }
+        }
       },
       "treatments": {
         "library": "slices",
@@ -391,7 +515,13 @@
           "fileName": "index",
           "extension": "js"
         },
-        "screenshotPaths": {}
+        "screenshotPaths": {
+          "default": {
+            "path": "/home/chris/projects/faceandfiguresalon/slices/Treatments/default/preview.png",
+            "width": 1166,
+            "height": 603
+          }
+        }
       }
     }
   }

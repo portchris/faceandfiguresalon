@@ -9,11 +9,6 @@ class Hero extends Component {
     /**
      * @var {String}
      */
-    static uri;
-
-    /**
-     * @var {String}
-     */
     static img;
 
     /**
@@ -22,8 +17,8 @@ class Hero extends Component {
     static title;
 
     /**
-    * @var {String}
-    */
+     * @var {String}
+     */
     static content;
 
     /**
@@ -32,7 +27,6 @@ class Hero extends Component {
     constructor(props) {
 
         super(props);
-        this.uri = props.uri;
         this.img = props.image;
         this.title = props.title;
         this.content = props.content;
@@ -42,11 +36,6 @@ class Hero extends Component {
 
         return (
             <React.Fragment>
-                <div className="video-background">
-                    <div className="video-foreground">
-                        <iframe src={this.uri} frameBorder="0" allowFullScreen></iframe>
-                    </div>
-                </div>
                 <Container id="vidtop-content">
                     <Row key="hero-row">
                         <Col key="hero-col" lg="4">

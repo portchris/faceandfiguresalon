@@ -6,6 +6,145 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = {
     [KeyType in keyof T]: T[KeyType];
 };
+/** Content for Contact documents */
+interface ContactDocumentData {
+    /**
+     * Page Title field in *Contact*
+     *
+     * - **Field Type**: Title
+     * - **Placeholder**: Title of the site header
+     * - **API ID Path**: contact.page_title
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    page_title: prismicT.TitleField;
+    /**
+     * Logo field in *Contact*
+     *
+     * - **Field Type**: Image
+     * - **Placeholder**: *None*
+     * - **API ID Path**: contact.logo
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/image
+     *
+     */
+    logo: prismicT.ImageField<never>;
+    /**
+     * Heading Title field in *Contact*
+     *
+     * - **Field Type**: Title
+     * - **Placeholder**: Content heading title
+     * - **API ID Path**: contact.heading_title
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    heading_title: prismicT.TitleField;
+    /**
+     * Meta Title field in *Contact*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: The title that appears in Google
+     * - **API ID Path**: contact.meta_title
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    meta_title: prismicT.KeyTextField;
+    /**
+     * Meta Description field in *Contact*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: Site description in Google
+     * - **API ID Path**: contact.meta_description
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    meta_description: prismicT.KeyTextField;
+    /**
+     * Content field in *Contact*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: Main content of page
+     * - **API ID Path**: contact.content
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    content: prismicT.RichTextField;
+    /**
+     * Contact Details field in *Contact*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: Phone number, email address
+     * - **API ID Path**: contact.contact_details
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    contact_details: prismicT.RichTextField;
+    /**
+     * Contact Success Message field in *Contact*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: Message when customer submits form
+     * - **API ID Path**: contact.contact_success_msg
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    contact_success_msg: prismicT.RichTextField;
+    /**
+     * Contact Address field in *Contact*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: The address of the salon.
+     * - **API ID Path**: contact.address
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    address: prismicT.RichTextField;
+    /**
+     * Google Maps Embed URI field in *Contact*
+     *
+     * - **Field Type**: GeoPoint
+     * - **Placeholder**: *None*
+     * - **API ID Path**: contact.map_location
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/geopoint
+     *
+     */
+    map_location: prismicT.GeoPointField;
+    /**
+     * Slice Zone field in *Contact*
+     *
+     * - **Field Type**: Slice Zone
+     * - **Placeholder**: *None*
+     * - **API ID Path**: contact.slices[]
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/slices
+     *
+     */
+    slices: prismicT.SliceZone<ContactDocumentDataSlicesSlice>;
+}
+/**
+ * Slice for *Contact → Slice Zone*
+ *
+ */
+type ContactDocumentDataSlicesSlice = FooterSlice;
+/**
+ * Contact document from Prismic
+ *
+ * - **API ID**: `contact`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ContactDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<ContactDocumentData>, "contact", Lang>;
 /** Content for Page documents */
 interface PageDocumentData {
     /**
@@ -90,7 +229,7 @@ interface PageDocumentData {
  * Slice for *Page → Slice Zone*
  *
  */
-type PageDocumentDataSlicesSlice = SellingPointsSlice | ContactPointSlice | TreatmentsSlice;
+type PageDocumentDataSlicesSlice = SellingPointsSlice | ContactPointSlice | TreatmentsSlice | FooterSlice;
 /**
  * Page document from Prismic
  *
@@ -101,7 +240,7 @@ type PageDocumentDataSlicesSlice = SellingPointsSlice | ContactPointSlice | Trea
  * @typeParam Lang - Language API ID of the document.
  */
 export type PageDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<PageDocumentData>, "page", Lang>;
-export type AllDocumentTypes = PageDocument;
+export type AllDocumentTypes = ContactDocument | PageDocument;
 /**
  * Primary content in ContactPoint → Primary
  *
@@ -161,6 +300,75 @@ type ContactPointSliceVariation = ContactPointSliceDefault;
  *
  */
 export type ContactPointSlice = prismicT.SharedSlice<"contact_point", ContactPointSliceVariation>;
+/**
+ * Primary content in Footer → Primary
+ *
+ */
+interface FooterSliceDefaultPrimary {
+    /**
+     * Footer Site Date field in *Footer → Primary*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: The date the site was created
+     * - **API ID Path**: footer.primary.footer_site_date
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    footer_site_date: prismicT.RichTextField;
+    /**
+     * Footer Address field in *Footer → Primary*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: The address of the salon.
+     * - **API ID Path**: footer.primary.footer_address
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    footer_address: prismicT.RichTextField;
+    /**
+     * Footer Links field in *Footer → Primary*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: Links to useful resources
+     * - **API ID Path**: footer.primary.footer_links
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    footer_links: prismicT.RichTextField;
+    /**
+     * Footer Author field in *Footer → Primary*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: Author of the site.
+     * - **API ID Path**: footer.primary.footer_author
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    footer_author: prismicT.RichTextField;
+}
+/**
+ * Default variation for Footer Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: `Footer`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type FooterSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<FooterSliceDefaultPrimary>, never>;
+/**
+ * Slice variation for *Footer*
+ *
+ */
+type FooterSliceVariation = FooterSliceDefault;
+/**
+ * Footer Shared Slice
+ *
+ * - **API ID**: `footer`
+ * - **Description**: `Footer`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type FooterSlice = prismicT.SharedSlice<"footer", FooterSliceVariation>;
 /**
  * Primary content in SellingPoints → Primary
  *
@@ -365,6 +573,6 @@ declare module "@prismicio/client" {
         (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
     }
     namespace Content {
-        export type { PageDocumentData, PageDocumentDataSlicesSlice, PageDocument, AllDocumentTypes, ContactPointSliceDefaultPrimary, ContactPointSliceDefault, ContactPointSliceVariation, ContactPointSlice, SellingPointsSliceDefaultPrimary, SellingPointsSliceDefault, SellingPointsSliceContactPointPrimary, SellingPointsSliceContactPoint, SellingPointsSliceVariation, SellingPointsSlice, TreatmentsSliceDefaultPrimary, TreatmentsSliceDefaultItem, TreatmentsSliceDefault, TreatmentsSliceVariation, TreatmentsSlice };
+        export type { ContactDocumentData, ContactDocumentDataSlicesSlice, ContactDocument, PageDocumentData, PageDocumentDataSlicesSlice, PageDocument, AllDocumentTypes, ContactPointSliceDefaultPrimary, ContactPointSliceDefault, ContactPointSliceVariation, ContactPointSlice, FooterSliceDefaultPrimary, FooterSliceDefault, FooterSliceVariation, FooterSlice, SellingPointsSliceDefaultPrimary, SellingPointsSliceDefault, SellingPointsSliceContactPointPrimary, SellingPointsSliceContactPoint, SellingPointsSliceVariation, SellingPointsSlice, TreatmentsSliceDefaultPrimary, TreatmentsSliceDefaultItem, TreatmentsSliceDefault, TreatmentsSliceVariation, TreatmentsSlice };
     }
 }

@@ -25,6 +25,6 @@
   "devDependencies": {
     "@prismicio/types": "^0.2.3",
     "dotenv-webpack": "^8.0.0",
-    "slice-machine-ui": "^0.5.1"
+    "slice-machine-ui": "^0.5.2"
   }
 }
