@@ -11,14 +11,14 @@ class Treatment extends Component {
     static id;
 
     /**
-     * @var {String}
+     * @var {Object}
      */
-    static name;
+    static image;
 
     /**
-     * @var {Date}
+     * @var {String}
      */
-    static date;
+    static title;
 
     /**
      * @var {String}
@@ -28,63 +28,49 @@ class Treatment extends Component {
     /**
      * @var {String}
      */
-    static mapsURL;
+    static descriptionShort;
 
     /**
      * @var {String}
      */
-    static description;
-
-    /**
-     * @var {Object}
-     */
-    static location;
-
+    static descriptionLong;
 
     constructor(props) {
 
         super(props);
         this.id = props.id + "-" + this.makeUUID();
         this.name = props.name;
-        this.date = props.date;
+        this.image = props.image;
         this.link = props.link;
-        this.description = props.description;
-        this.location = props.location;
-        this.mapsURL = process.env.GOOGLE_MAPS_EMBED_URI + process.env.GOOGLE_MAPS_MODE + "?key=" + process.env.GOOGLE_MAPS_API_KEY;
+        this.descriptionLong = props.descriptionLong;
+        this.descriptionShort = props.descriptionShort;
     }
 
     render() {
-
-        var map = null;
-        if (typeof this.location.latitude !== 'undefined' && typeof this.location.longitude !== 'undefined') {
-            map = this.mapsURL + "&center=" + this.location.latitude + "," + this.location.longitude;
-        }
 
         return (
             <React.Fragment>
                 <Card key={this.id + "-treatment"}>
                     <Card.Body key={this.id + "-treatment-body"}>
                         <Row key={this.id + "-treatment-row-1"}>
-                            <Col xs="6" key={this.id + "-treatment-col-text-1"}>
+                        </Row>
+                        <Row key={this.id + "-treatment-row-2"}>
+                            <Col md="12" key={this.id + "-treatment-col-text-1"}>
                                 <Card.Title key={this.id + "-treatment-title"}>
                                     {this.name}
                                 </Card.Title>
-                                <Card.Text key={this.id + "-treatment-text"}>
-                                    {this.description}
-                                </Card.Text>
                             </Col>
-                            <Col xs="6" key={this.id + "-treatment-col-text-2"}>
-                                {map !== null &&
-                                    <Card.Text key={this.id + "-treatment-map"}>
-                                        <iframe
-                                            width="450"
-                                            height="250"
-                                            frameBorder="0"
-                                            style={{ border: 0 }}
-                                            referrerPolicy="no-referrer-when-downgrade"
-                                            key={this.id + "-treatment-map-frame"}
-                                            src={map}>
-                                        </iframe>
+                        </Row>
+                        <Row key={this.id + "-treatment-row-3"}>
+                            <Col md="12" key={this.id + "-treatment-col-desc-3"}>
+                                {this.descriptionShort !== null && this.descriptionShort.length &&
+                                    <Card.Text key={this.id + "-treatment-text"}>
+                                        {this.descriptionShort}
+                                    </Card.Text>
+                                }
+                                {this.descriptionLong !== null && this.descriptionLong.length &&
+                                    <Card.Text key={this.id + "-treatment-text"}>
+                                        {this.descriptionLong}
                                     </Card.Text>
                                 }
                             </Col>

@@ -74,7 +74,7 @@ export default class Home extends Component {
 
   /**
    * Return dymanic page content meta by type
-   * @param {Array} type
+   * @param {String} type
    * @returns {Array}
    */
   getSlicesByType(type = "treatments") {
@@ -90,76 +90,18 @@ export default class Home extends Component {
         continue;
       }
 
-      slices.push(slice);
+      switch (type) {
+        default:
+        case "treatments":
+          slices.push(slice);
+          break;
+        case "selling_points":
+          slices.push(slice);
+          break;
+      }
     }
 
     return slices;
-  }
-
-  /**
-   * Retreive all upcoming events in realtime rather than `getStaticProps`
-   * This being because events regularly change.
-   * @returns {VoidFunction}
-   */
-  getUpcomingTreatments() {
-
-    const now = new Date();
-    const thirtyDaysInMs = 30 * 24 * 60 * 60 * 1000;
-
-    client
-      .getAllByType('treatments')
-      .then(
-        (e) => {
-
-          for (let i in e) {
-            let id = e[i].id;
-            let data = e[i].data;
-            let nm = data.event_name[0].text;
-            let dt = new Date(data.event_date);
-            let lnk = data.event_link.url;
-            let desc = data.event_description[0].text;
-            let loc = data.event_location;
-            let timeDiffInMs = now.getTime() - dt.getTime();
-
-            // Only push new upcoming events, ignore those more than 30 days old
-            if (timeDiffInMs <= thirtyDaysInMs) {
-              this.state.treatments.push(
-                <Treatment
-                  id={id}
-                  name={nm}
-                  date={dt}
-                  link={lnk}
-                  description={desc}
-                  location={loc}
-                />
-              );
-            }
-
-            this.setState(this.state);
-          }
-        }
-      )
-      .catch(
-        (e) => {
-
-          console.error(e);
-          return eHtml;
-        }
-      )
-      .finally(
-        () => {
-          console.log(this.state.treatments.length);
-          if (this.state.treatments.length === 0) {
-            this.state.treatments.push(
-              <small>
-                <i>{String("No treatments available at the moment...").toUpperCase()}</i>
-              </small>
-            );
-
-            this.setState(this.state);
-          }
-        }
-      );
   }
 
   /**
