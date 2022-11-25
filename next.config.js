@@ -1,29 +1,34 @@
 require("dotenv").config();
 
+const ENV = {};
+const ENV_MAP = Object.keys(process.env).map((key, $val) => {
+
+    if (key.indexOf("REACT_APP") !== -1) {
+        ENV[key] = process.env[key]
+    }
+
+    return ENV;
+});
+
+console.log(ENV);
+
 module.exports = {
+    env: ENV,
     async rewrites() {
         return [
             {
-                "source": "/contact",
-                "destination": process.env.URL + "/#contact"
-            },
-            {
-                "source": "/events",
-                "destination": process.env.URL + "/#events"
+                "source": "/blog",
+                "destination": process.env.REACT_APP_URL
             },
             {
                 "source": "/",
                 "has": [
                     {
                         "type": "query",
-                        "key": "event_id"
+                        "key": "post_id"
                     }
                 ],
-                "destination": process.env.URL + "/#events"
-            },
-            {
-                "source": "/testimonials",
-                "destination": process.env.URL + "/#home"
+                "destination": process.env.REACT_APP_URL
             },
             {
                 "source": "/captcha/:slug",

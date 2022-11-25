@@ -1,11 +1,11 @@
 body {
-    color           : #FFF;
-    background-color: #000;
+    color           : #222;
+    background-color: #FFF;
 }
 
 h1,
 h2 {
-    font-family: 'Yesteryear', cursive;
+    font-family: 'Kaushan Script', Georgia, serif, cursive;
     margin-top : 0;
     line-height: 1.2;
 }
@@ -52,10 +52,52 @@ main {
     align-items    : center;
 }
 
-header.header .navbar-brand {
-    margin-left: 0;
-    background : none;
+header nav {
+
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+70,7db9e8+100&1+70,0+100 */
+    /* FF3.6-15 */
+    background    : -moz-linear-gradient(top, rgba(112, 79, 144, 1) 70%, rgba(67, 49, 94, 1) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background    : -webkit-linear-gradient(top, rgba(112, 79, 144, 1) 70%, rgba(67, 49, 94, 1) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background    : linear-gradient(to bottom, rgba(112, 79, 144, 1) 70%, rgba(67, 49, 94, 1) 100%);
+    /* IE6-9 */
+    filter        : progid:DXImageTransform.Microsoft.gradient(startColorstr='#704f90', endColorstr='#43315e', GradientType=0);
+    padding-bottom: 20px !important;
+
 }
+
+header nav .container {
+    padding-right: 0;
+    padding-left : 0;
+}
+
+header nav .nav-link {
+    border-right : #444 1px solid;
+    padding-right: 20px !important;
+    padding-left : 20px !important;
+}
+
+.nav-link:last-child {
+    border-right: none;
+}
+
+header.header .navbar-brand {
+    margin    : 0;
+    background: none;
+}
+
+header.header .navbar-brand h1,
+header.header .navbar-brand img {
+    display: inline;
+}
+
+header.header .navbar-brand h1 {
+    vertical-align: text-top;
+    margin-left   : 15px;
+}
+
+
 
 footer.footer {
     width          : 100%;
@@ -198,7 +240,9 @@ code {
     border-width: 3px;
 }
 
-.logo {}
+.logo {
+    margin-top: -20px;
+}
 
 .video-background {
     background: #000;
@@ -263,9 +307,10 @@ button.button.paused {
 }
 
 #vidtop-content {
-    top    : 0;
-    width  : 100%;
-    padding: 5rem 0;
+    top       : 0;
+    width     : 100%;
+    padding   : 5rem 0;
+    margin-top: 100px;
 }
 
 #vidtop-content img {
@@ -298,6 +343,11 @@ button.button.paused {
 .promo-video iframe {
     min-width : 100%;
     min-height: 300px;
+}
+
+.event-map-frame {
+    width : 100%;
+    border: #FFF 2px inset;
 }
 
 @media (max-width: 600px) {

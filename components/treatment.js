@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
-class Event extends Component {
+class Treatment extends Component {
 
     /**
      * @var {Integer}
@@ -62,27 +62,27 @@ class Event extends Component {
 
         return (
             <React.Fragment>
-                <Card key={this.id + "-event"}>
-                    <Card.Body key={this.id + "-event-body"}>
-                        <Row key={this.id + "-event-row-1"}>
-                            <Col xs="6" key={this.id + "-event-col-text-1"}>
-                                <Card.Title key={this.id + "-event-title"}>
+                <Card key={this.id + "-treatment"}>
+                    <Card.Body key={this.id + "-treatment-body"}>
+                        <Row key={this.id + "-treatment-row-1"}>
+                            <Col xs="6" key={this.id + "-treatment-col-text-1"}>
+                                <Card.Title key={this.id + "-treatment-title"}>
                                     {this.name}
                                 </Card.Title>
-                                <Card.Text key={this.id + "-event-text"}>
+                                <Card.Text key={this.id + "-treatment-text"}>
                                     {this.description}
                                 </Card.Text>
                             </Col>
-                            <Col xs="6" key={this.id + "-event-col-text-2"}>
+                            <Col xs="6" key={this.id + "-treatment-col-text-2"}>
                                 {map !== null &&
-                                    <Card.Text key={this.id + "-event-map"}>
+                                    <Card.Text key={this.id + "-treatment-map"}>
                                         <iframe
                                             width="450"
                                             height="250"
                                             frameBorder="0"
                                             style={{ border: 0 }}
                                             referrerPolicy="no-referrer-when-downgrade"
-                                            key={this.id + "-event-map-frame"}
+                                            key={this.id + "-treatment-map-frame"}
                                             src={map}>
                                         </iframe>
                                     </Card.Text>
@@ -112,4 +112,4 @@ class Event extends Component {
     }
 }
 
-export default Event;
+export default Treatment;
