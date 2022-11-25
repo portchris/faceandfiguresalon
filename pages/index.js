@@ -1,5 +1,5 @@
 import * as Prismic from "@prismicio/client";
-import React, { useState, Component } from 'react';
+import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -39,62 +39,61 @@ export default class Home extends Component {
   /** @var {String} */
   static metaDescription;
 
-  /** @var {String} */
-  static videoPromoURI;
-
-  /** @var {String} */
-  static videoBackgroundURI;
-
-  /** @var {String} */
-  static contactContent;
-
-  /** @var {String} */
-  static contactCaption;
-
-  /** @var {String} */
-  static contactContentTitle;
-
-  /** @var {String} */
-  static contactSuccessMessage;
-
-  /** @var {String} */
-  static eventsTitle;
-
-  /** @var {String} */
-  static eventsCaption;
-
   /** @var {Object} */
   static index;
-
-  /** @var {Object} */
-  static events;
-
-  /** @var {Object} */
-  static contact;
-
-  /** @var {Array} */
-  static treatments;
 
   constructor(props) {
 
     super(props);
 
-
     // Home
-    this.index = props.page;
-    this.logo = this.index.data.logo;
-    this.title = this.index.data.page_title[0].text;
-    this.content = this.index.data.content;
-    this.contentTitle = this.index.data.heading_title[0].text;
-    this.caption = this.index.data.caption;
-    this.metaTitle = this.index.data.meta_title[0].text;
-    this.metaDescription = this.index.data.meta_description[0].text;
+    this.index = props.page.data;
+    this.logo = this.index.logo;
+    this.title = this.index.page_title[0].text;
+    this.content = this.index.content;
+    this.contentTitle = this.index.heading_title[0].text;
+    this.caption = this.index.caption;
+    this.metaTitle = this.index.meta_title[0].text;
+    this.metaDescription = this.index.meta_description[0].text;
+
+    // State
+    this.state = {
+      treatments: [],
+      sellingPoints: []
+    };
 
     // Treatments
-    this.state = {
-      treatments: []
-    };
-    this.getUpcomingTreatments();
+    this.state.treatments = this.getSlicesByType();
+
+    // Selling Points
+    this.state.sellingPoints = this.getSlicesByType('selling_points');
+
+    // Set state
+    this.setState(this.state);
+  }
+
+  /**
+   * Return dymanic page content meta by type
+   * @param {Array} type
+   * @returns {Array}
+   */
+  getSlicesByType(type = "treatments") {
+
+    const slices = [];
+    if (typeof this.index === 'undefined' || typeof this.index.slices === 'undefined' || this.index.slices.length === 0) {
+      return slices;
+    }
+
+    for (let i in this.index.slices) {
+      let slice = this.index.slices[i];
+      if (!slice.slice_type || slice.slice_type !== type) {
+        continue;
+      }
+
+      slices.push(slice);
+    }
+
+    return slices;
   }
 
   /**
@@ -168,7 +167,7 @@ export default class Home extends Component {
    */
   render() {
 
-    if (!this.index || typeof this.index.data === 'undefined') {
+    if (typeof this.index === 'undefined') {
       return (
         <FiveZeroThree></FiveZeroThree>
       );
@@ -184,8 +183,8 @@ export default class Home extends Component {
           title={this.title}
           logo={this.logo.url}
           loader="loader.gif"
-          width={this.logo.dimensions.width / 2}
-          height={this.logo.dimensions.height / 2}>
+          width={this.logo.dimensions.width / 3}
+          height={this.logo.dimensions.height / 3}>
         </Header>
         <Hero
           title={this.contentTitle}
