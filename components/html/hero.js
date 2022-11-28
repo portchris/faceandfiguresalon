@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import Content from "./content";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 class Hero extends Component {
 
@@ -36,7 +33,7 @@ class Hero extends Component {
 
         return (
             <React.Fragment>
-                <Container id="vidtop-content">
+                {/* <Container id="vidtop-content">
                     <Row key="hero-row">
                         <Col key="hero-col" lg="4">
                             {this.img && this.img.length > 0 &&
@@ -50,7 +47,7 @@ class Hero extends Component {
                             }
                         </Col>
                     </Row>
-                </Container>
+                </Container> */}
             </React.Fragment>
         );
     }

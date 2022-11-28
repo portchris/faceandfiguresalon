@@ -1,9 +1,5 @@
 import React, { Component, useRef } from 'react';
 import ReCAPTCHA from "react-google-recaptcha";
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import Notification from '../html/notification';
 
 class ContactForm extends Component {
@@ -233,7 +229,7 @@ class ContactForm extends Component {
 
         return (
             <React.Fragment>
-                <Form className="wufoo" encType="multipart/form-data" method="post" noValidate onSubmit={e => this.handleFormSubmit(e, this.captchaSecretKey, this.captchaToken)}>
+                {/* <Form className="wufoo" encType="multipart/form-data" method="post" noValidate onSubmit={e => this.handleFormSubmit(e, this.captchaSecretKey, this.captchaToken)}>
                     <Row key="field-0-row-notifications">
                         <Col md="12" key="field-0-col-notifications">
                             {this.state.notifications}
@@ -345,7 +341,7 @@ class ContactForm extends Component {
                             </Form.Group>
                         </Col>
                     </Row>
-                </Form>
+                </Form> */}
             </React.Fragment>
         );
     }

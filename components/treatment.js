@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import Card from 'react-bootstrap/Card';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 
 class Treatment extends Component {
 
@@ -50,7 +47,7 @@ class Treatment extends Component {
 
         return (
             <React.Fragment>
-                <Card key={this.id + "-treatment"}>
+                {/* <Card key={this.id + "-treatment"}>
                     <Card.Body key={this.id + "-treatment-body"}>
                         <Row key={this.id + "-treatment-row-1"}>
                         </Row>
@@ -76,7 +73,7 @@ class Treatment extends Component {
                             </Col>
                         </Row>
                     </Card.Body>
-                </Card>
+                </Card> */}
             </React.Fragment >
         );
     }

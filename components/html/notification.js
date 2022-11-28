@@ -1,5 +1,4 @@
 import React, { Component, useState, useEffect } from 'react';
-import Alert from 'react-bootstrap/Alert';
 
 class Notification extends Component {
 
@@ -44,12 +43,12 @@ class Notification extends Component {
 
         return (
             <React.Fragment>
-                {this.state.show &&
+                {/* {this.state.show &&
                     <Alert variant={this.type} id={id} key={id} onClose={() => this.setState({ show: !this.state.show })} dismissible>
                         <Alert.Heading id={id + '-heading'} key={id + '-heading'}>{this.heading}</Alert.Heading>
                         <p id={id + '-content'} key={id + '-content'}>{this.content}</p>
                     </Alert>
-                }
+                } */}
             </React.Fragment>
         );
     }

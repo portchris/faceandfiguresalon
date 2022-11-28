@@ -1,8 +1,5 @@
 import * as Prismic from "@prismicio/client";
 import React, { Component } from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Treatment from "../components/treatment";
 import HTMLHead from "../components/html/head";
 import Header from "../components/html/header";
@@ -58,18 +55,9 @@ export default class Home extends Component {
 
     // State
     this.state = {
-      treatments: [],
-      sellingPoints: []
+      treatments: this.getSlicesByType(), // Treatments Slice
+      sellingPoints: this.getSlicesByType('selling_points') // Selling Points Slice
     };
-
-    // Treatments
-    this.state.treatments = this.getSlicesByType();
-
-    // Selling Points
-    this.state.sellingPoints = this.getSlicesByType('selling_points');
-
-    // Set state
-    this.setState(this.state);
   }
 
   /**
@@ -123,7 +111,7 @@ export default class Home extends Component {
         </HTMLHead>
         <Header
           title={this.title}
-          logo={this.logo.url}
+          logo={this.logo}
           loader="loader.gif"
           width={this.logo.dimensions.width / 3}
           height={this.logo.dimensions.height / 3}>
@@ -133,7 +121,6 @@ export default class Home extends Component {
           content={this.caption}>
         </Hero>
         <main className="content">
-          <Container>
             {/* <article id="home" key="index-article">
               <Row key="index-row">
                 <Col key="index-col-1" className="description" md="8">
@@ -196,7 +183,6 @@ export default class Home extends Component {
               </Row>
             </article> */}
             <Footer />
-          </Container>
         </main>
       </React.Fragment>
     )
