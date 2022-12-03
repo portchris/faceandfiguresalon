@@ -419,6 +419,15 @@
                     "allowTargetBlank": true,
                     "multi": "paragraph,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,list-item,o-list-item"
                   }
+                },
+                "link": {
+                  "type": "Link",
+                  "config": {
+                    "label": "Link",
+                    "placeholder": "The URL to your treatment",
+                    "allowTargetBlank": false,
+                    "select": null
+                  }
                 }
               },
               "items": {
@@ -463,21 +472,21 @@
                 "product_title": [
                   {
                     "type": "paragraph",
-                    "text": "Est culpa sunt nostrud tempor velit officia proident. Anim proident est veniam laboris. Sit Lorem aute sit.",
+                    "text": "Proident commodo aliqua labore cillum culpa sint ad non ex exercitation ad ullamco elit ullamco sunt. Sit laborum incididunt ut ut deserunt amet esse commodo voluptate laborum officia.",
                     "spans": []
                   }
                 ],
                 "product_description": [
                   {
                     "type": "paragraph",
-                    "text": "Culpa sunt minim duis ullamco pariatur dolore veniam sunt aute mollit. Ipsum in elit sint proident ut labore incididunt veniam non quis sit culpa sit. Esse culpa officia nulla ipsum.",
+                    "text": "Non est consequat et sunt excepteur officia dolor cillum. Incididunt Lorem non aliqua dolore. In ea laboris consequat quis aute voluptate elit sint dolor cillum consectetur aliqua magna ullamco anim.",
                     "spans": []
                   }
                 ],
                 "cta": [
                   {
                     "type": "paragraph",
-                    "text": "Laborum aute magna minim nisi reprehenderit minim nisi.",
+                    "text": "Est nisi sit reprehenderit quis mollit laborum in cupidatat. Laboris pariatur ea irure adipisicing veniam anim aliqua officia ullamco sint. Quis laborum tempor aliqua magna nostrud ut eiusmod.",
                     "spans": []
                   }
                 ]
@@ -487,7 +496,7 @@
               "title": [
                 {
                   "type": "paragraph",
-                  "text": "Dolore exercitation esse reprehenderit anim anim anim sit nostrud sint cupidatat. Pariatur laboris est aute incididunt duis. Velit proident eu anim sit culpa ipsum magna elit dolore ut commodo.",
+                  "text": "Lorem exercitation occaecat consectetur Lorem laboris ut et. Lorem sunt sint ut irure deserunt esse.",
                   "spans": []
                 }
               ],
@@ -498,15 +507,19 @@
                 },
                 "alt": null,
                 "copyright": null,
-                "url": "https://images.unsplash.com/photo-1593642633279-1796119d5482"
+                "url": "https://images.unsplash.com/photo-1587613865763-4b8b0d19e8ab"
               },
               "description": [
                 {
                   "type": "paragraph",
-                  "text": "Officia dolor officia consectetur reprehenderit adipisicing esse esse aute in. Sunt minim occaecat qui culpa enim adipisicing mollit quis eiusmod nostrud laboris.",
+                  "text": "Ipsum commodo aliquip adipisicing excepteur enim magna cillum velit nulla.",
                   "spans": []
                 }
-              ]
+              ],
+              "link": {
+                "link_type": "Web",
+                "url": "http://twitter.com"
+              }
             },
             "slice_type": "treatments"
           }

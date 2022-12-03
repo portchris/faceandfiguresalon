@@ -1,6 +1,7 @@
 import * as Prismic from "@prismicio/client";
 import React, { Component } from 'react';
 import Treatment from "../components/treatment";
+import SellingPoint from "../components/selling-point";
 import HTMLHead from "../components/html/head";
 import Header from "../components/html/header";
 import Footer from "../components/html/footer";
@@ -78,15 +79,7 @@ export default class Home extends Component {
         continue;
       }
 
-      switch (type) {
-        default:
-        case "treatments":
-          slices.push(slice);
-          break;
-        case "selling_points":
-          slices.push(slice);
-          break;
-      }
+      slices.push(slice);
     }
 
     return slices;
@@ -100,6 +93,63 @@ export default class Home extends Component {
     if (typeof this.index === 'undefined') {
       return (
         <FiveZeroThree></FiveZeroThree>
+      );
+    }
+
+    const TREATMENTS = [];
+    const SELLING_POINTS = [];
+
+    // Treatments
+    for (let i in this.state.treatments) {
+      let t = this.state.treatments[i];
+
+      if (
+        typeof t.primary === 'undefined'
+        || typeof t.id === 'undefined'
+        || typeof t.primary.image === 'undefined'
+        || typeof t.primary.title === 'undefined'
+        || t.primary.title.length === 0
+        || typeof t.primary.link === 'undefined'
+        || typeof t.primary.description === 'undefined'
+        || t.primary.description.length === 0
+      ) {
+        continue;
+      }
+
+      TREATMENTS.push(
+        <Treatment
+          id={t.id}
+          image={t.primary.image}
+          name={t.primary.title[0].text}
+          link={t.primary.link}
+          descriptionShort={t.primary.description[0].text}
+        />
+      );
+    }
+
+    // Selling Points
+    for (let x in this.state.sellingPoints) {
+      let s = this.state.sellingPoints[x];
+
+      if (
+        typeof s.primary === 'undefined'
+        || typeof s.id === 'undefined'
+        || typeof s.primary.image === 'undefined'
+        || typeof s.primary.title === 'undefined'
+        || s.primary.title.length === 0
+        || typeof s.primary.description === 'undefined'
+        || s.primary.description.length === 0
+      ) {
+        continue;
+      }
+
+      SELLING_POINTS.push(
+        <SellingPoint
+          id={s.id}
+          image={s.primary.image}
+          name={s.primary.title[0].text}
+          description={s.primary.description[0].text}
+        />
       );
     }
 
@@ -120,8 +170,14 @@ export default class Home extends Component {
           title={this.contentTitle}
           content={this.caption}>
         </Hero>
-        <main className="content">
-            {/* <article id="home" key="index-article">
+        <main className="content container mx-auto px-4">
+          <article id="selling-points" key="selling-points" className="grid grid-cols-3 grid-flow-col gap-3">
+            {SELLING_POINTS}
+          </article>
+          <article id="treatments" key="treatments" className="grid grid-cols-4 grid-flow-col gap-4">
+            {TREATMENTS}
+          </article>
+          {/* <article id="home" key="index-article">
               <Row key="index-row">
                 <Col key="index-col-1" className="description" md="8">
                   <Content
@@ -182,7 +238,7 @@ export default class Home extends Component {
                 </Col>
               </Row>
             </article> */}
-            <Footer />
+          <Footer />
         </main>
       </React.Fragment>
     )

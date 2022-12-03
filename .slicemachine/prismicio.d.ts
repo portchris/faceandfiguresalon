@@ -508,6 +508,16 @@ interface TreatmentsSliceDefaultPrimary {
      *
      */
     description: prismicT.RichTextField;
+    /**
+     * Link field in *Treatments → Primary*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: The URL to your treatment
+     * - **API ID Path**: treatments.primary.link
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    link: prismicT.LinkField;
 }
 /**
  * Item in Treatments → Items

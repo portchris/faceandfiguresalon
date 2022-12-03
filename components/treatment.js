@@ -41,39 +41,39 @@ class Treatment extends Component {
         this.link = props.link;
         this.descriptionLong = props.descriptionLong;
         this.descriptionShort = props.descriptionShort;
+        console.log(this.descriptionShort);
     }
 
     render() {
 
         return (
             <React.Fragment>
-                {/* <Card key={this.id + "-treatment"}>
-                    <Card.Body key={this.id + "-treatment-body"}>
-                        <Row key={this.id + "-treatment-row-1"}>
-                        </Row>
-                        <Row key={this.id + "-treatment-row-2"}>
-                            <Col md="12" key={this.id + "-treatment-col-text-1"}>
-                                <Card.Title key={this.id + "-treatment-title"}>
-                                    {this.name}
-                                </Card.Title>
-                            </Col>
-                        </Row>
-                        <Row key={this.id + "-treatment-row-3"}>
-                            <Col md="12" key={this.id + "-treatment-col-desc-3"}>
-                                {this.descriptionShort !== null && this.descriptionShort.length &&
-                                    <Card.Text key={this.id + "-treatment-text"}>
-                                        {this.descriptionShort}
-                                    </Card.Text>
-                                }
-                                {this.descriptionLong !== null && this.descriptionLong.length &&
-                                    <Card.Text key={this.id + "-treatment-text"}>
-                                        {this.descriptionLong}
-                                    </Card.Text>
-                                }
-                            </Col>
-                        </Row>
-                    </Card.Body>
-                </Card> */}
+                <div key={this.id + "-treatment"} className="drop-shadow-md">
+                    <div key={this.id + "-treatment-row-1"}>
+                        <img
+                            src={this.image.url}
+                            alt={this.image.alt}
+                            width={this.image.dimensions.width}
+                        />
+                    </div>
+                    <div key={this.id + "-treatment-row-2"}>
+                        <h3 key={this.id + "-treatment-title"} className="text-2xl py-2">
+                            {this.name}
+                        </h3>
+                    </div>
+                    <div key={this.id + "-treatment-row-3"}>
+                        {typeof this.descriptionShort !== "undefined" && this.descriptionShort.length &&
+                            <span key={this.id + "-treatment-text"}>
+                                <small>{this.descriptionShort}</small>
+                            </span>
+                        }
+                        {typeof this.descriptionLong !== "undefined" && this.descriptionLong.length &&
+                            <span key={this.id + "-treatment-text"}>
+                                <p>{this.descriptionLong}</p>
+                            </span>
+                        }
+                    </div>
+                </div>
             </React.Fragment >
         );
     }
@@ -83,6 +83,7 @@ class Treatment extends Component {
      * @returns {String}
      */
     makeUUID(length = 5) {
+
         var result = '';
         var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         var charactersLength = characters.length;
