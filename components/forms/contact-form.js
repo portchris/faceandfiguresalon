@@ -166,7 +166,7 @@ class ContactForm extends Component {
     /**
      * @param {String} msg
      */
-     contactFailure(msg = "") {
+    contactFailure(msg = "") {
 
         msg = (msg.length === 0)
             ? this.contactSuccessMessage
@@ -229,119 +229,99 @@ class ContactForm extends Component {
 
         return (
             <React.Fragment>
-                {/* <Form className="wufoo" encType="multipart/form-data" method="post" noValidate onSubmit={e => this.handleFormSubmit(e, this.captchaSecretKey, this.captchaToken)}>
-                    <Row key="field-0-row-notifications">
-                        <Col md="12" key="field-0-col-notifications">
-                            {this.state.notifications}
-                        </Col>
-                    </Row>
-                    <Row key="field-1-row">
-                        <Col md="12" key="field-1-col">
-                            <Form.Group key="field-1" id="field-1">
-                                <Form.Label htmlFor="Field1">
-                                    Name<span >*</span>
-                                </Form.Label>
-                                <Form.Control
-                                    name="Field1"
-                                    id="Field1-control"
-                                    key="Field1-control"
-                                    type="text"
-                                    maxLength="255"
-                                    required
-                                    placeholder="Your full-name"
-                                />
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Row key="field-2-row">
-                        <Col md="12" key="field-2-col">
-                            <Form.Group key="field-2" id="field-2">
-                                <Form.Label htmlFor="Field2">
-                                    Email<span >*</span>
-                                </Form.Label>
-                                <Form.Control
-                                    name="Field2"
-                                    id="Field2-control"
-                                    key="Field2-control"
-                                    type="email"
-                                    spellCheck="false"
-                                    maxLength="255"
-                                    tabIndex="0"
-                                    placeholder="Your e-mail address"
-                                    required
-                                />
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Row key="field-3-row">
-                        <Col md="12" key="field-3-col">
-                            <Form.Group key="field-3" id="field-3">
-                                <Form.Label htmlFor="Field3">
-                                    Subject<span>*</span>
-                                </Form.Label>
-                                <Form.Control
-                                    name="Field3"
-                                    id="Field3-control"
-                                    key="Field3-control"
-                                    type="text"
-                                    maxLength="255"
-                                    required
-                                    placeholder="The subject matter"
-                                />
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Row key="field-4-row">
-                        <Col md="12" key="field-4-col">
-                            <Form.Group key="field-4" id="field-4">
-                                <Form.Label htmlFor="Field4">
-                                    Message<span >*</span>
-                                </Form.Label>
-                                <Form.Control
-                                    type="textarea"
-                                    name="Field4"
-                                    placeholder="Your comment or message for the Cleverly Everly team"
-                                    required
-                                />
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Row key="field-5-row">
-                        <Col md="12" key="field-5-col">
-                            <Form.Group className="mb-12 vspace" key="field-5" id="field-5">
-                                <ReCAPTCHA
-                                    sitekey={this.captchaSiteKey}
-                                    theme="dark"
-                                    onChange={t => this.reCaptchaOnChange(t)}
-                                />
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                    <Row key="field-6-row">
-                        <Col md="12" key="field-6-col">
-                            <Form.Group key="field-6" id="field-6">
-                                <Button variant="primary" type="submit" id="saveForm-control" key="saveForm-control" value="Send">
-                                    <span>Send</span>
-                                </Button>
-                                <Form.Control
-                                    type="hidden"
-                                    className="hidden"
-                                    id="hidden-control-1"
-                                    key="hidden-control-1"
-                                    name="idstamp"
-                                    value={this.wufooIdStamp}
-                                />
-                                <Form.Control
-                                    type="hidden"
-                                    className="hidden"
-                                    id="hidden-control-2"
-                                    key="hidden-control-2"
-                                    name="encryptedPassword"
-                                />
-                            </Form.Group>
-                        </Col>
-                    </Row>
-                </Form> */}
+                <form className="wufoo bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" encType="multipart/form-data" method="post" noValidate onSubmit={e => this.handleFormSubmit(e, this.captchaSecretKey, this.captchaToken)}>
+                    <div key="field-0-row-notifications">
+                        {this.state.notifications}
+                    </div>
+                    <div key="Field4-row" className="mb-4">
+                        <label htmlFor="Field4">
+                            Name<span >*</span>
+                        </label>
+                        <input
+                            name="Field4"
+                            id="Field4"
+                            key="Field4-control"
+                            type="text"
+                            maxLength="255"
+                            required
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            placeholder="Your full-name"
+                        />
+                    </div>
+                    <div key="Field5-row">
+                        <label htmlFor="Field5">
+                            Email<span >*</span>
+                        </label>
+                        <input
+                            name="Field5"
+                            id="Field5"
+                            key="Field5-control"
+                            type="email"
+                            spellCheck="false"
+                            maxLength="255"
+                            tabIndex="0"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            placeholder="Your e-mail address"
+                            required
+                        />
+
+                    </div>
+                    <div key="field-3-row">
+                        <label htmlFor="Field7">
+                            Phone<span>*</span>
+                        </label>
+                        <input
+                            name="Field7"
+                            id="Field7"
+                            key="Field7-control"
+                            type="text"
+                            maxLength="255"
+                            required
+                            placeholder="Your phone number (optional)"
+                        />
+                    </div>
+                    <div key="field-4-row">
+                        <label htmlFor="Field7">
+                            Message<span >*</span>
+                        </label>
+                        <input
+                            type="textarea"
+                            name="Field7"
+                            placeholder="Your comment or message for the Cleverly Everly team"
+                            required
+                        />
+
+                    </div>
+                    <div key="field-5-row">
+                        <ReCAPTCHA
+                            sitekey={this.captchaSiteKey}
+                            theme="dark"
+                            onChange={t => this.reCaptchaOnChange(t)}
+                        />
+
+                    </div>
+                    <div key="field-6-row">
+                        <button variant="primary" type="submit" id="saveForm-control" key="saveForm-control" value="Send">
+                            <span>Send</span>
+                        </button>
+                        <input
+                            type="hidden"
+                            className="hidden"
+                            id="hidden-control-1"
+                            key="hidden-control-1"
+                            name="idstamp"
+                            value={this.wufooIdStamp}
+                        />
+                        <input
+                            type="hidden"
+                            className="hidden"
+                            id="hidden-control-2"
+                            key="hidden-control-2"
+                            name="encryptedPassword"
+                        />
+
+                    </div>
+                </form>
             </React.Fragment>
         );
     }
