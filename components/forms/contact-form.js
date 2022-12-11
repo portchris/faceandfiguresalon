@@ -245,7 +245,7 @@ class ContactForm extends Component {
                             maxLength="255"
                             required
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            placeholder="Your full-name"
+                            placeholder="Your full name so we know who you are"
                         />
                     </div>
                     <div key="Field5-row">
@@ -261,7 +261,7 @@ class ContactForm extends Component {
                             maxLength="255"
                             tabIndex="0"
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            placeholder="Your e-mail address"
+                            placeholder="Your e-mail address so that we may respond to you"
                             required
                         />
 
@@ -277,7 +277,8 @@ class ContactForm extends Component {
                             type="text"
                             maxLength="255"
                             required
-                            placeholder="Your phone number (optional)"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            placeholder="Your phone number if you wish us to call you (optional)"
                         />
                     </div>
                     <div key="field-4-row">
@@ -287,6 +288,7 @@ class ContactForm extends Component {
                         <input
                             type="textarea"
                             name="Field7"
+                            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             placeholder="Your comment or message for the Cleverly Everly team"
                             required
                         />
