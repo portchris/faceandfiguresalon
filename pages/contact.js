@@ -37,11 +37,29 @@ export default class Home extends Component {
     /** @var {String} */
     static metaDescription;
 
+    /** @var {Object} */
+    static page;
+
+    /** @var {String} */
+    static contactDetails;
+
+    /** @var {Object} */
+    static contactAddress;
+
+    /** @var {Object} */
+    static contactLocation;
+
     /** @var {String} */
     static contactSuccessMessage;
 
-    /** @var {Object} */
-    static page;
+    /** @var {String} */
+    static mapsURL;
+
+    /** @var {String} */
+    static mapsMode;
+
+    /** @var {String} */
+    static mapsApiKey;
 
     constructor(props) {
 
@@ -49,7 +67,6 @@ export default class Home extends Component {
 
         // Home
         this.page = props.page.data;
-        console.log(this.page);
         this.logo = this.page.logo;
         this.title = this.page.page_title[0].text;
         this.content = this.page.content;
@@ -58,6 +75,7 @@ export default class Home extends Component {
         this.metaDescription = this.page.meta_description[0].text;
         this.contactSuccessMessage = this.page.contact_success_msg[0].text;
         this.contactAddress = this.page.address;
+        this.contactDetails = this.page.contact_details;
         this.contactLocation = this.page.map_location;
         this.mapsURL = String(process.env.REACT_APP_GOOGLE_MAPS_EMBED_URI);
         this.mapsMode = String(process.env.REACT_APP_GOOGLE_MAPS_MODE);
@@ -162,6 +180,20 @@ export default class Home extends Component {
             );
         }
 
+        // Address Line
+        var address = this.logo.alt;
+        for (let y in this.contactAddress) {
+
+            let c = this.contactAddress[y];
+            if (!c instanceof Object || c.type === null || c.text === null) {
+                continue;
+            }
+
+            address = address + " " + c.text;
+        }
+
+        console.log(address);
+
         return (
             <React.Fragment>
                 <HTMLHead
@@ -176,20 +208,24 @@ export default class Home extends Component {
                     height={this.logo.dimensions.height / 3}>
                 </Header>
                 <main className="content container mx-auto px-4">
-                    <article id="contact-details" key="contact-details" className="grid grid-cols-3 grid-flow-col gap-3">
-                        <Content content={this.content} />
+                    <article id="contact-details" key="contact-details">
+                        <span className="w-1/2">
+                            <Content content={this.content} />
+                        </span>
+                        <figure className="w-1/2 bg-gray-100 p-4 drop-shadow-md">
+                            <figcaption>
+                            <Content content={this.contactDetails} />
+                                <Content content={this.contactAddress} />
+                            </figcaption>
+                        </figure>
                     </article>
-                    <article id="contact-form" key="contact-form" className="grid grid-cols-3 grid-flow-col gap-3">
+                    <article id="contact-map" className="grid grid-cols-2 grid-flow-col gap-2">
                         <ContactForm contactSuccessMessage={this.contactSuccessMessage} />
-                    </article>
-                    <article id="contact-map">
-                        <Content content={this.contactAddress} />
                         {this.mapsURL !== null && typeof this.contactLocation.latitude !== 'undefined' && typeof this.contactLocation.longitude !== 'undefined' &&
                             <iframe
-                                className="event-map-frame grid grid-cols-3 grid-flow-col gap-3"
+                                className="event-map-frame drop-shadow-md pl-2"
                                 width="100%"
-                                height="250"
-                                frameBorder="0"
+                                height="400"
                                 referrerPolicy="no-referrer-when-downgrade"
                                 key={this.id + "-event-map-frame"}
                                 src={
@@ -198,7 +234,7 @@ export default class Home extends Component {
                                     String("?key=") +
                                     this.mapsApiKey +
                                     String("&q=") +
-                                    String(encodeURIComponent(this.name)) +
+                                    String(encodeURIComponent(address)) +
                                     String("&center=") +
                                     String(this.contactLocation.latitude) +
                                     String(",") +

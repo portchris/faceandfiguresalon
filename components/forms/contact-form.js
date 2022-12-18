@@ -229,8 +229,14 @@ class ContactForm extends Component {
 
         return (
             <React.Fragment>
-                <form className="wufoo bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" encType="multipart/form-data" method="post" noValidate onSubmit={e => this.handleFormSubmit(e, this.captchaSecretKey, this.captchaToken)}>
-                    <div key="field-0-row-notifications">
+                <form
+                    className="wufoo bg-white rounded pt-6 pb-8 mb-4 pr-2"
+                    encType="multipart/form-data"
+                    method="POST"
+                    noValidate
+                    onSubmit={e => this.handleFormSubmit(e, this.captchaSecretKey, this.captchaToken)}
+                >
+                    <div key="Field0-row-notifications">
                         {this.state.notifications}
                     </div>
                     <div key="Field4-row" className="mb-4">
@@ -248,7 +254,7 @@ class ContactForm extends Component {
                             placeholder="Your full name so we know who you are"
                         />
                     </div>
-                    <div key="Field5-row">
+                    <div key="Field5-row" className="mb-4">
                         <label htmlFor="Field5">
                             Email<span >*</span>
                         </label>
@@ -266,7 +272,7 @@ class ContactForm extends Component {
                         />
 
                     </div>
-                    <div key="field-3-row">
+                    <div key="Field7-row" className="mb-4">
                         <label htmlFor="Field7">
                             Phone<span>*</span>
                         </label>
@@ -281,29 +287,37 @@ class ContactForm extends Component {
                             placeholder="Your phone number if you wish us to call you (optional)"
                         />
                     </div>
-                    <div key="field-4-row">
-                        <label htmlFor="Field7">
+                    <div key="Field3-row" className="mb-4">
+                        <label htmlFor="Field3">
                             Message<span >*</span>
                         </label>
-                        <input
+                        <textarea
+                            rows="5"
                             type="textarea"
-                            name="Field7"
+                            name="Field3"
                             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            placeholder="Your comment or message for the Cleverly Everly team"
+                            placeholder="Your comment or message to the Taunton salon"
                             required
                         />
 
                     </div>
-                    <div key="field-5-row">
+                    <div key="field5-row" className="mb-4">
                         <ReCAPTCHA
                             sitekey={this.captchaSiteKey}
-                            theme="dark"
+                            theme="light"
                             onChange={t => this.reCaptchaOnChange(t)}
                         />
 
                     </div>
-                    <div key="field-6-row">
-                        <button variant="primary" type="submit" id="saveForm-control" key="saveForm-control" value="Send">
+                    <div key="Field6-row" className="mb-4">
+                        <button
+                            variant="primary"
+                            type="submit"
+                            id="saveForm-control"
+                            key="saveForm-control"
+                            className="bg-orange-500 rounded-sm border-orange-700 hover:bg-orange-600 focus:bg-orange-600 text-white px-4 py-2"
+                            value="Send"
+                        >
                             <span>Send</span>
                         </button>
                         <input

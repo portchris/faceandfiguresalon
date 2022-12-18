@@ -50,9 +50,9 @@ class Header extends Component {
         }
 
         return (
-            <header className='header h-40'>
+            <header className='header'>
                 <nav className="navbar navbar-expand-lg shadow-md py-2 bg-white relative flex items-center w-full justify-between">
-                    <div className="px-6 w-full flex flex-wrap items-center justify-between">
+                    <div className="w-full flex flex-wrap items-center justify-between container mx-auto">
                         <aside id="responsive-menu" className={"w-5/6 transition-transform ease-in-out md:collapse " + this.state.activeClassAside} aria-label="Sidebar">
                             <div className="px-3 py-4 overflow-y-auto">
                                 <ul className="space-y-2">
