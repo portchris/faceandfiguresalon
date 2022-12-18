@@ -315,7 +315,7 @@ class ContactForm extends Component {
                             type="submit"
                             id="saveForm-control"
                             key="saveForm-control"
-                            className="bg-orange-500 rounded-sm border-orange-700 hover:bg-orange-600 focus:bg-orange-600 text-white px-4 py-2"
+                            className="bg-orange-500 rounded-sm border-orange-700 hover:bg-orange-600 focus:bg-orange-600 text-white px-4 py-2 w-full"
                             value="Send"
                         >
                             <span>Send</span>
