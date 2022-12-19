@@ -8,7 +8,7 @@ ENV="/etc/nginx/.env"
 # Update Nginx config depending on environment files
 if [ -f $ENV ]; then
 	export $(grep -v '^#' $ENV | xargs)
-	
+
 	if [ -z ${TEMPLATE+x} ]; then
 		echo "TEMPLATE not set!"
 		exit 1

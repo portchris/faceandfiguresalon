@@ -32,6 +32,11 @@ class Treatment extends Component {
      */
     static descriptionLong;
 
+    /**
+     * @param {Boolean}
+     */
+    static previewMode;
+
     constructor(props) {
 
         super(props);
@@ -41,7 +46,9 @@ class Treatment extends Component {
         this.link = props.link;
         this.descriptionLong = props.descriptionLong;
         this.descriptionShort = props.descriptionShort;
-        console.log(this.descriptionShort);
+        this.previewMode = typeof this.descriptionShort !== "undefined"
+            && this.descriptionShort.length
+            && typeof this.descriptionLong === "undefined";
     }
 
     render() {
