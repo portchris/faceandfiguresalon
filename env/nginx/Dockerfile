@@ -36,12 +36,12 @@ ADD ./scripts /scripts
 RUN chmod +x -R /scripts
 
 # Add environment variables
-ADD ./.env /etc/nginx
+# ADD ./.env /etc/nginx
 
 # Copy localhost self-signed certificates
-ADD ./certs /etc/nginx/certs
+# ADD ./certs /etc/nginx/certs
 
-EXPOSE 80 443 8080
+EXPOSE 80 443 ${NGINX_VIRTUAL_PORT}
 
 # Execute Nginx config using environment variables to start all services
 CMD ["bash", "/scripts/start.sh"]
