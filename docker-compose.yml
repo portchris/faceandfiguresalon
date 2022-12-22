@@ -1,66 +1,26 @@
 version: '3.1'
 
 services:
-
   ff_nginx:
     container_name: ff_nginx
     build: ./env/nginx
     ports:
-      - "${NGINX_VIRTUAL_PORT}:22"
+      - "${VIRTUAL_PORT}:${VIRTUAL_PORT}"
+      - "${NEXTJS_PORT}:${NEXTJS_PORT}"
     expose:
       - 80
       - 443
     env_file:
       - ./.env
     tty: true
-    depends_on:
-      - ff_nexjs
-    environment:
-      - USER_ID=${USER_ID}
-      - GROUP_ID=${GROUP_ID}
-      - TEMPLATE=${NGINX_TEMPLATE}
-      - VIRTUAL_ROOT=${NGINX_VIRTUAL_ROOT}
-      - VIRTUAL_HOST=${NGINX_VIRTUAL_HOST}
-      - VIRTUAL_PORT=${NGINX_VIRTUAL_PORT}
-      - VIRTUAL_PROTO=${NGINX_VIRTUAL_PROTO}
-      - LETSENCRYPT_EMAIL=${NGINX_LETSENCRYPT_EMAIL}
-      - LETSENCRYPT_HOST=${NGINX_LETSENCRYPT_HOST}
-      - LETSENCRYPT_TEST=${NGINX_LETSENCRYPT_TEST}
-      - ENABLE_IPV6=${NGINX_ENABLE_IPV6}
     volumes:
       - ./.env:/.env
-      - ./dist:${NGINX_VIRTUAL_ROOT}
+      - ./src/out:${VIRTUAL_WEBROOT}
       - ./data/nginx/logs:/var/log/nginx
       - ./env/nginx/webserver/nginx.conf:/etc/nginx/nginx.conf
       - ./env/nginx/webserver/conf.d:/etc/nginx/conf.d
       - ./env/nginx/webserver/defaults:/etc/nginx/defaults
       - ./env/nginx/webserver/global:/etc/nginx/global
-      - /var/run/docker.sock:/tmp/docker.sock:ro
-
-  ff_nexjs:
-    container_name: ff_nextjs
-    build: ./env/nextjs
-    ports:
-      - "${NGINX_NPM_PORT}:${NGINX_NPM_PORT}"
-    expose:
-      - ${NGINX_NPM_PORT}
-    env_file:
-      - ./.env
-    tty: true
-    environment:
-      - USER_ID=${USER_ID}
-      - GROUP_ID=${GROUP_ID}
-      - TEMPLATE=${NGINX_TEMPLATE}
-      - VIRTUAL_ROOT=${NGINX_VIRTUAL_ROOT}
-      - VIRTUAL_HOST=${NGINX_VIRTUAL_HOST}
-      - VIRTUAL_PORT=${NGINX_VIRTUAL_PORT}
-      - VIRTUAL_PROTO=${NGINX_VIRTUAL_PROTO}
-      - LETSENCRYPT_EMAIL=${NGINX_LETSENCRYPT_EMAIL}
-      - LETSENCRYPT_HOST=${NGINX_LETSENCRYPT_HOST}
-      - LETSENCRYPT_TEST=${NGINX_LETSENCRYPT_TEST}
-      - ENABLE_IPV6=${NGINX_ENABLE_IPV6}
-    volumes:
-      - ./dist:${NGINX_VIRTUAL_ROOT}
       - /var/run/docker.sock:/tmp/docker.sock:ro
 
 networks:

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from 'next/link';
 
 class Footer extends Component {
 
@@ -9,9 +10,9 @@ class Footer extends Component {
                 <span>
                     Developed by {' '}
                 </span>
-                <a href="https://www.portchris.co.uk/" target="_blank" rel="noopener noreferrer">
+                <Link href="https://www.portchris.co.uk/" target="_blank" rel="noopener noreferrer">
                     ROG-WEB GLOBAL ltd
-                </a>
+                </Link>
             </footer>
         );
     }

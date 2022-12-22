@@ -12,12 +12,6 @@ In order to get Face & Figure Salon working you will need to configure your [./.
 An example `.env` file:
 
 ```bash
-touch ./.env
-ln -s ./.env ./src/.env
-```
-
-Contents:
-```bash
 REACT_APP_URL=""
 REACT_APP_RECAPTCHA_SITEKEY=""
 REACT_APP_RECAPTCHA_SECRETKEY=""
@@ -41,7 +35,6 @@ ENABLE_IPV6=""
 USER_ID=""
 GROUP_ID=""
 ```
-Since `.json` files cannot support `process.env` you will also have to manually update [./src/package.json](./src/package.json) to reflect the value of `$NEXTJS_PORT`.
 
 The webserver itself is handled by this docker image: https://github.com/JrCs/docker-letsencrypt-nginx-proxy-companion - See here for more information on how to set it up.
 
@@ -74,7 +67,7 @@ When you're ready to deploy, clone this project to the production server build t
 ```bash
 npm run build --production
 ```
-This will generate a [./src/dist](./src/dist) directory which is your generated Next.Js application
+This will generate a [./dist](./dist) directory which is your generated Next.Js application
 
 Now it's time to bring up your Docker containers:
 ```bash

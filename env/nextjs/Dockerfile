@@ -35,7 +35,7 @@ RUN cp /usr/share/zoneinfo/Europe/London /etc/localtime && \
 ADD ./scripts /scripts
 
 # Expose the listening port
-EXPOSE ${NGINX_NPM_PORT}
+EXPOSE ${NEXTJS_PORT}
 
 # Run container as non-root (unprivileged) user
 # The node user is provided in the Node.js Alpine base image

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Link from 'next/link';
 
 class Header extends Component {
 
@@ -53,12 +54,11 @@ class Header extends Component {
             <header className='header'>
                 <nav className="navbar navbar-expand-lg shadow-md py-2 bg-white relative flex items-center w-full justify-between">
                     <div className="w-full flex flex-wrap items-center justify-between container mx-auto">
-                        <aside id="responsive-menu" className={"w-5/6 transition-transform ease-in-out md:collapse " + this.state.activeClassAside} aria-label="Sidebar">
+                        {/* <aside id="responsive-menu" className={"w-5/6 transition-transform ease-in-out md:collapse " + this.state.activeClassAside} aria-label="Sidebar">
                             <div className="px-3 py-4 overflow-y-auto">
                                 <ul className="space-y-2">
                                     <li>
-                                        <a href="/" target="_blank"
-                                            className="flex items-center p-2 text-base font-normal text-gray-200 rounded-lg">
+                                        <Link href="/" className="flex items-center p-2 text-base font-normal text-gray-200 rounded-lg">
                                             <svg className="flex-shrink-0 w-6 h-6 text-gray-200 transition duration-75 group-hover:text-gray-200"
                                                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -66,22 +66,20 @@ class Header extends Component {
                                                 </path>
                                             </svg>
                                             <span className="flex-1 ml-3 whitespace-nowrap">Home</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/treatments"
-                                            className="flex items-center p-2 text-base font-normal text-gray-200 rounded-lg">
+                                        <Link href="/treatments" className="flex items-center p-2 text-base font-normal text-gray-200 rounded-lg">
                                             <svg className="flex-shrink-0 w-6 h-6 text-gray-200 transition duration-75 group-hover:text-gray-200"
                                                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
                                                     clipRule="evenodd"></path>
                                             </svg>
                                             <span className="flex-1 ml-3 whitespace-nowrap">Treatments</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
-                                        <a href="/contact" target="_blank"
-                                            className="flex items-center p-2 text-base font-normal text-gray-200 rounded-lg">
+                                        <Link href="/contact" className="flex items-center p-2 text-base font-normal text-gray-200 rounded-lg">
                                             <svg className="flex-shrink-0 w-6 h-6 text-gray-200 transition duration-75 group-hover:text-gray-200"
                                                 fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -92,11 +90,11 @@ class Header extends Component {
                                                 </path>
                                             </svg>
                                             <span className="flex-1 ml-3 whitespace-nowrap">Contact The Salon</span>
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
-                        </aside>
+                        </aside> */}
                         <div className={"navbar-logo items-left w-5/6 right-72 md:w-3/6 " + this.state.activeClassBrand} id="brand">
                             <ul className="navbar-nav mr-auto md:flex md:flex-row justify-start">
                                 <li className='nav-item'>
@@ -133,13 +131,19 @@ class Header extends Component {
                         <div className="navbar-collapse grow items-center w-3/6 collapse md:visible" id="navbarSupportedContentY">
                             <ul className="navbar-nav mr-auto md:flex md:flex-row justify-end">
                                 <li className="nav-item">
-                                    <a className="nav-link block px-4 py-4 text-white hover:text-gray-200 focus:text-gray-300 transition duration-150 ease-in-out" href="/" data-mdb-ripple="true" data-mdb-ripple-color="light">Home</a>
+                                    <Link href="/" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                                        <a className="nav-link block px-4 py-4 text-white hover:text-gray-200 focus:text-gray-300 transition duration-150 ease-in-out">Home</a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <a className="nav-link block px-4 py-4 text-white hover:text-gray-200 focus:text-gray-300 transition duration-150 ease-in-out" href="/treatments" data-mdb-ripple="true" data-mdb-ripple-color="light">Treatments</a>
+                                    <Link href="/treatments" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                                        <a className="nav-link block px-4 py-4 text-white hover:text-gray-200 focus:text-gray-300 transition duration-150 ease-in-out">Treatments</a>
+                                    </Link>
                                 </li>
                                 <li className="nav-item mb-2 md:mb-0">
-                                    <a className="nav-link block px-4 py-4 text-white hover:text-gray-200 focus:text-gray-300 transition duration-150 ease-in-out" href="/contact" data-mdb-ripple="true" data-mdb-ripple-color="light">Contact The Salon</a>
+                                    <Link href="/contact" data-mdb-ripple="true" data-mdb-ripple-color="light">
+                                        <a className="nav-link block px-4 py-4 text-white hover:text-gray-200 focus:text-gray-300 transition duration-150 ease-in-out">Contact The Salon</a>
+                                    </Link>
                                 </li>
                             </ul>
                         </div>
