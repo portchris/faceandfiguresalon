@@ -14,7 +14,7 @@ server {
 
     server_name www.faceandfiguresalon.co.uk;
 
-    set $WEBROOT /home/www/faceandfiguresalon;
+    set $WEBROOT /var/www/faceandfiguresalon/out;
     root $WEBROOT;
     index index.html;
 

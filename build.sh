@@ -24,4 +24,4 @@ if [[ $NO_CACHE == "--no-cache" ]]; then
     fi
 fi
 
-docker-compose build $NO_CACHE --build-arg UID=$USER_ID --build-arg GID=$GROUP_ID $@
+docker-compose build $NO_CACHE --build-arg UID=$USER_ID --build-arg GID=$GROUP_ID $2

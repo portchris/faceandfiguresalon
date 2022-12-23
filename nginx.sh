@@ -1,3 +1,10 @@
 #!/usr/bin/env bash
 
-docker-compose exec ff_nginx bash -c 'cd /etc/nginx; exec "${SHELL:-bash}"'
+if [ -f ./.env ]; then
+	set -a
+	. ./.env
+	set +a
+	docker-compose exec --workdir $VIRTUAL_WEBROOT ff_nginx bash
+else
+	echo "Please create an .env file"
+fi

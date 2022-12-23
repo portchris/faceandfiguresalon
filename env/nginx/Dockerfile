@@ -8,18 +8,17 @@ ARG GID=${GROUP_ID}
 RUN apk update && \
     apk upgrade && \
     apk add --no-cache \
-		shadow \
-        ca-certificates \
-        curl \
-        inotify-tools \
-		vim \
-		tzdata \
-		certbot
-
+    shadow \
+    ca-certificates \
+    curl \
+    inotify-tools \
+    vim \
+    tzdata \
+    certbot
 
 # Add the www user
 RUN addgroup  -g ${GID} -S www && \
-	adduser -u ${UID} -S www -G www
+    adduser -u ${UID} -S www -G www
 
 # Configure build
 # ENV DEBIAN_FRONTEND noninteractive
@@ -35,8 +34,9 @@ ADD ./webserver/ /etc/nginx
 ADD ./scripts /scripts
 RUN chmod +x -R /scripts
 
-# Add environment variables
-# ADD ./.env /etc/nginx
+# Install NPM & Node.Js
+RUN apk add --update nodejs npm
+RUN node --version
 
 # Copy localhost self-signed certificates
 # ADD ./certs /etc/nginx/certs
