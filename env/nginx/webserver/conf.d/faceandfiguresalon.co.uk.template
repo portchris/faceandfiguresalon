@@ -14,13 +14,14 @@ server {
 
     server_name www.faceandfiguresalon.co.uk;
 
-    set $WEBROOT //home/www/faceandfiguresalon/out;
+    set $WEBROOT /home/www/faceandfiguresalon/out;
     root $WEBROOT;
     index index.html;
 
     include /etc/nginx/global/upstreams.conf;
     include /etc/nginx/global/locations.conf;
     include /etc/nginx/global/static.conf;
+    include /etc/nginx/global/ssl-params.conf;
 
     location ~ /(ffadmin|nradmin|admin) {
 
