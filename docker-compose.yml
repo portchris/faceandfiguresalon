@@ -8,8 +8,8 @@ services:
       - "${VIRTUAL_PORT}:${VIRTUAL_PORT}"
       - "${NEXTJS_PORT}:${NEXTJS_PORT}"
     expose:
-      - 80
-      - 443
+      - ${VIRTUAL_PORT}
+      - ${NEXTJS_PORT}
     env_file:
       - ./.env
     tty: true
