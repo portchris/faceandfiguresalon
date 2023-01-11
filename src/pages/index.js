@@ -171,10 +171,10 @@ export default class Home extends Component {
           content={this.caption}>
         </Hero>
         <main className="content container-fluid mx-auto px-4">
-          <article id="selling-points" key="selling-points" className="grid grid-cols-3 grid-flow-col gap-3">
+          <article id="selling-points" key="selling-points" className="flex align-middle justify-center my-20 space-x-12">
             {SELLING_POINTS}
           </article>
-          <article id="treatments" key="treatments" className="grid grid-cols-4 grid-flow-col gap-4">
+          <article id="treatments" key="treatments" className="flex align-middle justify-center my-20 space-x-12">
             {TREATMENTS}
           </article>
           {/* <article id="home" key="index-article">
