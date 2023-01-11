@@ -64,7 +64,7 @@ class Header extends Component {
                                             alt={this.logo.alt}
                                             loading="lazy"
                                         />
-                                        <h1 className="h1 text-xl sm:text-2xl text-white hover:text-gray-200 focus:text-gray-300">
+                                        <h1 className="h1 text-2xl sm:text-4xl text-white hover:text-gray-200 focus:text-gray-300">
                                             {this.title}
                                         </h1>
                                     </a>
