@@ -13,6 +13,7 @@ class Footer extends Component {
                 <Link href="https://www.portchris.co.uk/" target="_blank" rel="noopener noreferrer">
                     ROG-WEB GLOBAL ltd
                 </Link>
+                <a href="https://www.flaticon.com/free-icons/reward" title="reward icons">Reward icons created by Freepik - Flaticon</a>
             </footer>
         );
     }
