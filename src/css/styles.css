@@ -33,6 +33,11 @@ header nav .nav-link {
     border-right: none;
 }
 
-/* #hero {
-    background-image: url();
-} */
+#hero > div {
+    height: calc(625px);
+    background-image: url('https://raw.githubusercontent.com/portchris/faceandfiguresalon/master/src/img/Face-And-Figure-Salon-Taunton-Celebrating-30-Years.png');
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    background-origin: content-box;
+    background-size: auto 100%;
+}
