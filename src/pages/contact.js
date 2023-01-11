@@ -205,7 +205,7 @@ export default class Home extends Component {
                     width={this.logo.dimensions.width / 3}
                     height={this.logo.dimensions.height / 3}>
                 </Header>
-                <main className="content container mx-auto px-4">
+                <main className="content container-fluid mx-auto px-4">
                     <h1 className="text-4xl my-5 py-5">{this.contentTitle}</h1>
                     <article id="contact-details" key="contact-details" className="flex border-b-slate-700">
                         <figure className="w-1/2 inline-block pr-2">

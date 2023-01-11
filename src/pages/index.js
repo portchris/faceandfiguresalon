@@ -170,7 +170,7 @@ export default class Home extends Component {
           title={this.contentTitle}
           content={this.caption}>
         </Hero>
-        <main className="content container mx-auto px-4">
+        <main className="content container-fluid mx-auto px-4">
           <article id="selling-points" key="selling-points" className="grid grid-cols-3 grid-flow-col gap-3">
             {SELLING_POINTS}
           </article>
