@@ -11,6 +11,15 @@
       "version": "sktwi1xtmkfgx8626",
       "description": "Treatments",
       "primary": {
+        "active": {
+          "type": "Boolean",
+          "config": {
+            "label": "Active",
+            "placeholder_false": "Not Available.",
+            "placeholder_true": "Available.",
+            "default_value": true
+          }
+        },
         "title": {
           "type": "StructuredText",
           "config": {
