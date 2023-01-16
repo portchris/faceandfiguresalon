@@ -55,7 +55,7 @@ class Treatment extends Component {
 
         return (
             <React.Fragment>
-                <div key={this.id + "-treatment"} className="drop-shadow-md">
+                <div key={this.id + "-treatment"} className="my-8 rounded shadow-lg shadow-gray-200 dark:shadow-gray-900 bg-white duration-300 hover:-translate-y-1">
                     <div key={this.id + "-treatment-row-1"}>
                         <img
                             src={this.image.url}
@@ -64,11 +64,11 @@ class Treatment extends Component {
                         />
                     </div>
                     <div key={this.id + "-treatment-row-2"}>
-                        <h3 key={this.id + "-treatment-title"} className="text-2xl py-2">
+                        <h3 key={this.id + "-treatment-title"} className="text-2xl p-2">
                             {this.name}
                         </h3>
                     </div>
-                    <div key={this.id + "-treatment-row-3"}>
+                    <div key={this.id + "-treatment-row-3"} className="px-2">
                         {typeof this.descriptionShort !== "undefined" && this.descriptionShort.length &&
                             <span key={this.id + "-treatment-text"}>
                                 <small>{this.descriptionShort}</small>
