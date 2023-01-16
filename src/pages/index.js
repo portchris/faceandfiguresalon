@@ -174,7 +174,7 @@ export default class Home extends Component {
           <article id="selling-points" key="selling-points" className="flex align-middle justify-center my-20 space-x-12">
             {SELLING_POINTS}
           </article>
-          <article id="treatments" key="treatments" className="flex align-middle justify-center my-20 space-x-12">
+          <article id="treatments" key="treatments" className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {TREATMENTS}
           </article>
           {/* <article id="home" key="index-article">

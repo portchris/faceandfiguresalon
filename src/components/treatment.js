@@ -55,12 +55,13 @@ class Treatment extends Component {
 
         return (
             <React.Fragment>
-                <div key={this.id + "-treatment"} className="my-8 rounded shadow-lg shadow-gray-200 dark:shadow-gray-900 bg-white duration-300 hover:-translate-y-1">
+                <div key={this.id + "-treatment"} className="max-w-md pb-2 my-0 rounded shadow-lg border border-gray-200 shadow-gray-200 bg-white duration-300 hover:-translate-y-1 m-auto md:mx-0 hover:cursor-pointer">
                     <div key={this.id + "-treatment-row-1"}>
                         <img
                             src={this.image.url}
                             alt={this.image.alt}
                             width={this.image.dimensions.width}
+                            className="m-auto"
                         />
                     </div>
                     <div key={this.id + "-treatment-row-2"}>
