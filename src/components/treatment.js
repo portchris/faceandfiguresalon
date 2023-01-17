@@ -55,7 +55,7 @@ class Treatment extends Component {
 
         return (
             <React.Fragment>
-                <div key={this.id + "-treatment"} className="max-w-md pb-2 my-0 rounded shadow-lg border border-gray-200 shadow-gray-200 bg-white duration-300 hover:-translate-y-1 m-auto md:mx-0 hover:cursor-pointer">
+                <div key={this.id + "-treatment"} className="pb-2 my-0 rounded shadow-lg border border-gray-200 shadow-gray-200 bg-white duration-300 hover:-translate-y-1 m-auto md:mx-0 max-w-md lg:max-w-full hover:cursor-pointer">
                     <div key={this.id + "-treatment-row-1"}>
                         <img
                             src={this.image.url}

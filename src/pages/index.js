@@ -149,6 +149,7 @@ export default class Home extends Component {
           image={s.primary.image}
           name={s.primary.title[0].text}
           description={s.primary.description[0].text}
+          iteration={x}
         />
       );
     }
@@ -171,7 +172,7 @@ export default class Home extends Component {
           content={this.caption}>
         </Hero>
         <main className="content container-fluid mx-auto px-4">
-          <article id="selling-points" key="selling-points" className="flex align-middle justify-center my-20 space-x-12">
+          <article id="selling-points" key="selling-points" className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 my-10">
             {SELLING_POINTS}
           </article>
           <article id="treatments" key="treatments" className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

@@ -8,6 +8,11 @@ class SellingPoint extends Component {
     static id;
 
     /**
+     * @var {Integer}
+     */
+    static iteration;
+
+    /**
      * @var {Object}
      */
     static image;
@@ -29,16 +34,34 @@ class SellingPoint extends Component {
         this.name = props.name;
         this.image = props.image;
         this.description = props.description;
+        this.iteration = parseInt(props.iteration);
     }
 
     render() {
 
+        let classTextAlign = "text-center";
+        let classImgAlign = "mx-auto";
+        switch (this.iteration % 3) {
+            case 0:
+                classTextAlign = "text-left";
+                classImgAlign = "mx-0";
+                break;
+            case 1:
+                classTextAlign = "text-center";
+                classImgAlign = "mx-auto";
+                break;
+            default:
+                classTextAlign = "text-right";
+                classImgAlign = "text-right";
+                break;
+        }
+
         return (
             <React.Fragment>
-                <div key={this.id + "-treatment"} className="w-72 bg-gray-100 p-4 drop-shadow-sm rounded-full text-center">
+                <div key={this.id + "-treatment"} className="max-w p-4 shadow-lg bg-white border border-gray-200 text-center rounded">
                     <p key={this.id + "-treatment-row-1"}>
                         <img
-                            className='mx-auto'
+                            className="mx-auto"
                             src={this.image.url}
                             alt={this.image.alt}
                             width={this.image.dimensions.width / 4}
