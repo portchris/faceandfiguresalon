@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { Component } from 'react';
 
 class Treatment extends Component {
@@ -53,35 +54,66 @@ class Treatment extends Component {
 
     render() {
 
+        const ctaText = this.previewMode
+            ? "View " + this.name
+            : "Learn More";
+
         return (
             <React.Fragment>
-                <div key={this.id + "-treatment"} className="pb-2 my-0 rounded shadow-lg border border-gray-200 shadow-gray-200 bg-white duration-300 hover:-translate-y-1 m-auto md:mx-0 max-w-md lg:max-w-full hover:cursor-pointer">
-                    <div key={this.id + "-treatment-row-1"}>
-                        <img
-                            src={this.image.url}
-                            alt={this.image.alt}
-                            width={this.image.dimensions.width}
-                            className="m-auto"
-                        />
-                    </div>
-                    <div key={this.id + "-treatment-row-2"}>
-                        <h3 key={this.id + "-treatment-title"} className="text-2xl p-2">
-                            {this.name}
-                        </h3>
-                    </div>
-                    <div key={this.id + "-treatment-row-3"} className="px-2">
-                        {typeof this.descriptionShort !== "undefined" && this.descriptionShort.length &&
-                            <span key={this.id + "-treatment-text"}>
-                                <small>{this.descriptionShort}</small>
-                            </span>
-                        }
-                        {typeof this.descriptionLong !== "undefined" && this.descriptionLong.length &&
-                            <span key={this.id + "-treatment-text"}>
-                                <p>{this.descriptionLong}</p>
-                            </span>
-                        }
-                    </div>
-                </div>
+                <Link
+                    href={this.link.url}
+                    key={this.id + "-treatment"}
+                >
+                    <a
+                        key={this.id + "-treatment-anchor"}
+                        className="relative pb-16 my-0 rounded shadow-lg border border-gray-200 shadow-gray-200 bg-white duration-300 hover:-translate-y-1 m-auto md:mx-0 max-w-md lg:max-w-full hover:cursor-pointer"
+                    >
+                        <div key={this.id + "-treatment-row-1"}>
+                            <img
+                                src={this.image.url}
+                                alt={this.image.alt}
+                                width={this.image.dimensions.width}
+                                className="m-auto"
+                            />
+                        </div>
+                        <div key={this.id + "-treatment-row-2"}>
+                            <h3 key={this.id + "-treatment-title"} className="text-2xl p-2">
+                                {this.name}
+                            </h3>
+                        </div>
+                        <div
+                            key={this.id + "-treatment-row-3"}
+                            className="px-2"
+                        >
+                            {typeof this.descriptionShort !== "undefined" && this.descriptionShort.length &&
+                                <span key={this.id + "-treatment-text"}>
+                                    <small>{this.descriptionShort}</small>
+                                </span>
+                            }
+                            {typeof this.descriptionLong !== "undefined" && this.descriptionLong.length &&
+                                <span key={this.id + "-treatment-text"}>
+                                    <p>{this.descriptionLong}</p>
+                                </span>
+                            }
+                        </div>
+                        <div
+                            key={this.id + "-treatment-row-4"}
+                            className="px-2 absolute bottom-2 w-full"
+                        >
+                            {this.previewMode &&
+                                <span key={this.id + "-treatment-text"}>
+                                    <small>{this.descriptionShort}</small>
+                                </span>
+                            }
+                            <button
+                                className="w-full px-6 py-2.5 bg-orange-400 text-white font-medium leading-tight uppercase rounded shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-800 active:shadow-lg transition duration-150 ease-in-out"
+
+                            >
+                                {ctaText}
+                            </button>
+                        </div>
+                    </a>
+                </Link>
             </React.Fragment >
         );
     }
