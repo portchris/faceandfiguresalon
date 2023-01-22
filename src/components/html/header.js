@@ -100,9 +100,9 @@ class Header extends Component {
                                 aria-expanded="false"
                                 aria-label="Toggle navigation"
                                 onClick={this.toggleMobileNavigation.bind(this)}>
-                                <div class="space-y-2" id="burger-menu">
-                                    <span class={"block h-1 w-10 origin-center rounded-full bg-white transition-transform ease-in-out " + this.state.activeClassBurgerMenu1}></span>
-                                    <span class={"block h-1 w-10 origin-center rounded-full bg-white transition-transform ease-in-out " + this.state.activeClassBurgerMenu2}></span>
+                                <div className="space-y-2" id="burger-menu">
+                                    <span className={"block h-1 w-10 origin-center rounded-full bg-white transition-transform ease-in-out " + this.state.activeClassBurgerMenu1}></span>
+                                    <span className={"block h-1 w-10 origin-center rounded-full bg-white transition-transform ease-in-out " + this.state.activeClassBurgerMenu2}></span>
                                 </div>
                             </button>
                         </div>

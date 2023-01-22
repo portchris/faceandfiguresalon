@@ -7,9 +7,9 @@ import Header from "../components/html/header";
 import Footer from "../components/html/footer";
 import Content from "../components/html/content";
 import ContactForm from "../components/forms/contact-form";
-import Hero from "../components/html/hero";
 import FiveZeroThree from "../components/errors/503";
 
+const uuid = 'Y2eNpBEAAD9FPqgs';
 const repoName = "faceandfiguresalon";
 const endpoint = Prismic.getEndpoint(repoName);
 const client = Prismic.createClient(endpoint);
@@ -266,7 +266,7 @@ export default class Home extends Component {
  */
 export async function getStaticProps({ context }) {
 
-    const page = await client.getByID('Y2eNpBEAAD9FPqgs');
+    const page = await client.getByID(uuid);
 
     return {
         props: {

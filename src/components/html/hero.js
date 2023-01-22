@@ -35,7 +35,7 @@ class Hero extends Component {
         return (
             <React.Fragment>
                 <section id="hero" className="bg-gray-50 text-gray-800 p-2 flex align-middle mb-10 relative">
-                    <div class="badge self-start absolute inset-0 w-32">
+                    <div className="badge self-start absolute inset-0 w-32">
                         <img
                             src="https://github.com/portchris/faceandfiguresalon/blob/master/src/img/taunton-beauty-salon-badge.png?raw=true"
                             alt="Celebrating 30 years"

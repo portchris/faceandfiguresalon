@@ -6,10 +6,10 @@ import HTMLHead from "../components/html/head";
 import Header from "../components/html/header";
 import Footer from "../components/html/footer";
 import Content from "../components/html/content";
-import ContactForm from "../components/forms/contact-form";
 import Hero from "../components/html/hero";
 import FiveZeroThree from "../components/errors/503";
 
+const uuid = 'Y2KU_REAACEAKImf';
 const repoName = "faceandfiguresalon";
 const endpoint = Prismic.getEndpoint(repoName);
 const client = Prismic.createClient(endpoint);
@@ -56,33 +56,63 @@ export default class Home extends Component {
 
     // State
     this.state = {
-      treatments: this.getSlicesByType(), // Treatments Slice
-      sellingPoints: this.getSlicesByType('selling_points') // Selling Points Slice
+      treatments: [],
+      sellingPoints: []
     };
+
+    // Treatments
+    this.getSlicesByType(
+      "treatments",
+      (treatments) => {
+        this.state.treatments = treatments;
+        this.setState(this.state);
+      }
+    );
+
+    // Selling Points
+    this.getSlicesByType(
+      "selling_points",
+      (sellingPoints) => {
+        this.state.sellingPoints = sellingPoints;
+        this.setState(this.state);
+      }
+    );
   }
 
   /**
    * Return dymanic page content meta by type
    * @param {String} type
-   * @returns {Array}
+   * @param {Function} fnc
    */
-  getSlicesByType(type = "treatments") {
+  getSlicesByType(type, fnc) {
 
     const slices = [];
-    if (typeof this.index === 'undefined' || typeof this.index.slices === 'undefined' || this.index.slices.length === 0) {
-      return slices;
-    }
+    client
+      .getByID(uuid)
+      .then(
+        (p) => {
+          if (typeof p === 'undefined' || typeof p.data.slices === 'undefined' || p.data.slices.length === 0) {
+            return;
+          }
 
-    for (let i in this.index.slices) {
-      let slice = this.index.slices[i];
-      if (!slice.slice_type || slice.slice_type !== type) {
-        continue;
-      }
+          for (let i in p.data.slices) {
+            let slice = p.data.slices[i];
+            if (!slice.slice_type || slice.slice_type !== type) {
+              continue;
+            }
 
-      slices.push(slice);
-    }
+            slices.push(slice);
+          }
 
-    return slices;
+          console.log(slices);
+        }
+      )
+      .catch(
+        (e) => console.error(e)
+      )
+      .finally(
+        () => fnc(slices)
+      );
   }
 
   /**
@@ -105,6 +135,7 @@ export default class Home extends Component {
 
       if (
         typeof t.primary === 'undefined'
+        || t.primary.active === false
         || typeof t.id === 'undefined'
         || typeof t.primary.image === 'undefined'
         || typeof t.primary.title === 'undefined'
@@ -119,10 +150,12 @@ export default class Home extends Component {
       TREATMENTS.push(
         <Treatment
           id={t.id}
+          items={t.items}
           image={t.primary.image}
           name={t.primary.title[0].text}
           link={t.primary.link}
-          descriptionShort={t.primary.description[0].text}
+          description={t.primary.description[0].text}
+          previewMode={typeof t.primary.items !== 'undefined' && t.primary.items.length}
         />
       );
     }
@@ -254,7 +287,7 @@ export default class Home extends Component {
  */
 export async function getStaticProps({ context }) {
 
-  const page = await client.getByID('Y2KU_REAACEAKImf');
+  const page = await client.getByID(uuid);
 
   return {
     props: {

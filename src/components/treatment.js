@@ -14,6 +14,11 @@ class Treatment extends Component {
     static image;
 
     /**
+     * @var {Object}
+     */
+    static items;
+
+    /**
      * @var {String}
      */
     static title;
@@ -26,12 +31,7 @@ class Treatment extends Component {
     /**
      * @var {String}
      */
-    static descriptionShort;
-
-    /**
-     * @var {String}
-     */
-    static descriptionLong;
+    static description;
 
     /**
      * @param {Boolean}
@@ -45,11 +45,11 @@ class Treatment extends Component {
         this.name = props.name;
         this.image = props.image;
         this.link = props.link;
-        this.descriptionLong = props.descriptionLong;
-        this.descriptionShort = props.descriptionShort;
-        this.previewMode = typeof this.descriptionShort !== "undefined"
-            && this.descriptionShort.length
-            && typeof this.descriptionLong === "undefined";
+        this.items = props.items;
+        this.description = props.description;
+        this.previewMode = props.previewMode
+            ? props.previewMode
+            : typeof this.items !== 'undefined' && this.items.length;
     }
 
     render() {
@@ -85,14 +85,9 @@ class Treatment extends Component {
                             key={this.id + "-treatment-row-3"}
                             className="px-2"
                         >
-                            {typeof this.descriptionShort !== "undefined" && this.descriptionShort.length &&
+                            {typeof this.description !== "undefined" && this.description.length &&
                                 <span key={this.id + "-treatment-text"}>
-                                    <small>{this.descriptionShort}</small>
-                                </span>
-                            }
-                            {typeof this.descriptionLong !== "undefined" && this.descriptionLong.length &&
-                                <span key={this.id + "-treatment-text"}>
-                                    <p>{this.descriptionLong}</p>
+                                    <p>{this.description}</p>
                                 </span>
                             }
                         </div>
@@ -100,14 +95,8 @@ class Treatment extends Component {
                             key={this.id + "-treatment-row-4"}
                             className="px-2 absolute bottom-2 w-full"
                         >
-                            {this.previewMode &&
-                                <span key={this.id + "-treatment-text"}>
-                                    <small>{this.descriptionShort}</small>
-                                </span>
-                            }
                             <button
                                 className="w-full px-6 py-2.5 bg-orange-400 text-white font-medium leading-tight uppercase rounded shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-800 active:shadow-lg transition duration-150 ease-in-out"
-
                             >
                                 {ctaText}
                             </button>
