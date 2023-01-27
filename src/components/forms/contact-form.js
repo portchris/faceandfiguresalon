@@ -172,11 +172,11 @@ class ContactForm extends Component {
             ? this.contactSuccessMessage
             : msg;
 
-        console.error(msg);
+        console.error("Contact form error:", msg, this.messageToAscii(msg));
         this.state.notifications.push(
             <Notification
                 show={true}
-                key='contact-notification-error'
+                id={this.messageToAscii(msg)}
                 content={msg}
                 heading='Error'
                 type='danger'
@@ -225,6 +225,40 @@ class ContactForm extends Component {
         return fetch(this.wufooUri, options);
     }
 
+    /**
+     * Get ASCII value of sentance.
+     * @param {String} s
+     * @returns {String}
+     */
+    messageToAscii(s) {
+
+        let charCodeArr = [];
+        for (let i = 0; i < s.length; i++) {
+            let code = s.charCodeAt(i);
+            charCodeArr.push(code);
+        }
+
+        charCodeArr.push(this.makeUUID());
+
+        return charCodeArr.join("-");
+    }
+
+    /**
+     * @param {Integer} length
+     * @returns {String}
+     */
+    makeUUID(length = 5) {
+        var result = '';
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for (var i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() *
+                charactersLength));
+        }
+
+        return result;
+    }
+
     render() {
 
         return (
@@ -236,10 +270,10 @@ class ContactForm extends Component {
                     noValidate
                     onSubmit={e => this.handleFormSubmit(e, this.captchaSecretKey, this.captchaToken)}
                 >
-                    <div key="Field0-row-notifications">
+                    <div key="Field0-row-notifications" className="w-full Field0-row-notifications">
                         {this.state.notifications}
                     </div>
-                    <div key="Field4-row" className="mb-4">
+                    <div key="Field4-row" className="mb-4 Field4-row">
                         <label htmlFor="Field4">
                             Name<span >*</span>
                         </label>
@@ -254,7 +288,7 @@ class ContactForm extends Component {
                             placeholder="Your full name so we know who you are"
                         />
                     </div>
-                    <div key="Field5-row" className="mb-4">
+                    <div key="Field5-row" className="mb-4 Field5-row">
                         <label htmlFor="Field5">
                             Email<span >*</span>
                         </label>
@@ -272,7 +306,7 @@ class ContactForm extends Component {
                         />
 
                     </div>
-                    <div key="Field7-row" className="mb-4">
+                    <div key="Field7-row" className="mb-4 Field7-row">
                         <label htmlFor="Field7">
                             Phone<span>*</span>
                         </label>
@@ -287,7 +321,7 @@ class ContactForm extends Component {
                             placeholder="Your phone number if you wish us to call you (optional)"
                         />
                     </div>
-                    <div key="Field3-row" className="mb-4">
+                    <div key="Field3-row" className="mb-4 Field3-row">
                         <label htmlFor="Field3">
                             Message<span >*</span>
                         </label>
@@ -301,7 +335,7 @@ class ContactForm extends Component {
                         />
 
                     </div>
-                    <div key="field5-row" className="mb-4">
+                    <div key="field5-row" className="mb-4 field5-row">
                         <ReCAPTCHA
                             sitekey={this.captchaSiteKey}
                             theme="light"
@@ -309,7 +343,7 @@ class ContactForm extends Component {
                         />
 
                     </div>
-                    <div key="Field6-row" className="mb-4">
+                    <div key="Field6-row" className="mb-4 Field6">
                         <button
                             variant="primary"
                             type="submit"
