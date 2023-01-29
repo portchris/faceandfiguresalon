@@ -125,6 +125,7 @@ export default class Home extends Component {
         typeof t.primary === 'undefined'
         || t.primary.active === false
         || typeof t.id === 'undefined'
+        || typeof t.primary.divId === 'undefined'
         || typeof t.primary.image === 'undefined'
         || typeof t.primary.title === 'undefined'
         || t.primary.title.length === 0
@@ -138,6 +139,7 @@ export default class Home extends Component {
       TREATMENTS.push(
         <Treatment
           id={t.id}
+          divId={t.primary.divId}
           items={t.items}
           image={t.primary.image}
           name={t.primary.title[0].text}

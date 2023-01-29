@@ -9,6 +9,11 @@ class Treatment extends Component {
     static id;
 
     /**
+     * @var {String}
+     */
+    static divId;
+
+    /**
      * @var {Object}
      */
     static image;
@@ -42,6 +47,7 @@ class Treatment extends Component {
 
         super(props);
         this.id = props.id + "-" + this.makeUUID();
+        this.divId = props.divId;
         this.name = props.name;
         this.image = props.image;
         this.link = props.link;
@@ -65,6 +71,7 @@ class Treatment extends Component {
                     key={this.id + "-treatment"}
                 >
                     <a
+                        id={this.divId}
                         key={this.id + "-treatment-anchor"}
                         className="relative pb-16 my-0 rounded shadow-lg border border-gray-200 shadow-gray-200 bg-white duration-300 hover:-translate-y-1 m-auto md:mx-0 max-w-md lg:max-w-full hover:cursor-pointer"
                     >
