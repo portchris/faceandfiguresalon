@@ -34,6 +34,7 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 .vercel
+env/nginx/webserver/conf.d/default.conf
 
 # Logs
 logs
