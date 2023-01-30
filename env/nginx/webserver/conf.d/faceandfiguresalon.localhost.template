@@ -13,39 +13,39 @@ server {
     include /etc/nginx/global/static.conf;
 
     location ~ ^/treatments/allergies-sensitivities-remedies(.*)$ {
-        return 301 /treatments#allergies-sensitivities-remedies
+        return 301 /treatments#allergies-sensitivities-remedies;
     }
 
     location ~ ^/treatments/facials(.*)$ {
-        return 301 /treatments#facials
+        return 301 /treatments#facials;
     }
 
     location ~ ^/treatments/hair-removal(.*)$ {
-        return 301 /treatments#hair-removal
+        return 301 /treatments#hair-removal;
     }
 
     location ~ ^/treatments/make-up(.*)$ {
-        return 301 /treatments#make-up
+        return 301 /treatments#make-up;
     }
 
     location ~ ^/treatments/non-surgical-face-body-lifts(.*)$ {
-        return 301 /treatments#non-surgical-face-body-lifts
+        return 301 /treatments#non-surgical-face-body-lifts;
     }
 
     location ~ ^/treatments/slimming(.*)$ {
-        return 301 /treatments#slimming
+        return 301 /treatments#slimming;
     }
 
     location ~ ^/treatments/caci(.*)$ {
-        return 301 /treatments#caci
+        return 301 /treatments#caci;
     }
 
     location ~ ^/treatments/ionithermie(.*)$ {
-        return 301 /treatments#ionithermie
+        return 301 /treatments#ionithermie;
     }
 
     location ~ ^/blog(.*)$ {
-        return 301 /
+        return 301 /contact;
     }
 
     location / {
