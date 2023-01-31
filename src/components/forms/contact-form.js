@@ -69,6 +69,8 @@ class ContactForm extends Component {
     /**
      * Handles the submit event on form submit.
      * @param {Object} event
+     * @param {String} siteKey
+     * @param {Object} token
      */
     handleFormSubmit(event, siteKey, token) {
 

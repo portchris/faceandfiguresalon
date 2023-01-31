@@ -39,6 +39,11 @@ class Treatment extends Component {
     static description;
 
     /**
+     * @var {String}
+     */
+    static activeClass;
+
+    /**
      * @param {Boolean}
      */
     static previewMode;
@@ -53,16 +58,20 @@ class Treatment extends Component {
         this.link = props.link;
         this.items = props.items;
         this.description = props.description;
+        this.activeClass = "active order-first col-span-full";
         this.previewMode = props.previewMode
             ? props.previewMode
             : typeof this.items !== 'undefined' && this.items.length;
+
+        // State
+        this.state = {
+            ctaText: "View " + this.name,
+            treatmentActiveClass: ""
+        };
+        this.setState(this.state);
     }
 
     render() {
-
-        const ctaText = this.previewMode
-            ? "View " + this.name
-            : "Learn More";
 
         return (
             <React.Fragment>
@@ -73,7 +82,8 @@ class Treatment extends Component {
                     <a
                         id={this.divId}
                         key={this.id + "-treatment-anchor"}
-                        className="relative pb-16 my-0 rounded shadow-lg border border-gray-200 shadow-gray-200 bg-white duration-300 hover:-translate-y-1 m-auto md:mx-0 max-w-md lg:max-w-full hover:cursor-pointer"
+                        onClick={e => this.handleTreatmentClick(e)}
+                        className={"relative pb-16 my-0 rounded shadow-lg border border-gray-200 shadow-gray-200 bg-white ease-in-out duration-300 hover:-translate-y-1 m-auto md:mx-0 max-w-md lg:max-w-full hover:cursor-pointer " + this.state.treatmentActiveClass}
                     >
                         <div key={this.id + "-treatment-row-1"}>
                             <img
@@ -102,16 +112,52 @@ class Treatment extends Component {
                             key={this.id + "-treatment-row-4"}
                             className="px-2 absolute bottom-2 w-full"
                         >
-                            <button
-                                className="w-full px-6 py-2.5 bg-orange-400 text-white font-medium leading-tight uppercase rounded shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-800 active:shadow-lg transition duration-150 ease-in-out"
-                            >
-                                {ctaText}
+                            <button className="w-full px-6 py-2.5 bg-orange-400 text-white font-medium leading-tight uppercase rounded shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-800 active:shadow-lg transition duration-150 ease-in-out">
+                                {this.state.ctaText}
                             </button>
                         </div>
                     </a>
                 </Link>
             </React.Fragment >
         );
+    }
+
+    /**
+     * Handles the submit event on form submit.
+     * @param {Object} event
+     */
+    handleTreatmentClick(event) {
+
+        const treatments = document.getElementById('treatments');
+        const classes = this.activeClass.split(" ");
+        if (this.previewMode && treatments) {
+            event.preventDefault();
+            if (this.state.treatmentActiveClass.length === 0) {
+                this.state.treatmentActiveClass = this.activeClass;
+                this.state.ctaText = "Hide " + this.name;
+            } else {
+                this.state.treatmentActiveClass = "";
+                this.state.ctaText = "View " + this.name;
+            }
+
+            treatments.childNodes.forEach(
+                (child) => {
+
+                    for (let i in classes) {
+                        if (child.classList.contains(classes[i])) {
+                            child.classList.remove(classes[i]);
+                        }
+                    }
+                }
+            );
+
+            this.setState(this.state);
+            event.target.scrollTo({
+                top: 1,
+                left: 0,
+                behavior: 'smooth'
+            });
+        }
     }
 
     /**
