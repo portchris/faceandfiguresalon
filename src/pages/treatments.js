@@ -1,5 +1,5 @@
 import * as Prismic from "@prismicio/client";
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import Treatment from "../components/treatment";
 import HTMLHead from "../components/html/head";
 import Header from "../components/html/header";
@@ -92,8 +92,6 @@ export default class Home extends Component {
 
             slices.push(slice);
           }
-
-          console.log(slices);
         }
       )
       .catch(
@@ -145,6 +143,7 @@ export default class Home extends Component {
           name={t.primary.title[0].text}
           link={t.primary.link}
           description={t.primary.description[0].text}
+          siblings={TREATMENTS}
           previewMode={typeof t.primary.items !== 'undefined' && t.primary.items.length}
         />
       );

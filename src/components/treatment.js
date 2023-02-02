@@ -51,6 +51,7 @@ class Treatment extends Component {
     constructor(props) {
 
         super(props);
+        this.ref = React.createRef();
         this.id = props.id + "-" + this.makeUUID();
         this.divId = props.divId;
         this.name = props.name;
@@ -58,6 +59,7 @@ class Treatment extends Component {
         this.link = props.link;
         this.items = props.items;
         this.description = props.description;
+        this.siblings = props.siblings;
         this.activeClass = "active order-first col-span-full";
         this.previewMode = props.previewMode
             ? props.previewMode
@@ -69,6 +71,11 @@ class Treatment extends Component {
             treatmentActiveClass: ""
         };
         this.setState(this.state);
+        this.makeInactive = this.makeInactive.bind(this);
+    }
+
+    handleInputChange = (event) => {
+        this.props.onActiveChange(event.target.value)
     }
 
     render() {
@@ -122,6 +129,15 @@ class Treatment extends Component {
         );
     }
 
+    makeInactive(component) {
+
+        console.log(this);
+
+        this.state.treatmentActiveClass = "";
+        this.state.ctaText = "View " + this.name;
+        this.setState(this.state);
+    }
+
     /**
      * Handles the submit event on form submit.
      * @param {Object} event
@@ -140,16 +156,19 @@ class Treatment extends Component {
                 this.state.ctaText = "View " + this.name;
             }
 
-            treatments.childNodes.forEach(
-                (child) => {
-
-                    for (let i in classes) {
-                        if (child.classList.contains(classes[i])) {
-                            child.classList.remove(classes[i]);
-                        }
-                    }
-                }
+            this.siblings.forEach(
+                (sibling) => sibling.type.prototype.makeInactive(sibling)
             );
+
+            // if (this.siblings.length) {
+            //     for (let i in this.siblings) {
+            //         let sibling = this.siblings[i];
+            //         if (sibling) {
+            //             sibling.state.treatmentActiveClass = "";
+            //             sibling.setState(sibling.state);
+            //         }
+            //     }
+            // }
 
             this.setState(this.state);
             event.target.scrollTo({

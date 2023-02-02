@@ -157,6 +157,7 @@ export default class Home extends Component {
           name={t.primary.title[0].text}
           link={t.primary.link}
           description={t.primary.description[0].text}
+          siblings={null}
           previewMode={typeof t.primary.items !== 'undefined' && t.primary.items.length}
         />
       );
