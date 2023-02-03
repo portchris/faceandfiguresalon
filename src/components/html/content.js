@@ -9,21 +9,35 @@ const PRISMIC_MARKUP_IMAGE = 'image';
 
 class Content extends Component {
 
+    /**
+     * @var {String}
+     */
+    static type;
+
+    /**
+     * @var {Object}
+     */
     static content;
 
     constructor(props) {
+
         super(props);
+        this.type = props.type;
         this.content = props.content;
     }
 
     render() {
 
         let render = [];
-
         for (let i in this.content) {
             let c = this.content[i];
             if (!c instanceof Object || c.type === null || c.text === null) {
                 continue;
+            }
+
+            // Add override option
+            if (typeof this.type !== 'undefined') {
+                c.type = this.type;
             }
 
             switch (c.type) {

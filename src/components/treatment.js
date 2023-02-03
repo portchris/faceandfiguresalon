@@ -1,5 +1,8 @@
+import Content from './html/content';
 import Link from 'next/link';
 import React, { Component } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
 
 class Treatment extends Component {
 
@@ -68,7 +71,8 @@ class Treatment extends Component {
         // State
         this.state = {
             ctaText: "View " + this.name,
-            treatmentActiveClass: ""
+            treatmentActiveClass: "",
+            treatmentItemsActiveClass: "hidden"
         };
         this.setState(this.state);
         this.makeInactive = this.makeInactive.bind(this);
@@ -79,6 +83,51 @@ class Treatment extends Component {
     }
 
     render() {
+
+        const ITEMS = [];
+        for (let i in this.items) {
+            let item = this.items[i];
+
+            if (
+                !item
+                || typeof item.cta === 'undefined'
+                || typeof item.product_title === 'undefined'
+                || typeof item.product_description === 'undefined'
+            ) {
+                continue;
+            }
+
+            let ctaText = (item.cta.length)
+                ? item.cta[0].text
+                : "";
+
+            ITEMS.push(
+                <li className="treatment-item bg-slate-50 border border-slate-100 my-2 rounded shadow relative flex">
+                    <div className="flex flex-col w-11/12 p-2">
+                        <Content
+                            key={"content-product-title-" + this.makeUUID()}
+                            content={item.product_title}
+                            type='heading4'
+                        />
+                        <Content
+                            key={"content-product-description-" + this.makeUUID()}
+                            content={item.product_description}
+                        />
+                    </div>
+                    <div className="flex w-1/12 bg-white justify-center content-center border-ff-right rounded">
+                        <Link
+                            key={"content-product-cta-" + this.makeUUID()}
+                            title={ctaText}
+                            href="/contact"
+                        >
+                            <a title={ctaText}>
+                                <FontAwesomeIcon icon={faPhone} size="xs w-12" className="bg-white rounded-full text-ff p-2 inline" />
+                            </a>
+                        </Link>
+                    </div>
+                </li>
+            );
+        }
 
         return (
             <React.Fragment>
@@ -115,8 +164,14 @@ class Treatment extends Component {
                                 </span>
                             }
                         </div>
-                        <div
+                        <ul
                             key={this.id + "-treatment-row-4"}
+                            className={this.state.treatmentItemsActiveClass + " px-2 my-2"}
+                        >
+                            {ITEMS}
+                        </ul>
+                        <div
+                            key={this.id + "-treatment-row-5"}
                             className="px-2 absolute bottom-2 w-full"
                         >
                             <button className="w-full px-6 py-2.5 bg-orange-400 text-white font-medium leading-tight uppercase rounded shadow-md hover:bg-orange-700 hover:shadow-lg focus:bg-orange-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-orange-800 active:shadow-lg transition duration-150 ease-in-out">
@@ -129,13 +184,13 @@ class Treatment extends Component {
         );
     }
 
-    makeInactive(component) {
+    makeInactive() {
 
-        console.log(this);
-
-        this.state.treatmentActiveClass = "";
-        this.state.ctaText = "View " + this.name;
-        this.setState(this.state);
+        this.setState({
+            treatmentItemsActiveClass: "",
+            treatmentActiveClass: "",
+            ctaText: ""
+        });
     }
 
     /**
@@ -149,16 +204,18 @@ class Treatment extends Component {
         if (this.previewMode && treatments) {
             event.preventDefault();
             if (this.state.treatmentActiveClass.length === 0) {
+                this.state.treatmentItemsActiveClass = "block";
                 this.state.treatmentActiveClass = this.activeClass;
                 this.state.ctaText = "Hide " + this.name;
             } else {
+                this.state.treatmentItemsActiveClass = "hidden";
                 this.state.treatmentActiveClass = "";
                 this.state.ctaText = "View " + this.name;
             }
 
-            this.siblings.forEach(
-                (sibling) => sibling.type.prototype.makeInactive(sibling)
-            );
+            // this.siblings.forEach(
+            //     (sibling) => sibling.type.prototype.makeInactive(sibling)
+            // );
 
             // if (this.siblings.length) {
             //     for (let i in this.siblings) {

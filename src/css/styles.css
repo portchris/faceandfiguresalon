@@ -14,7 +14,7 @@ h2 {
 
 header nav {
 
-    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#704f90+70,43315e+100 */
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#704F90+70,43315e+100 */
     /* FF3.6-15 */
     background    : -moz-linear-gradient(top, rgba(112, 79, 144, 1) 70%, rgba(67, 49, 94, 1) 100%);
     /* Chrome10-25,Safari5.1-6 */
@@ -22,7 +22,7 @@ header nav {
     /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     background    : linear-gradient(to bottom, rgba(112, 79, 144, 1) 70%, rgba(67, 49, 94, 1) 100%);
     /* IE6-9 */
-    filter        : progid:DXImageTransform.Microsoft.gradient(startColorstr='#704f90', endColorstr='#43315e', GradientType=0);
+    filter        : progid:DXImageTransform.Microsoft.gradient(startColorstr='#704F90', endColorstr='#43315e', GradientType=0);
 }
 
 header nav .nav-link {
@@ -72,4 +72,21 @@ header nav .nav-link {
 
 #hero .badge {
     top: -15px;
+}
+
+.border-ff {
+    border: solid 1px #704F90;
+}
+
+.border-ff-right {
+    border-right: solid 5px #704F90;
+}
+
+.text-ff {
+    color: #704F90;
+}
+
+.absolute-off {
+    top: -5px;
+    right: -5px;
 }
