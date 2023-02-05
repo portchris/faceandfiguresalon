@@ -35,6 +35,9 @@ export default class Home extends Component {
   static metaTitle;
 
   /** @var {String} */
+  static metaKeywords;
+
+  /** @var {String} */
   static metaDescription;
 
   /** @var {Object} */
@@ -51,8 +54,9 @@ export default class Home extends Component {
     this.content = this.index.content;
     this.contentTitle = this.index.heading_title[0].text;
     this.caption = this.index.caption;
-    this.metaTitle = this.index.meta_title[0].text;
-    this.metaDescription = this.index.meta_description[0].text;
+    this.metaTitle = this.index.meta_title;
+    this.metaKeywords = this.index.meta_keywords;
+    this.metaDescription = this.index.meta_description;
 
     // State
     this.state = {
@@ -194,7 +198,8 @@ export default class Home extends Component {
       <React.Fragment>
         <HTMLHead
           title={this.metaTitle}
-          description={this.metaDescription}>
+          metaKeywords={this.metaKeywords}
+          metaDescription={this.metaDescription}>
         </HTMLHead>
         <Header
           title={this.title}

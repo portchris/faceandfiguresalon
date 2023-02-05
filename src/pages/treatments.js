@@ -1,5 +1,5 @@
 import * as Prismic from "@prismicio/client";
-import React, { Component, useState } from 'react';
+import React, { Component, useEffect } from 'react';
 import Treatment from "../components/treatment";
 import HTMLHead from "../components/html/head";
 import Header from "../components/html/header";
@@ -29,12 +29,6 @@ export default class Home extends Component {
   /** @var {String} */
   static caption;
 
-  /** @var {String} */
-  static metaTitle;
-
-  /** @var {String} */
-  static metaDescription;
-
   /** @var {Object} */
   static index;
 
@@ -49,13 +43,14 @@ export default class Home extends Component {
     this.content = this.index.content;
     this.contentTitle = this.index.heading_title[0].text;
     this.caption = this.index.caption;
-    this.metaTitle = this.index.meta_title[0].text;
-    this.metaDescription = this.index.meta_description[0].text;
 
     // State
     this.state = {
       treatments: [],
-      sellingPoints: []
+      sellingPoints: [],
+      metaTitle: this.index.meta_title,
+      metaKeywords: this.index.meta_keywords,
+      metaDescription: this.index.meta_description
     };
 
     // Treatments
@@ -66,6 +61,8 @@ export default class Home extends Component {
         this.setState(this.state);
       }
     );
+
+    this.onUpdatePageMeta.bind(this);
   }
 
   /**
@@ -100,6 +97,45 @@ export default class Home extends Component {
       .finally(
         () => fnc(slices)
       );
+  }
+
+  /**
+   * On load
+   */
+  componentDidMount() {
+
+    // Observers
+    addEventListener(
+      'hashchange',
+      (event) => {
+
+        if (event.oldURL !== event.newURL) {
+          this.onUpdatePageMeta(event.newURL);
+        }
+      }
+    );
+  }
+
+  /**
+   * @param {String} uri
+   */
+  onUpdatePageMeta(uri) {
+
+    let hash = uri.split('#');
+    let divId = hash[(hash.length - 1)];
+    let el = document.getElementById(divId);
+    if (typeof el !== 'undefined') {
+      let metaTitle = el.getElementsByTagName('h3');
+      let metaDescription = el.getElementsByTagName('p');
+      if (metaTitle.length) {
+        this.state.metaTitle = "Face & Figure Salon Taunton | " + metaTitle[0].textContent;
+      }
+      if (metaDescription.length) {
+        this.state.metaDescription = metaDescription[0].textContent;
+      }
+
+      this.setState(this.state);
+    }
   }
 
   /**
@@ -152,8 +188,9 @@ export default class Home extends Component {
     return (
       <React.Fragment>
         <HTMLHead
-          title={this.metaTitle}
-          description={this.metaDescription}>
+          title={this.state.metaTitle}
+          metaKeywords={this.state.metaKeywords}
+          metaDescription={this.state.metaDescription}>
         </HTMLHead>
         <Header
           title={this.title}

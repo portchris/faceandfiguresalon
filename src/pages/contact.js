@@ -37,6 +37,9 @@ export default class Home extends Component {
     static metaTitle;
 
     /** @var {String} */
+    static metaKeywords;
+
+    /** @var {String} */
     static metaDescription;
 
     /** @var {Object} */
@@ -73,8 +76,9 @@ export default class Home extends Component {
         this.title = this.page.page_title[0].text;
         this.content = this.page.content;
         this.contentTitle = this.page.heading_title[0].text;
-        this.metaTitle = this.page.meta_title[0].text;
-        this.metaDescription = this.page.meta_description[0].text;
+        this.metaTitle = this.page.meta_title;
+        this.metaKeywords = this.page.meta_keywords;
+        this.metaDescription = this.page.meta_description;
         this.contactSuccessMessage = this.page.contact_success_msg[0].text;
         this.contactAddress = this.page.address;
         this.contactDetails = this.page.contact_details;
@@ -198,8 +202,9 @@ export default class Home extends Component {
             <React.Fragment>
                 <HTMLHead
                     title={this.metaTitle}
-                    description={this.metaDescription}>
-                </HTMLHead>
+                    metaKeywords={this.metaKeywords}
+                    metaDescription={this.metaDescription}
+                />
                 <Header
                     title={this.title}
                     logo={this.logo}

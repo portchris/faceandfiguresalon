@@ -121,7 +121,7 @@ class Treatment extends Component {
                             href="/contact"
                         >
                             <a title={ctaText}>
-                                <FontAwesomeIcon icon={faPhone} size="xs w-12" className="bg-white rounded-full text-ff p-2 inline" />
+                                <FontAwesomeIcon icon={faPhone} className="bg-white rounded-full text-ff p-2 inline xs w-12" />
                             </a>
                         </Link>
                     </div>
@@ -233,6 +233,7 @@ class Treatment extends Component {
                 left: 0,
                 behavior: 'smooth'
             });
+            window.location.hash = this.divId;
         }
     }
 
