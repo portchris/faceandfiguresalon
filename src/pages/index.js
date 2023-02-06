@@ -6,10 +6,10 @@ import HTMLHead from "../components/html/head";
 import Header from "../components/html/header";
 import Footer from "../components/html/footer";
 import Content from "../components/html/content";
-import ContactForm from "../components/forms/contact-form";
 import Hero from "../components/html/hero";
 import FiveZeroThree from "../components/errors/503";
 
+const uuid = 'Y2KU_REAACEAKImf';
 const repoName = "faceandfiguresalon";
 const endpoint = Prismic.getEndpoint(repoName);
 const client = Prismic.createClient(endpoint);
@@ -35,6 +35,9 @@ export default class Home extends Component {
   static metaTitle;
 
   /** @var {String} */
+  static metaKeywords;
+
+  /** @var {String} */
   static metaDescription;
 
   /** @var {Object} */
@@ -51,38 +54,69 @@ export default class Home extends Component {
     this.content = this.index.content;
     this.contentTitle = this.index.heading_title[0].text;
     this.caption = this.index.caption;
-    this.metaTitle = this.index.meta_title[0].text;
-    this.metaDescription = this.index.meta_description[0].text;
+    this.metaTitle = this.index.meta_title;
+    this.metaKeywords = this.index.meta_keywords;
+    this.metaDescription = this.index.meta_description;
 
     // State
     this.state = {
-      treatments: this.getSlicesByType(), // Treatments Slice
-      sellingPoints: this.getSlicesByType('selling_points') // Selling Points Slice
+      treatments: [],
+      sellingPoints: []
     };
+
+    // Treatments
+    this.getSlicesByType(
+      "treatments",
+      (treatments) => {
+        this.state.treatments = treatments;
+        this.setState(this.state);
+      }
+    );
+
+    // Selling Points
+    this.getSlicesByType(
+      "selling_points",
+      (sellingPoints) => {
+        this.state.sellingPoints = sellingPoints;
+        this.setState(this.state);
+      }
+    );
   }
 
   /**
    * Return dymanic page content meta by type
    * @param {String} type
-   * @returns {Array}
+   * @param {Function} fnc
    */
-  getSlicesByType(type = "treatments") {
+  getSlicesByType(type, fnc) {
 
     const slices = [];
-    if (typeof this.index === 'undefined' || typeof this.index.slices === 'undefined' || this.index.slices.length === 0) {
-      return slices;
-    }
+    client
+      .getByID(uuid)
+      .then(
+        (p) => {
+          if (typeof p === 'undefined' || typeof p.data.slices === 'undefined' || p.data.slices.length === 0) {
+            return;
+          }
 
-    for (let i in this.index.slices) {
-      let slice = this.index.slices[i];
-      if (!slice.slice_type || slice.slice_type !== type) {
-        continue;
-      }
+          for (let i in p.data.slices) {
+            let slice = p.data.slices[i];
+            if (!slice.slice_type || slice.slice_type !== type) {
+              continue;
+            }
 
-      slices.push(slice);
-    }
+            slices.push(slice);
+          }
 
-    return slices;
+          console.log(slices);
+        }
+      )
+      .catch(
+        (e) => console.error(e)
+      )
+      .finally(
+        () => fnc(slices)
+      );
   }
 
   /**
@@ -105,7 +139,9 @@ export default class Home extends Component {
 
       if (
         typeof t.primary === 'undefined'
+        || t.primary.active === false
         || typeof t.id === 'undefined'
+        || typeof t.primary.divId === 'undefined'
         || typeof t.primary.image === 'undefined'
         || typeof t.primary.title === 'undefined'
         || t.primary.title.length === 0
@@ -119,10 +155,14 @@ export default class Home extends Component {
       TREATMENTS.push(
         <Treatment
           id={t.id}
+          divId={t.primary.divId}
+          items={t.items}
           image={t.primary.image}
           name={t.primary.title[0].text}
           link={t.primary.link}
-          descriptionShort={t.primary.description[0].text}
+          description={t.primary.description[0].text}
+          siblings={null}
+          previewMode={typeof t.primary.items !== 'undefined' && t.primary.items.length}
         />
       );
     }
@@ -149,6 +189,7 @@ export default class Home extends Component {
           image={s.primary.image}
           name={s.primary.title[0].text}
           description={s.primary.description[0].text}
+          iteration={x}
         />
       );
     }
@@ -157,87 +198,32 @@ export default class Home extends Component {
       <React.Fragment>
         <HTMLHead
           title={this.metaTitle}
-          description={this.metaDescription}>
-        </HTMLHead>
+          metaKeywords={this.metaKeywords}
+          metaDescription={this.metaDescription}
+        />
         <Header
           title={this.title}
           logo={this.logo}
           loader="loader.gif"
           width={this.logo.dimensions.width / 3}
-          height={this.logo.dimensions.height / 3}>
-        </Header>
+          height={this.logo.dimensions.height / 3}
+        />
         <Hero
-          title={this.contentTitle}
-          content={this.caption}>
+          cta="Contact our experienced salon"
+          image="https://github.com/portchris/faceandfiguresalon/blob/master/src/img/taunton-beauty-salon-badge.png?raw=true"
+        >
+          <h1 className="text-4xl font-bold mt-0 mb-6">
+            Our Taunton Beauty Salon<br />
+            Celebrates 30 Years
+          </h1>
         </Hero>
         <main className="content container-fluid mx-auto px-4">
-          <article id="selling-points" key="selling-points" className="flex align-middle justify-center my-20 space-x-12">
+          <article id="selling-points" key="selling-points" className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 my-10">
             {SELLING_POINTS}
           </article>
-          <article id="treatments" key="treatments" className="flex align-middle justify-center my-20 space-x-12">
+          <article id="treatments" key="treatments" className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {TREATMENTS}
           </article>
-          {/* <article id="home" key="index-article">
-              <Row key="index-row">
-                <Col key="index-col-1" className="description" md="8">
-                  <Content
-                    key="content-1"
-                    content={content}>
-                  </Content>
-                </Col>
-                <Col key="index-col-2" className="promo" md="4">
-                  <div className="promo-video" key="promo-video">
-                    <a
-                      href={videoPromoURI}
-                      target="_blank"
-                      key="promo-video-link">
-                      &nbsp;
-                    </a>
-                    <iframe
-                      src={videoPromoURI}
-                      frameBorder="0"
-                      allowFullScreen
-                      key="promo-video-frame">
-                    </iframe>
-                  </div>
-                </Col>
-              </Row>
-            </article>
-            <hr className="vspace" />
-            <article id="events" key="events-article">
-              <Row key="events-row-1">
-                <h2 className="h2" key="heading2-1">{eventsTitle}</h2>
-                <p>{eventsCaption}</p>
-              </Row>
-              <Row key="events-row-2">
-                <Col key="events-col" md="12">
-                  {eventsHtml}
-                </Col>
-              </Row>
-            </article>
-            <hr className="vspace" />
-            <article id="contact" key="contact-article" className="vspace">
-              <Row id="contact-heading" key="contact-row-1">
-                <h2 className='h2' key="heading2-2">{contactContentTitle}</h2>
-              </Row>
-              <Row id="contact-row" key="contact-row-2">
-                <Col id="contact-col-1" key="contact-col-1" md="12" className="description">
-                  <Content
-                    key="content-2"
-                    content={contactCaption}>
-                  </Content>
-                  <Content
-                    key="content-3"
-                    content={contactContent}>
-                  </Content>
-                </Col>
-              </Row>
-              <Row id="contact" key="contact-row-3">
-                <Col id="contact-col-4" key="contact-col-3" md="12">
-                  <ContactForm contactSuccessMessage={contactSuccessMessage} />
-                </Col>
-              </Row>
-            </article> */}
           <Footer />
         </main>
       </React.Fragment>
@@ -253,7 +239,7 @@ export default class Home extends Component {
  */
 export async function getStaticProps({ context }) {
 
-  const page = await client.getByID('Y2KU_REAACEAKImf');
+  const page = await client.getByID(uuid);
 
   return {
     props: {

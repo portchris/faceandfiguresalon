@@ -57,6 +57,13 @@
             "allowTargetBlank": false,
             "select": null
           }
+        },
+        "divId": {
+          "type": "Text",
+          "config": {
+            "label": "ID",
+            "placeholder": "Uesd for internal routing"
+          }
         }
       },
       "items": {

@@ -1,12 +1,14 @@
 import * as Prismic from "@prismicio/client";
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import Treatment from "../components/treatment";
 import HTMLHead from "../components/html/head";
 import Header from "../components/html/header";
 import Footer from "../components/html/footer";
 import Content from "../components/html/content";
+import Hero from "../components/html/hero";
 import FiveZeroThree from "../components/errors/503";
 
+const uuid = 'Y-ErUhAAACUAGj0m';
 const repoName = "faceandfiguresalon";
 const endpoint = Prismic.getEndpoint(repoName);
 const client = Prismic.createClient(endpoint);
@@ -28,12 +30,6 @@ export default class Home extends Component {
   /** @var {String} */
   static caption;
 
-  /** @var {String} */
-  static metaTitle;
-
-  /** @var {String} */
-  static metaDescription;
-
   /** @var {Object} */
   static index;
 
@@ -48,38 +44,99 @@ export default class Home extends Component {
     this.content = this.index.content;
     this.contentTitle = this.index.heading_title[0].text;
     this.caption = this.index.caption;
-    this.metaTitle = this.index.meta_title[0].text;
-    this.metaDescription = this.index.meta_description[0].text;
 
     // State
     this.state = {
-      treatments: this.getSlicesByType(), // Treatments Slice
-      sellingPoints: this.getSlicesByType('selling_points') // Selling Points Slice
+      treatments: [],
+      sellingPoints: [],
+      metaTitle: this.index.meta_title,
+      metaKeywords: this.index.meta_keywords,
+      metaDescription: this.index.meta_description
     };
+
+    // Treatments
+    this.getSlicesByType(
+      "treatments",
+      (treatments) => {
+        this.state.treatments = treatments;
+        this.setState(this.state);
+      }
+    );
+
+    this.onUpdatePageMeta.bind(this);
   }
 
   /**
    * Return dymanic page content meta by type
    * @param {String} type
-   * @returns {Array}
+   * @param {Function} fnc
    */
-  getSlicesByType(type = "treatments") {
+  getSlicesByType(type, fnc) {
 
     const slices = [];
-    if (typeof this.index === 'undefined' || typeof this.index.slices === 'undefined' || this.index.slices.length === 0) {
-      return slices;
-    }
+    client
+      .getByID(uuid)
+      .then(
+        (p) => {
+          if (typeof p === 'undefined' || typeof p.data.slices === 'undefined' || p.data.slices.length === 0) {
+            return;
+          }
 
-    for (let i in this.index.slices) {
-      let slice = this.index.slices[i];
-      if (!slice.slice_type || slice.slice_type !== type) {
-        continue;
+          for (let i in p.data.slices) {
+            let slice = p.data.slices[i];
+            if (!slice.slice_type || slice.slice_type !== type) {
+              continue;
+            }
+
+            slices.push(slice);
+          }
+        }
+      )
+      .catch(
+        (e) => console.error(e)
+      )
+      .finally(
+        () => fnc(slices)
+      );
+  }
+
+  /**
+   * On load
+   */
+  componentDidMount() {
+
+    // Observers
+    addEventListener(
+      'hashchange',
+      (event) => {
+
+        if (event.oldURL !== event.newURL) {
+          this.onUpdatePageMeta(event.newURL);
+        }
+      }
+    );
+  }
+
+  /**
+   * @param {String} uri
+   */
+  onUpdatePageMeta(uri) {
+
+    let hash = uri.split('#');
+    let divId = hash[(hash.length - 1)];
+    let el = document.getElementById(divId);
+    if (typeof el !== 'undefined') {
+      let metaTitle = el.getElementsByTagName('h3');
+      let metaDescription = el.getElementsByTagName('p');
+      if (metaTitle.length) {
+        this.state.metaTitle = "Face & Figure Salon Taunton | " + metaTitle[0].textContent;
+      }
+      if (metaDescription.length) {
+        this.state.metaDescription = metaDescription[0].textContent;
       }
 
-      slices.push(slice);
+      this.setState(this.state);
     }
-
-    return slices;
   }
 
   /**
@@ -101,7 +158,9 @@ export default class Home extends Component {
 
       if (
         typeof t.primary === 'undefined'
+        || t.primary.active === false
         || typeof t.id === 'undefined'
+        || typeof t.primary.divId === 'undefined'
         || typeof t.primary.image === 'undefined'
         || typeof t.primary.title === 'undefined'
         || t.primary.title.length === 0
@@ -115,10 +174,14 @@ export default class Home extends Component {
       TREATMENTS.push(
         <Treatment
           id={t.id}
+          divId={t.primary.divId}
+          items={t.items}
           image={t.primary.image}
           name={t.primary.title[0].text}
           link={t.primary.link}
-          descriptionLong={t.primary.description[0].text}
+          description={t.primary.description[0].text}
+          siblings={TREATMENTS}
+          previewMode={typeof t.primary.items !== 'undefined' && t.primary.items.length}
         />
       );
     }
@@ -126,18 +189,30 @@ export default class Home extends Component {
     return (
       <React.Fragment>
         <HTMLHead
-          title={this.metaTitle}
-          description={this.metaDescription}>
-        </HTMLHead>
+          title={this.state.metaTitle}
+          metaKeywords={this.state.metaKeywords}
+          metaDescription={this.state.metaDescription} />
         <Header
           title={this.title}
           logo={this.logo}
           loader="loader.gif"
           width={this.logo.dimensions.width / 3}
-          height={this.logo.dimensions.height / 3}>
-        </Header>
+          height={this.logo.dimensions.height / 3} />
+        <Hero
+          cta="Contact our experienced salon"
+          image="https://github.com/portchris/faceandfiguresalon/blob/master/src/img/taunton-beauty-salon-badge.png?raw=true"
+        >
+          <h1 className="text-4xl font-bold mt-0 mb-6">
+            {this.contentTitle}
+          </h1>
+          <div className="max-w-3xl text-lg m-auto">
+            <Content
+              content={this.content}
+            />
+          </div>
+        </Hero>
         <main className="content container-fluid mx-auto px-4">
-          <article id="treatments" key="treatments" className="flex justify-evenly space-x-2 ml-12 mr-12">
+          <article id="treatments" key="treatments" className="grid gap-4 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {TREATMENTS}
           </article>
           <Footer />
@@ -155,7 +230,7 @@ export default class Home extends Component {
  */
 export async function getStaticProps({ context }) {
 
-  const page = await client.getByID('Y2KU_REAACEAKImf');
+  const page = await client.getByID(uuid);
 
   return {
     props: {

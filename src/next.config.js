@@ -17,8 +17,40 @@ module.exports = {
     async rewrites() {
         return [
             {
-                "source": "/blog",
+                "source": "/blog(.*)",
                 "destination": process.env.REACT_APP_URL
+            },
+            {
+                "source": "/treatments/allergies-sensitivities-remedies(.*)",
+                "destination": process.env.REACT_APP_URL + "treatments/#allergies-sensitivities-remedies"
+            },
+            {
+                "source": "/treatments/facials(.*)",
+                "destination": process.env.REACT_APP_URL + "treatments/#facials"
+            },
+            {
+                "source": "/treatments/hair-removal(.*)",
+                "destination": process.env.REACT_APP_URL + "treatments/#hair-removal"
+            },
+            {
+                "source": "/treatments/make-up(.*)",
+                "destination": process.env.REACT_APP_URL + "treatments/#make-up"
+            },
+            {
+                "source": "/treatments/non-surgical-face-body-lifts(.*)",
+                "destination": process.env.REACT_APP_URL + "treatments/#non-surgical-face-body-lifts"
+            },
+            {
+                "source": "/treatments/slimming(.*)",
+                "destination": process.env.REACT_APP_URL + "treatments/#slimming"
+            },
+            {
+                "source": "/treatments/caci(.*)",
+                "destination": process.env.REACT_APP_URL + "treatments/#caci"
+            },
+            {
+                "source": "/treatments/ionithermie(.*)",
+                "destination": process.env.REACT_APP_URL + "treatments/#ionithermie"
             },
             {
                 "source": "/",
@@ -39,7 +71,7 @@ module.exports = {
                 "destination": process.env.REACT_APP_WUFOO_URI
             },
             {
-                "source": "/:any*",
+                "source": "/:any(.*)",
                 "destination": "/#home"
             }
         ];

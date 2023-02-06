@@ -4,15 +4,15 @@
 server {
     listen {VIRTUAL_PORT};
     listen [::]:{VIRTUAL_PORT};
-    server_name faceandfiguresalon.co.uk;
-    return 301 https://www.faceandfiguresalon.co.uk$request_uri;
+    server_name www.faceandfiguresalon.co.uk;
+    return 301 https://faceandfiguresalon.co.uk$request_uri;
 }
 
 server {
     listen {VIRTUAL_PORT};
     listen [::]:{VIRTUAL_PORT};
 
-    server_name www.faceandfiguresalon.co.uk;
+    server_name faceandfiguresalon.co.uk;
 
     set $WEBROOT /home/www/faceandfiguresalon/out;
     root $WEBROOT;
@@ -38,6 +38,42 @@ server {
         deny all;
 
         return 403;
+    }
+
+    location ~ ^/treatments/allergies-sensitivities-remedies(.*)$ {
+        return 301 /treatments#allergies-sensitivities-remedies;
+    }
+
+    location ~ ^/treatments/facials(.*)$ {
+        return 301 /treatments#facials;
+    }
+
+    location ~ ^/treatments/hair-removal(.*)$ {
+        return 301 /treatments#hair-removal;
+    }
+
+    location ~ ^/treatments/make-up(.*)$ {
+        return 301 /treatments#make-up;
+    }
+
+    location ~ ^/treatments/non-surgical-face-body-lifts(.*)$ {
+        return 301 /treatments#non-surgical-face-body-lifts;
+    }
+
+    location ~ ^/treatments/slimming(.*)$ {
+        return 301 /treatments#slimming;
+    }
+
+    location ~ ^/treatments/caci(.*)$ {
+        return 301 /treatments#caci;
+    }
+
+    location ~ ^/treatments/ionithermie(.*)$ {
+        return 301 /treatments#ionithermie;
+    }
+
+    location ~ ^/blog(.*)$ {
+        return 301 /contact;
     }
 
     location / {
