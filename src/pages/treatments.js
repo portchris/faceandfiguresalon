@@ -202,10 +202,10 @@ export default class Home extends Component {
           cta="Contact our experienced salon"
           image="https://github.com/portchris/faceandfiguresalon/blob/master/src/img/taunton-beauty-salon-badge.png?raw=true"
         >
-          <h1 className="text-4xl font-bold mt-0 mb-6">
+          <h1 className="text-2xl md:text-4xl font-bold mt-0 mb-6">
             {this.contentTitle}
           </h1>
-          <div className="max-w-3xl text-lg m-auto">
+          <div className="max-w-3xl md:text-lg m-auto">
             <Content
               content={this.content}
             />

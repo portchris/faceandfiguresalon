@@ -34,7 +34,7 @@ header nav .nav-link {
 }
 
 #hero {
-    height: calc(625px / 2);
+    /* height: calc(625px / 2); */
 }
 
 #hero * {
