@@ -5,9 +5,10 @@ import HTMLHead from "../components/html/head";
 import Header from "../components/html/header";
 import Footer from "../components/html/footer";
 import Content from "../components/html/content";
+import Hero from "../components/html/hero";
 import FiveZeroThree from "../components/errors/503";
 
-const uuid = 'Y2KU_REAACEAKImf';
+const uuid = 'Y-ErUhAAACUAGj0m';
 const repoName = "faceandfiguresalon";
 const endpoint = Prismic.getEndpoint(repoName);
 const client = Prismic.createClient(endpoint);
@@ -190,15 +191,26 @@ export default class Home extends Component {
         <HTMLHead
           title={this.state.metaTitle}
           metaKeywords={this.state.metaKeywords}
-          metaDescription={this.state.metaDescription}>
-        </HTMLHead>
+          metaDescription={this.state.metaDescription} />
         <Header
           title={this.title}
           logo={this.logo}
           loader="loader.gif"
           width={this.logo.dimensions.width / 3}
-          height={this.logo.dimensions.height / 3}>
-        </Header>
+          height={this.logo.dimensions.height / 3} />
+        <Hero
+          cta="Contact our experienced salon"
+          image="https://github.com/portchris/faceandfiguresalon/blob/master/src/img/taunton-beauty-salon-badge.png?raw=true"
+        >
+          <h1 className="text-4xl font-bold mt-0 mb-6">
+            {this.contentTitle}
+          </h1>
+          <div className="max-w-3xl text-lg m-auto">
+            <Content
+              content={this.content}
+            />
+          </div>
+        </Hero>
         <main className="content container-fluid mx-auto px-4">
           <article id="treatments" key="treatments" className="grid gap-4 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {TREATMENTS}

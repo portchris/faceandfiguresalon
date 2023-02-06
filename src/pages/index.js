@@ -199,18 +199,23 @@ export default class Home extends Component {
         <HTMLHead
           title={this.metaTitle}
           metaKeywords={this.metaKeywords}
-          metaDescription={this.metaDescription}>
-        </HTMLHead>
+          metaDescription={this.metaDescription}
+        />
         <Header
           title={this.title}
           logo={this.logo}
           loader="loader.gif"
           width={this.logo.dimensions.width / 3}
-          height={this.logo.dimensions.height / 3}>
-        </Header>
+          height={this.logo.dimensions.height / 3}
+        />
         <Hero
-          title={this.contentTitle}
-          content={this.caption}>
+          cta="Contact our experienced salon"
+          image="https://github.com/portchris/faceandfiguresalon/blob/master/src/img/taunton-beauty-salon-badge.png?raw=true"
+        >
+          <h1 className="text-4xl font-bold mt-0 mb-6">
+            Our Taunton Beauty Salon<br />
+            Celebrates 30 Years
+          </h1>
         </Hero>
         <main className="content container-fluid mx-auto px-4">
           <article id="selling-points" key="selling-points" className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 my-10">
@@ -219,67 +224,6 @@ export default class Home extends Component {
           <article id="treatments" key="treatments" className="grid gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {TREATMENTS}
           </article>
-          {/* <article id="home" key="index-article">
-              <Row key="index-row">
-                <Col key="index-col-1" className="description" md="8">
-                  <Content
-                    key="content-1"
-                    content={content}>
-                  </Content>
-                </Col>
-                <Col key="index-col-2" className="promo" md="4">
-                  <div className="promo-video" key="promo-video">
-                    <a
-                      href={videoPromoURI}
-                      target="_blank"
-                      key="promo-video-link">
-                      &nbsp;
-                    </a>
-                    <iframe
-                      src={videoPromoURI}
-                      frameBorder="0"
-                      allowFullScreen
-                      key="promo-video-frame">
-                    </iframe>
-                  </div>
-                </Col>
-              </Row>
-            </article>
-            <hr className="vspace" />
-            <article id="events" key="events-article">
-              <Row key="events-row-1">
-                <h2 className="h2" key="heading2-1">{eventsTitle}</h2>
-                <p>{eventsCaption}</p>
-              </Row>
-              <Row key="events-row-2">
-                <Col key="events-col" md="12">
-                  {eventsHtml}
-                </Col>
-              </Row>
-            </article>
-            <hr className="vspace" />
-            <article id="contact" key="contact-article" className="vspace">
-              <Row id="contact-heading" key="contact-row-1">
-                <h2 className='h2' key="heading2-2">{contactContentTitle}</h2>
-              </Row>
-              <Row id="contact-row" key="contact-row-2">
-                <Col id="contact-col-1" key="contact-col-1" md="12" className="description">
-                  <Content
-                    key="content-2"
-                    content={contactCaption}>
-                  </Content>
-                  <Content
-                    key="content-3"
-                    content={contactContent}>
-                  </Content>
-                </Col>
-              </Row>
-              <Row id="contact" key="contact-row-3">
-                <Col id="contact-col-4" key="contact-col-3" md="12">
-                  <ContactForm contactSuccessMessage={contactSuccessMessage} />
-                </Col>
-              </Row>
-            </article> */}
           <Footer />
         </main>
       </React.Fragment>
