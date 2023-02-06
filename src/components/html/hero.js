@@ -48,7 +48,7 @@ class Hero extends Component {
             <React.Fragment>
                 <section id="hero" className="bg-gray-50 text-gray-800 p-2 flex align-middle mb-10 relative">
                     {this.img && this.img.length &&
-                        <div className="badge self-start absolute inset-0 w-32">
+                        <div className="badge self-start hidden md:inline md:absolute inset-0 w-32">
                             <img
                                 src={this.img}
                                 alt="Celebrating 30 years"
