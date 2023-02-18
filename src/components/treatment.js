@@ -76,6 +76,10 @@ class Treatment extends Component {
         };
         this.setState(this.state);
         this.makeInactive = this.makeInactive.bind(this);
+
+        if (window.location.hash.length) {
+            this.featureTreatment(null);
+        }
     }
 
     handleInputChange = (event) => {
@@ -102,8 +106,8 @@ class Treatment extends Component {
                 : "";
 
             ITEMS.push(
-                <li className="treatment-item bg-slate-50 border border-slate-100 my-2 rounded shadow relative flex">
-                    <div className="flex flex-col w-11/12 p-2">
+                <li className="treatment-item bg-slate-50 border border-slate-100 my-2 rounded shadow relative flex items-center">
+                    <div className="flex flex-col w-10/12 p-2">
                         <Content
                             key={"content-product-title-" + this.makeUUID()}
                             content={item.product_title}
@@ -114,14 +118,14 @@ class Treatment extends Component {
                             content={item.product_description}
                         />
                     </div>
-                    <div className="flex w-1/12 bg-white justify-center content-center border-ff-right rounded">
+                    <div className="flex w-2/12 h-full cta">
                         <Link
                             key={"content-product-cta-" + this.makeUUID()}
                             title={ctaText}
                             href="/contact"
                         >
                             <a title={ctaText}>
-                                <FontAwesomeIcon icon={faPhone} className="bg-white rounded-full text-ff p-2 inline xs w-12" />
+                                <FontAwesomeIcon icon={faPhone} className="rounded-full text-ff p-2 inline xs w-12" />
                             </a>
                         </Link>
                     </div>
@@ -138,7 +142,7 @@ class Treatment extends Component {
                     <a
                         id={this.divId}
                         key={this.id + "-treatment-anchor"}
-                        onClick={e => this.handleTreatmentClick(e)}
+                        onClick={e => this.featureTreatment(e)}
                         className={"relative pb-16 my-0 rounded shadow-lg border border-gray-200 shadow-gray-200 bg-white ease-in-out duration-300 hover:-translate-y-1 m-auto md:mx-0 max-w-md lg:max-w-full hover:cursor-pointer " + this.state.treatmentActiveClass}
                     >
                         <div key={this.id + "-treatment-row-1"}>
@@ -195,18 +199,33 @@ class Treatment extends Component {
 
     /**
      * Handles the submit event on form submit.
-     * @param {Object} event
+     * @param {Object|null} event
      */
-    handleTreatmentClick(event) {
+    featureTreatment(event) {
 
         const treatments = document.getElementById('treatments');
         const classes = this.activeClass.split(" ");
+        const targetElement = (event !== null && event.target)
+            ? event.target
+            : window;
+
         if (this.previewMode && treatments) {
-            event.preventDefault();
+            if (event !== null) {
+                event.preventDefault();
+            }
             if (this.state.treatmentActiveClass.length === 0) {
                 this.state.treatmentItemsActiveClass = "block";
                 this.state.treatmentActiveClass = this.activeClass;
                 this.state.ctaText = "Hide " + this.name;
+
+                setTimeout(
+                    () => targetElement.scrollTo({
+                        top: 10,
+                        left: 0,
+                        behavior: 'smooth'
+                    }),
+                    250
+                );
             } else {
                 this.state.treatmentItemsActiveClass = "hidden";
                 this.state.treatmentActiveClass = "";
@@ -228,11 +247,6 @@ class Treatment extends Component {
             // }
 
             this.setState(this.state);
-            event.target.scrollTo({
-                top: 1,
-                left: 0,
-                behavior: 'smooth'
-            });
             window.location.hash = this.divId;
         }
     }
